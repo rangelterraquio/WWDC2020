@@ -121,7 +121,16 @@ extension GameLayer: SKPhysicsContactDelegate{
             This method verify if the character collided with the collectible
          */
         if node.collided(with: .collectible, contact: contact){
+            guard let scene = self.parent as? GameScene else{return}
             
+            /**
+               This method itarate over scene child nodes and trigger the interaction.
+            */
+            scene.enumerateChildNodes(withName: "//*", using: {node, _ in
+                if let interactiveNode = node as? InteractiveNode{
+                    interactiveNode.interact()
+                }
+            })
         }
         
         /**

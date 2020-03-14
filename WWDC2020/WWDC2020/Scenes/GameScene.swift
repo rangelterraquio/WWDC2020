@@ -30,6 +30,15 @@ class GameScene: SKScene {
         cameraNode = Camera(gameLayer.character.node, background, view.frame)
         self.addChild(cameraNode)
         self.camera = cameraNode
+        
+        /**
+           This method itarate over scene child nodes and trigger the didMoveToScene.
+        */
+        enumerateChildNodes(withName: "//*", using: {node, _ in
+            if let interactiveNode = node as? InteractiveNode{
+                interactiveNode.didMoveToScene()
+            }
+        })
     }
     
     

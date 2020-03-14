@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		709DC45C241D170800A55D28 /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709DC45B241D170800A55D28 /* PhysicsCategory.swift */; };
 		709DC45E241D566200A55D28 /* Level2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 709DC45D241D566200A55D28 /* Level2.sks */; };
+		709DC460241D5DD500A55D28 /* InteractiveNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709DC45F241D5DD500A55D28 /* InteractiveNode.swift */; };
+		709DC462241D8A5900A55D28 /* CBLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709DC461241D8A5900A55D28 /* CBLNode.swift */; };
 		70B252F6241BFAFD00068FD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B252F5241BFAFD00068FD6 /* AppDelegate.swift */; };
 		70B252F8241BFAFD00068FD6 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 70B252F7241BFAFD00068FD6 /* GameScene.sks */; };
 		70B252FA241BFAFD00068FD6 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 70B252F9241BFAFD00068FD6 /* Actions.sks */; };
@@ -28,6 +30,8 @@
 /* Begin PBXFileReference section */
 		709DC45B241D170800A55D28 /* PhysicsCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
 		709DC45D241D566200A55D28 /* Level2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2.sks; sourceTree = "<group>"; };
+		709DC45F241D5DD500A55D28 /* InteractiveNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveNode.swift; sourceTree = "<group>"; };
+		709DC461241D8A5900A55D28 /* CBLNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBLNode.swift; sourceTree = "<group>"; };
 		70B252F2241BFAFD00068FD6 /* WWDC2020.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWDC2020.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70B252F5241BFAFD00068FD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70B252F7241BFAFD00068FD6 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -94,6 +98,8 @@
 			children = (
 				70B25312241C021600068FD6 /* Character.swift */,
 				709DC45B241D170800A55D28 /* PhysicsCategory.swift */,
+				709DC45F241D5DD500A55D28 /* InteractiveNode.swift */,
+				709DC461241D8A5900A55D28 /* CBLNode.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -244,6 +250,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				709DC462241D8A5900A55D28 /* CBLNode.swift in Sources */,
+				709DC460241D5DD500A55D28 /* InteractiveNode.swift in Sources */,
 				70B252FE241BFAFD00068FD6 /* ViewController.swift in Sources */,
 				70B25316241C051D00068FD6 /* ControlLayer.swift in Sources */,
 				70B2531C241C0B0700068FD6 /* KeyBoardKeys.swift in Sources */,
