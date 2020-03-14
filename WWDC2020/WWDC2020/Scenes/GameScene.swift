@@ -21,6 +21,7 @@ class GameScene: SKScene {
         
        
        // self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
+        gameLayer.gameState = self
         self.addChild(gameLayer)
         self.physicsWorld.contactDelegate = gameLayer
         
@@ -67,6 +68,43 @@ class GameScene: SKScene {
     }
     
     
+    
+    
 }
 
 
+
+
+// MARK: -> GAME STATE
+
+extension GameScene: GameState{
+   
+    /**
+      This method is triggered when the game layer finishes a level to call a new one.
+      
+      - parameter level: The next level to be played.
+      */
+    class public func nextLevel(_ nextLevel: Int) -> GameScene?{
+          guard let scene = GameScene(fileNamed: "Level\(nextLevel)") else {return nil}
+          scene.scaleMode = .aspectFill
+          scene.gameLayer.currentGame = nextLevel
+          return scene
+      }
+  
+    
+    func willStart(_ level: Int) {
+        print("Level\(level)")
+    }
+    
+    func finished(_ level: Int) {
+        print("Level\(level)")
+    }
+    
+    func startNewLevel() {
+        let scene = GameScene.nextLevel(gameLayer.currentGame)
+        view?.presentScene(scene)
+    }
+       
+       
+    
+}

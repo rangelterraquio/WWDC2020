@@ -12,7 +12,7 @@ import Foundation
 /**
  This protocol define all behaviors of that game to be oberved
 */
-protocol GameListening{
+protocol GameState{
     
     /**
     This method is triggered when the game layer will start a level.
@@ -25,6 +25,15 @@ protocol GameListening{
     
     - parameter level: The leve that was finished.
     */
-    func finished(_ level: Int) -> Void
+    func finished(_ currentlevel: Int) -> Void
+    
+    
+    /**
+    This method is triggered when the game layer finishes a level to call a new one.
+    
+    - parameter level: The next level to be played.
+    */
+    func startNewLevel() ->  Void
+    
     
 }

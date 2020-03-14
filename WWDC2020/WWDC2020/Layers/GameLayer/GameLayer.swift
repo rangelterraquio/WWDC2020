@@ -13,6 +13,11 @@ public class GameLayer: SKNode{
     
     var character = Character(.square)
     var controlLayer = ControlLayer()
+    
+    var currentGame = 1
+    
+    var gameState: GameState? = nil
+    
     override public init() {
         super.init()
         
@@ -24,12 +29,7 @@ public class GameLayer: SKNode{
     
     }
     
-    func restartCheckPoint(){
-        character.node.position = character.initialPosition
-        if let camera = (self.parent as! GameScene).camera{
-            camera.position = character.initialPosition 
-        }
-    }
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -39,6 +39,23 @@ public class GameLayer: SKNode{
     
     override public func keyDown(with event: NSEvent) {
         controlLayer.keyDown(with: event)
+    }
+    
+}
+
+//MARK: -> GAME LIFECYCLE
+extension GameLayer{
+    func restartCheckPoint(){
+        character.node.position = character.initialPosition
+        if let camera = (self.parent as! GameScene).camera{
+            camera.position = character.initialPosition
+        }
+    }
+    
+    func finishGame(){
+        gameState?.finished(currentGame)
+        currentGame += 1
+        gameState?.startNewLevel()
     }
     
 }
@@ -115,6 +132,13 @@ extension GameLayer: SKPhysicsContactDelegate{
             restartCheckPoint()
         }
         
-        
+        /**
+            This method verify if the character completed the level
+         */
+        if node.collided(with: .victoryCheckPoint, contact: contact){
+            
+           finishGame()
+        }
+
     }
 }
