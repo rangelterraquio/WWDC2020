@@ -22,7 +22,7 @@ public class GameLayer: SKNode{
         super.init()
         
         controlLayer.controlable = self
-        character = Character(.square)
+        character = Character(.star)
         self.addChild(character.node)
         
         
