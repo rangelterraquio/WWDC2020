@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import SpriteKit
 
 /**
 This protocol defines an interface for all node that has some kind of interaction in game.
@@ -16,8 +16,9 @@ public protocol InteractiveNode{
     
     /**
     This method defines what will happen to the node when it interacts.
-    */
-    func interact()
+     - parameter contact: A contact where interaction takes place.
+     */
+    func interact(with contact: SKPhysicsContact)
     
     /**
     This method setup the node when it is loaded.

@@ -12,11 +12,16 @@ import SpriteKit
 public class GameLayer: SKNode{
     
     var character = Character(.square)
-    var controlLayer = ControlLayer()
+    let controlLayer = ControlLayer()
+    var currentGame: Level = .level1
     
-    var currentGame = 1
+    var powerProgress = 0
     
-    var gameState: GameState? = nil
+    var gameState: GameState? = nil {
+        didSet{
+            gameState?.willStart(.level1)
+        }
+    }
     
     override public init() {
         super.init()
@@ -25,11 +30,9 @@ public class GameLayer: SKNode{
         character = Character(.star)
         self.addChild(character.node)
         
-        
+
     
     }
-    
-    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -54,7 +57,7 @@ extension GameLayer{
     
     func finishGame(){
         gameState?.finished(currentGame)
-        currentGame += 1
+        currentGame = Level.nextLevel(currentLevel: currentGame)
         gameState?.startNewLevel()
     }
     
@@ -123,14 +126,22 @@ extension GameLayer: SKPhysicsContactDelegate{
         if node.collided(with: .collectible, contact: contact){
             guard let scene = self.parent as? GameScene else{return}
             
+            var powerProgress = 0
             /**
                This method itarate over scene child nodes and trigger the interaction.
             */
             scene.enumerateChildNodes(withName: "//*", using: {node, _ in
                 if let interactiveNode = node as? InteractiveNode{
-                    interactiveNode.interact()
+                    interactiveNode.interact(with: contact)
+                    
+                    self.gameState?.updatePowerProgress()
+                    ///this line check if there are still collectibles in the scene to updete the HUD.
+                    powerProgress += node.parent == nil ? 1 : 0
                 }
             })
+            
+            ///Updete the HUD.
+            powerProgress != 0 ? gameState?.showMsgText() : print("Update Graphic")
         }
         
         /**

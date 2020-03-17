@@ -13,17 +13,22 @@ class GameScene: SKScene {
     
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
-    private var gameLayer = GameLayer()
-    
+    private let gameLayer = GameLayer()
+    var hudLayer: HudLayer!
     var cameraNode: Camera!
+    
+    var sceneHUD: Level!
     
     override func didMove(to view: SKView) {
         
-       
+        hudLayer = HudLayer(screenRect: view.frame)
        // self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         gameLayer.gameState = self
         self.addChild(gameLayer)
         self.physicsWorld.contactDelegate = gameLayer
+        
+        
+        setSceneHUD()
         
         let background = childNode(withName: "background") as! SKSpriteNode
         
@@ -31,16 +36,34 @@ class GameScene: SKScene {
         self.addChild(cameraNode)
         self.camera = cameraNode
         
+        
+        cameraNode.addChild(hudLayer)
         /**
            This method itarate over scene child nodes and trigger the didMoveToScene.
         */
-        enumerateChildNodes(withName: "//*", using: {node, _ in
+        enumerateChildNodes(withName: "//*", using: { node, _ in
             if let interactiveNode = node as? InteractiveNode{
                 interactiveNode.didMoveToScene()
             }
         })
     }
     
+    private func setSceneHUD(){
+        switch gameLayer.currentGame {
+            case .level1:
+                    sceneHUD = .level1
+            case .level2:
+                    sceneHUD = .level2
+            case .level3:
+                    sceneHUD = .level3
+            case .level4:
+                    sceneHUD = .level4
+            case .level5:
+                    sceneHUD = .level5
+            default:
+                    sceneHUD = .finalScene
+        }
+    }
     
     func touchDown(atPoint pos : CGPoint) {
        
@@ -88,24 +111,25 @@ class GameScene: SKScene {
 
 extension GameScene: GameState{
    
+   
     /**
       This method is triggered when the game layer finishes a level to call a new one.
       
       - parameter level: The next level to be played.
       */
-    class public func nextLevel(_ nextLevel: Int) -> GameScene?{
+    class public func nextLevel(_ nextLevel: Level) -> GameScene?{
           guard let scene = GameScene(fileNamed: "Level\(nextLevel)") else {return nil}
           scene.scaleMode = .aspectFill
           scene.gameLayer.currentGame = nextLevel
           return scene
       }
-  
     
-    func willStart(_ level: Int) {
-        print("Level\(level)")
+    
+    func willStart(_ level: Level) {
+        hudLayer.didMoveToScene(level)
     }
     
-    func finished(_ level: Int) {
+    func finished(_ level: Level) {
         print("Level\(level)")
     }
     
@@ -114,6 +138,15 @@ extension GameScene: GameState{
         view?.presentScene(scene)
     }
        
-       
+    func showMsgText() {
+        hudLayer.showMsg(from: sceneHUD)
+    }
     
+    func showInstructionText() {
+        hudLayer.showInstruction(from: sceneHUD)
+    }
+    
+    func updatePowerProgress() {
+        hudLayer.progressBar.progress += 0.3
+    }
 }

@@ -11,6 +11,7 @@
 		709DC45E241D566200A55D28 /* Level2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 709DC45D241D566200A55D28 /* Level2.sks */; };
 		709DC460241D5DD500A55D28 /* InteractiveNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709DC45F241D5DD500A55D28 /* InteractiveNode.swift */; };
 		709DC462241D8A5900A55D28 /* CBLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709DC461241D8A5900A55D28 /* CBLNode.swift */; };
+		70B1658F24206F8E007D2B9F /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B1658E24206F8E007D2B9F /* Level.swift */; };
 		70B252F6241BFAFD00068FD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B252F5241BFAFD00068FD6 /* AppDelegate.swift */; };
 		70B252F8241BFAFD00068FD6 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 70B252F7241BFAFD00068FD6 /* GameScene.sks */; };
 		70B252FA241BFAFD00068FD6 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 70B252F9241BFAFD00068FD6 /* Actions.sks */; };
@@ -25,6 +26,10 @@
 		70B2531C241C0B0700068FD6 /* KeyBoardKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B2531B241C0B0700068FD6 /* KeyBoardKeys.swift */; };
 		70B2531F241C216B00068FD6 /* GameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B2531E241C216B00068FD6 /* GameLayer.swift */; };
 		70B25321241C326100068FD6 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B25320241C326100068FD6 /* Camera.swift */; };
+		70C3A61B241FDAFA00056E96 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C3A61A241FDAFA00056E96 /* ProgressBar.swift */; };
+		70C3A61D241FE2E300056E96 /* Extension-CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C3A61C241FE2E300056E96 /* Extension-CGFloat.swift */; };
+		70EAB916241FC2A600F04384 /* HudControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EAB915241FC2A600F04384 /* HudControl.swift */; };
+		70F059C0241ED8870011DBB3 /* HudLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F059BF241ED8870011DBB3 /* HudLayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +37,7 @@
 		709DC45D241D566200A55D28 /* Level2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2.sks; sourceTree = "<group>"; };
 		709DC45F241D5DD500A55D28 /* InteractiveNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveNode.swift; sourceTree = "<group>"; };
 		709DC461241D8A5900A55D28 /* CBLNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBLNode.swift; sourceTree = "<group>"; };
+		70B1658E24206F8E007D2B9F /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		70B252F2241BFAFD00068FD6 /* WWDC2020.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWDC2020.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70B252F5241BFAFD00068FD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70B252F7241BFAFD00068FD6 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -49,6 +55,10 @@
 		70B2531B241C0B0700068FD6 /* KeyBoardKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyBoardKeys.swift; sourceTree = "<group>"; };
 		70B2531E241C216B00068FD6 /* GameLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLayer.swift; sourceTree = "<group>"; };
 		70B25320241C326100068FD6 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		70C3A61A241FDAFA00056E96 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		70C3A61C241FE2E300056E96 /* Extension-CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension-CGFloat.swift"; sourceTree = "<group>"; };
+		70EAB915241FC2A600F04384 /* HudControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudControl.swift; sourceTree = "<group>"; };
+		70F059BF241ED8870011DBB3 /* HudLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudLayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,9 +107,9 @@
 			isa = PBXGroup;
 			children = (
 				70B25312241C021600068FD6 /* Character.swift */,
-				709DC45B241D170800A55D28 /* PhysicsCategory.swift */,
 				709DC45F241D5DD500A55D28 /* InteractiveNode.swift */,
 				709DC461241D8A5900A55D28 /* CBLNode.swift */,
+				70C3A61A241FDAFA00056E96 /* ProgressBar.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -120,8 +130,9 @@
 			children = (
 				70B2531D241C1D1B00068FD6 /* GameLayer */,
 				70B2531A241C0AF200068FD6 /* Ultils */,
-				70B25314241C04FF00068FD6 /* Controls */,
+				70B25314241C04FF00068FD6 /* ControlsLayer */,
 				70B2530F241C006800068FD6 /* Protocols */,
+				70F059C1241ED88E0011DBB3 /* HudLayer */,
 			);
 			path = Layers;
 			sourceTree = "<group>";
@@ -143,13 +154,13 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		70B25314241C04FF00068FD6 /* Controls */ = {
+		70B25314241C04FF00068FD6 /* ControlsLayer */ = {
 			isa = PBXGroup;
 			children = (
 				70B25315241C051D00068FD6 /* ControlLayer.swift */,
 				70B25317241C05C700068FD6 /* Protocols */,
 			);
-			path = Controls;
+			path = ControlsLayer;
 			sourceTree = "<group>";
 		};
 		70B25317241C05C700068FD6 /* Protocols */ = {
@@ -163,8 +174,11 @@
 		70B2531A241C0AF200068FD6 /* Ultils */ = {
 			isa = PBXGroup;
 			children = (
+				709DC45B241D170800A55D28 /* PhysicsCategory.swift */,
 				70B2531B241C0B0700068FD6 /* KeyBoardKeys.swift */,
 				70B25320241C326100068FD6 /* Camera.swift */,
+				70C3A61C241FE2E300056E96 /* Extension-CGFloat.swift */,
+				70B1658E24206F8E007D2B9F /* Level.swift */,
 			);
 			path = Ultils;
 			sourceTree = "<group>";
@@ -175,6 +189,23 @@
 				70B2531E241C216B00068FD6 /* GameLayer.swift */,
 			);
 			path = GameLayer;
+			sourceTree = "<group>";
+		};
+		70EAB917241FC2AC00F04384 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				70EAB915241FC2A600F04384 /* HudControl.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		70F059C1241ED88E0011DBB3 /* HudLayer */ = {
+			isa = PBXGroup;
+			children = (
+				70F059BF241ED8870011DBB3 /* HudLayer.swift */,
+				70EAB917241FC2AC00F04384 /* Protocols */,
+			);
+			path = HudLayer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,11 +286,16 @@
 				70B252FE241BFAFD00068FD6 /* ViewController.swift in Sources */,
 				70B25316241C051D00068FD6 /* ControlLayer.swift in Sources */,
 				70B2531C241C0B0700068FD6 /* KeyBoardKeys.swift in Sources */,
+				70EAB916241FC2A600F04384 /* HudControl.swift in Sources */,
+				70C3A61B241FDAFA00056E96 /* ProgressBar.swift in Sources */,
 				70B25311241C007E00068FD6 /* GameState.swift in Sources */,
 				70B25313241C021600068FD6 /* Character.swift in Sources */,
 				709DC45C241D170800A55D28 /* PhysicsCategory.swift in Sources */,
 				70B25319241C05D700068FD6 /* ControlProtocol.swift in Sources */,
+				70F059C0241ED8870011DBB3 /* HudLayer.swift in Sources */,
+				70B1658F24206F8E007D2B9F /* Level.swift in Sources */,
 				70B25321241C326100068FD6 /* Camera.swift in Sources */,
+				70C3A61D241FE2E300056E96 /* Extension-CGFloat.swift in Sources */,
 				70B252FC241BFAFD00068FD6 /* GameScene.swift in Sources */,
 				70B2531F241C216B00068FD6 /* GameLayer.swift in Sources */,
 				70B252F6241BFAFD00068FD6 /* AppDelegate.swift in Sources */,

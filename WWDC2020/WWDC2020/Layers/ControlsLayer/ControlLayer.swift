@@ -14,11 +14,6 @@ public class ControlLayer: SKNode{
     
     var controlable: ControlProtocol?
     
-    
-    
-    
-    
-    
     override public func keyDown(with event: NSEvent) {
         switch event.keyCode {
             case KeyBoardKeys.rightArrow.rawValue:

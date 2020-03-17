@@ -18,14 +18,14 @@ protocol GameState{
     This method is triggered when the game layer will start a level.
     - parameter level: The level that will start.
     */
-    func willStart(_ level: Int) -> Void
+    func willStart(_ level: Level) -> Void
     
     /**
     This method is triggered when the game layer finishes a level.
     
     - parameter level: The leve that was finished.
     */
-    func finished(_ currentlevel: Int) -> Void
+    func finished(_ currentlevel: Level) -> Void
     
     
     /**
@@ -35,5 +35,24 @@ protocol GameState{
     */
     func startNewLevel() ->  Void
     
+    /**
+    This method is triggered when the game layer finishes a level to call a new one.
     
+    - parameter level: The next level to be played.
+    */
+    func showMsgText() ->  Void
+    
+    /**
+    This method is triggered when the game layer finishes a level to call a new one.
+    
+    - parameter level: The next level to be played.
+    */
+    func showInstructionText() ->  Void
+    
+    /**
+    This method is triggered when the game layer finishes a level to call a new one.
+    
+    - parameter level: The next level to be played.
+    */
+    func updatePowerProgress() -> Void
 }
