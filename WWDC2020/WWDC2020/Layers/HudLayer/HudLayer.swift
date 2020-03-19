@@ -15,11 +15,11 @@ public class HudLayer: SKNode{
     /**
         Actions to animete the hud elements.
      */
-    private lazy var fadeIn   =        SKAction.fadeIn(withDuration: 0.8)
-    private lazy var fadeOut  =        SKAction.fadeOut(withDuration: 0.8)
-    private lazy var waitFive =        SKAction.wait(forDuration: 5.0)
-    private lazy var waitTwo  =        SKAction.wait(forDuration: 2.0)
-    private lazy var showProgressBar = SKAction.run {  [weak self] in
+    private lazy var fadeIn    =        SKAction.fadeIn(withDuration: 0.8)
+    private lazy var fadeOut   =        SKAction.fadeOut(withDuration: 0.8)
+    private lazy var waitThree =        SKAction.wait(forDuration: 3.5)
+    private lazy var waitTwo   =        SKAction.wait(forDuration: 2.0)
+    private lazy var showProgressBar =  SKAction.run {  [weak self] in
         guard let self = self else {return}
         self.barTitle.run(self.fadeIn)
         self.progressBar.run(self.fadeIn)
@@ -28,6 +28,7 @@ public class HudLayer: SKNode{
     private let msgNode = SKLabelNode()
     private let instructionNode = SKLabelNode()
     
+    ///A graphic progress Bar with title label
     var progressBar: ProgressBar!
     private let barTitle = SKLabelNode(text: "Learning Progress")
     
@@ -49,6 +50,11 @@ public class HudLayer: SKNode{
         self.addChild(instructionNode)
         
         progressBar.progress = 0.0
+        progressBar.progressCompleted = { [weak self] in
+            guard let self = self else {return}
+            self.progressBar.isHidden = true
+            self.barTitle.isHidden = true
+        }
         progressBar.position = CGPoint(x: 0, y: screenSize.height * 0.45)
         progressBar.zRotation = CGFloat(90).degreesToradius()
         progressBar.alpha = 0.0
@@ -67,44 +73,56 @@ public class HudLayer: SKNode{
         fatalError("init(coder:) has not been implemented")
     }
     
+    /**
+    This method is perform an action to show msgLabel.
     
+    - parameter level: The message related to that level.
+    */
     func showMsg(from level: Level) -> Void {
 
         msgNode.text = level.elements.msgText
-        let sequence = SKAction.sequence([fadeIn,waitFive,fadeOut])
+        let sequence = SKAction.sequence([fadeIn,waitThree,fadeOut])
         msgNode.run(sequence)
         
     }
-    
+    /**
+      This method is perform an action to show InstructionLabel.
+      
+      - parameter level: The instruction related to that level.
+      */
     func showInstruction(from level: Level) -> Void {
         instructionNode.text = level.elements.instructionText
-        let sequence = SKAction.sequence([fadeIn,waitFive,fadeOut])
+        let sequence = SKAction.sequence([fadeIn,waitThree,fadeOut])
         instructionNode.run(sequence)
            
     }
     
-    
+    /**
+      This method is trigged an when the scene is loaded.
+      
+      - parameter level: The current level.
+      */
     func didMoveToScene(_ level: Level){
         
         switch level {
-        case .initialScene:
-            print("initial Scene")
-        case .finalScene:
-            print("Final scene")
-        case .level1:
-            instructionNode.text = "Use left and right arrow to roll sideways"
-            let changeInstruction = SKAction.run {[weak self] in
-                guard let self = self else {return}
-                self.instructionNode.text = "Use space to jump"
-            }
-            let changeInstruction2 = SKAction.run {[weak self] in
-                guard let self = self else {return}
-                self.instructionNode.text = "Collect Itens to learn and got new skills"
-            }
-            let sequence = SKAction.sequence([waitTwo, fadeIn,waitFive,fadeOut, changeInstruction,fadeIn, waitFive, fadeOut,changeInstruction2,fadeIn, waitFive, fadeOut, showProgressBar])
-            instructionNode.run(sequence)
-        default:
-            self.run(SKAction.sequence([waitTwo,showProgressBar]))
+            case .initialScene:
+                print("initial Scene")
+            case .finalScene:
+                print("Final scene")
+            case .level1:
+                instructionNode.text = "Use left and right arrow to roll sideways"
+                let changeInstruction = SKAction.run {[weak self] in
+                    guard let self = self else {return}
+                    self.instructionNode.text = "Use space to jump"
+                }
+                let changeInstruction2 = SKAction.run {[weak self] in
+                    guard let self = self else {return}
+                    self.instructionNode.text = "Collect Itens to learn and got new skills"
+                }
+                let sequence = SKAction.sequence([waitTwo, fadeIn,waitThree,fadeOut, changeInstruction,fadeIn, waitThree, fadeOut,changeInstruction2,fadeIn, waitThree, fadeOut, showProgressBar])
+                instructionNode.run(sequence)
+            default:
+                self.run(SKAction.sequence([waitTwo,showProgressBar]))
         }
     }
     

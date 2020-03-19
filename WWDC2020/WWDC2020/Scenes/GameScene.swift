@@ -13,21 +13,21 @@ class GameScene: SKScene {
     
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
-    private let gameLayer = GameLayer()
+    private var gameLayer: GameLayer!
     var hudLayer: HudLayer!
     var cameraNode: Camera!
     
-    var sceneHUD: Level!
+    var currentLevel: Level!
+    
+    var gameStarted: Bool = false
     
     override func didMove(to view: SKView) {
-        
+        gameLayer = GameLayer(level: currentLevel)
         hudLayer = HudLayer(screenRect: view.frame)
        // self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         gameLayer.gameState = self
         self.addChild(gameLayer)
         self.physicsWorld.contactDelegate = gameLayer
-        
-        
         setSceneHUD()
         
         let background = childNode(withName: "background") as! SKSpriteNode
@@ -44,6 +44,13 @@ class GameScene: SKScene {
         enumerateChildNodes(withName: "//*", using: { node, _ in
             if let interactiveNode = node as? InteractiveNode{
                 interactiveNode.didMoveToScene()
+                
+                if let node = node as? Collectable{
+                    
+                    self.gameLayer.addObservingNode(node)
+                    node.addObserver(self.gameLayer)
+                    
+                }
             }
         })
     }
@@ -51,17 +58,17 @@ class GameScene: SKScene {
     private func setSceneHUD(){
         switch gameLayer.currentGame {
             case .level1:
-                    sceneHUD = .level1
+                    currentLevel = .level1
             case .level2:
-                    sceneHUD = .level2
+                    currentLevel = .level2
             case .level3:
-                    sceneHUD = .level3
+                    currentLevel = .level3
             case .level4:
-                    sceneHUD = .level4
+                    currentLevel = .level4
             case .level5:
-                    sceneHUD = .level5
+                    currentLevel = .level5
             default:
-                    sceneHUD = .finalScene
+                    currentLevel = .finalScene
         }
     }
     
@@ -118,15 +125,16 @@ extension GameScene: GameState{
       - parameter level: The next level to be played.
       */
     class public func nextLevel(_ nextLevel: Level) -> GameScene?{
-          guard let scene = GameScene(fileNamed: "Level\(nextLevel)") else {return nil}
+        guard let scene = GameScene(fileNamed: "Level\(nextLevel.rawValue)") else {return nil}
           scene.scaleMode = .aspectFill
-          scene.gameLayer.currentGame = nextLevel
+          scene.currentLevel = nextLevel
           return scene
       }
     
     
     func willStart(_ level: Level) {
         hudLayer.didMoveToScene(level)
+        gameStarted = true
     }
     
     func finished(_ level: Level) {
@@ -135,18 +143,19 @@ extension GameScene: GameState{
     
     func startNewLevel() {
         let scene = GameScene.nextLevel(gameLayer.currentGame)
+        
         view?.presentScene(scene)
     }
        
     func showMsgText() {
-        hudLayer.showMsg(from: sceneHUD)
+        hudLayer.showMsg(from: currentLevel)
     }
     
     func showInstructionText() {
-        hudLayer.showInstruction(from: sceneHUD)
+        hudLayer.showInstruction(from: currentLevel)
     }
     
     func updatePowerProgress() {
-        hudLayer.progressBar.progress += 0.3
+        hudLayer.progressBar.progress += 0.4
     }
 }

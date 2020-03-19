@@ -10,12 +10,23 @@ import Foundation
 import SpriteKit
 
 
-public class CBLNode: SKSpriteNode, InteractiveNode{
+public class CBLNode: SKSpriteNode, Collectable{
+    
+    
+    
+    
+    public var id: String  = {
+        return "CBLNode"
+    }()
+    
+    
+    public var observer: ObserverProtocol? = nil
+    
     
     static let cblNotification: String = "cblNotification"
     
    
-    var lifeNode = 3
+    public var lifeNode = 2
     
     public func interact(with contact: SKPhysicsContact) {
         guard contact.bodyA.node?.name == self.name || contact.bodyA.node?.name == self.name else{return}
@@ -23,21 +34,20 @@ public class CBLNode: SKSpriteNode, InteractiveNode{
          NotificationCenter.default.post(name: NSNotification.Name(rawValue: CBLNode.cblNotification), object: nil)
     }
     
-    
-    public func interact() {
-       
-    }
-    
     public func didMoveToScene() {
         self.name = "CBLNode"
-        NotificationCenter.default.addObserver(self, selector: #selector(interaction), name: NSNotification.Name(rawValue: CBLNode.cblNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(interactionCBL), name: NSNotification.Name(rawValue: CBLNode.cblNotification), object: nil)
     }
-    
-    @objc private func interaction(){
+    //2 1
+    @objc private func interactionCBL(){
         guard lifeNode > 0 else {
+            self.notifyDeathToObservers(nodeID: self.id)
+            self.notifyValueObservers()
+            self.removeAllObservers()
             self.removeFromParent()
             return
         }
+        self.notifyValueObservers()
         lifeNode-=1
     }
     

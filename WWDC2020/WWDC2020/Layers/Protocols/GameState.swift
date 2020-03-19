@@ -14,6 +14,8 @@ import Foundation
 */
 protocol GameState{
     
+    ///This property indicates if game has started or not.
+    var gameStarted: Bool {get set}
     /**
     This method is triggered when the game layer will start a level.
     - parameter level: The level that will start.

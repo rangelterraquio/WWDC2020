@@ -20,42 +20,53 @@ class Character{
     
     let initialPosition: CGPoint = CGPoint(x: 0, y: 0)
     
+    var currentLevel: Level!
     /**
     Init.
     - parameter shape: The shape of character.
     */
-    init(_ shape: CharacterShape){
-        createNodeShape(shape)
+    init(_ currentLevel: Level){
+        self.currentLevel = currentLevel
+        createNodeShape(currentLevel)
+        self.didMoveToScene()
     }
     
     
     /**
      This method defines a shape the character will become.
-     - parameter shape: The shape of character.
+     - parameter currentLevel: The Level indicates which shape the will become.
      */
-    private func createNodeShape(_ shape: CharacterShape){
-        switch shape {
-        case .square:
-            node = SKShapeNode(rectOf: CGSize(width: 50, height: 50))
-            node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 50))
-            node.fillColor = .red
-        case .triangle:
-            node = SKShapeNode(path: createTriangle())
-            node.physicsBody = SKPhysicsBody(polygonFrom: createTriangle())
-            node.fillColor = .red
-        case .star:
-            node = SKShapeNode(path: createStar())
-            node.physicsBody = SKPhysicsBody(polygonFrom: createStar())
-            node.fillColor = .red
-        case .hexagon:
-            node = SKShapeNode(path: createHexagon())
-            node.physicsBody = SKPhysicsBody(polygonFrom: createHexagon())
-            node.fillColor = .red
-        default:
-            node = SKShapeNode(circleOfRadius: 25)
-            node.physicsBody = SKPhysicsBody(circleOfRadius: 25)
-            node.fillColor = .red
-        }
+    private func createNodeShape(_ currentLevl: Level){
+         switch currentLevl {
+                   case .initialScene:
+                       node = SKShapeNode(rectOf: CGSize(width: 50, height: 50))
+                       node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 50))
+                       node.fillColor = .red
+                   case .level1:
+                       node = SKShapeNode(rectOf: CGSize(width: 50, height: 50))
+                       node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 50))
+                       node.fillColor = .red
+                   case .level2:
+                       node = SKShapeNode(path: createTriangle())
+                       node.physicsBody = SKPhysicsBody(polygonFrom: createTriangle())
+                       node.fillColor = .red
+                   case .level3:
+                       node = SKShapeNode(path: createStar())
+                       node.physicsBody = SKPhysicsBody(polygonFrom: createStar())
+                       node.fillColor = .red
+                   case .level4:
+                        node = SKShapeNode(path: createHexagon())
+                        node.physicsBody = SKPhysicsBody(polygonFrom: createHexagon())
+                        node.fillColor = .red
+                   case .level5:
+                       node = SKShapeNode(circleOfRadius: 25)
+                       node.physicsBody = SKPhysicsBody(circleOfRadius: 25)
+                       node.fillColor = .red
+                   default:
+                       node = SKShapeNode(circleOfRadius: 25)
+                       node.physicsBody = SKPhysicsBody(circleOfRadius: 25)
+                       node.fillColor = .red
+               }
         node.physicsBody?.mass = 0.1
         node.physicsBody?.categoryBitMask = PhysicsCategory.character.bitMask
         node.physicsBody?.contactTestBitMask = PhysicsCategory.collectible.bitMask | PhysicsCategory.flor.bitMask | PhysicsCategory.deathFloor.bitMask | PhysicsCategory.victoryCheckPoint.bitMask
@@ -179,4 +190,40 @@ enum State{
     case jumping
     case stopped
     case unactive
+}
+
+
+//MARK: -> INTERACTIVE PROTOCOL
+
+extension Character: InteractiveNode{
+    
+    static let characterNotification = "characterNotification"
+    
+    func interact() {
+        guard currentLevel == .level2 else{return}
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: Character.characterNotification), object: nil)
+    }
+    
+    func didMoveToScene() -> Void {
+        node.name = "Character"
+        NotificationCenter.default.addObserver(self, selector: #selector(interactionCharacter), name: NSNotification.Name(rawValue: Character.characterNotification), object: nil)
+    }
+    
+    @objc private func interactionCharacter() -> Void{
+        
+        let position = self.node.position
+       // node.removeFromParent()
+        node.path = createStar()
+        node.position = CGPoint(x: position.x, y: position.y + 25)
+        node.fillColor = .yellow
+        node.physicsBody = SKPhysicsBody(polygonFrom: createStar())
+        node.physicsBody?.mass = 0.1
+        node.physicsBody?.categoryBitMask = PhysicsCategory.character.bitMask
+        node.physicsBody?.contactTestBitMask = PhysicsCategory.collectible.bitMask | PhysicsCategory.flor.bitMask | PhysicsCategory.deathFloor.bitMask | PhysicsCategory.victoryCheckPoint.bitMask
+        ///His name change to star to indicate he got the reivented power.
+        node.name  = "star"
+    }
+    
+    
 }

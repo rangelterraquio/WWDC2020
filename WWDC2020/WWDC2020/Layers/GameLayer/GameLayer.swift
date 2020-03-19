@@ -11,23 +11,35 @@ import SpriteKit
 
 public class GameLayer: SKNode{
     
-    var character = Character(.square)
+    var character: Character!
     let controlLayer = ControlLayer()
-    var currentGame: Level = .level1
+    var currentGame: Level!
     
-    var powerProgress = 0
+    var numCollectable = 0
     
     var gameState: GameState? = nil {
         didSet{
-            gameState?.willStart(.level1)
+            gameState?.willStart(currentGame)
         }
     }
     
-    override public init() {
+    //Proporty from Observer Protocol.
+    public var nodesObserving: [ObservableProtocol] = [] {
+           didSet{
+            if nodesObserving.isEmpty && (gameState?.gameStarted ?? false) {
+                gameState?.showMsgText()
+                character.interact()
+                if let wallNode = scene?.childNode(withName: "wallShape") as? InteractiveNode{
+                    wallNode.interact?()
+                }
+            }
+           }
+    }
+     public init(level: Level) {
         super.init()
-        
+        self.currentGame = level
         controlLayer.controlable = self
-        character = Character(.star)
+        character = Character(level)
         self.addChild(character.node)
         
 
@@ -126,22 +138,21 @@ extension GameLayer: SKPhysicsContactDelegate{
         if node.collided(with: .collectible, contact: contact){
             guard let scene = self.parent as? GameScene else{return}
             
-            var powerProgress = 0
             /**
                This method itarate over scene child nodes and trigger the interaction.
             */
-            scene.enumerateChildNodes(withName: "//*", using: {node, _ in
-                if let interactiveNode = node as? InteractiveNode{
-                    interactiveNode.interact(with: contact)
-                    
-                    self.gameState?.updatePowerProgress()
-                    ///this line check if there are still collectibles in the scene to updete the HUD.
-                    powerProgress += node.parent == nil ? 1 : 0
-                }
-            })
             
-            ///Updete the HUD.
-            powerProgress != 0 ? gameState?.showMsgText() : print("Update Graphic")
+            let nodeA = scene.childNode(withName: contact.bodyA.node?.name ?? "")
+            let nodeB = scene.childNode(withName: contact.bodyB.node?.name ?? "")
+            
+            if let nodeA = nodeA as? InteractiveNode{
+                
+                nodeA.interact?(with: contact) ?? print("nil 1")
+            }else if let nodeB = nodeB as? InteractiveNode {
+                
+                nodeB.interact?(with: contact) ?? print("nil 2")
+            }
+            
         }
         
         /**
@@ -161,4 +172,32 @@ extension GameLayer: SKPhysicsContactDelegate{
         }
 
     }
+}
+
+
+
+
+extension GameLayer: ObserverProtocol{
+   
+    
+   
+    
+    public var id: String {
+        get {
+            return self.name ?? ""
+        }
+        set {
+             self.name = "gameLayer"
+        }
+    }
+    
+    public func onValueChanged() {
+        self.gameState?.updatePowerProgress()
+    }
+    
+    public func observableNodeHasDied(nodeID: String) {
+        self.removeObservingNode(nodeID)
+    }
+    
+    
 }

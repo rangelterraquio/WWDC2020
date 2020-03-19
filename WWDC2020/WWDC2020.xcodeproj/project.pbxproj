@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		70167E8D24225D5300318496 /* ObervableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70167E8C24225D5300318496 /* ObervableProtocol.swift */; };
+		70167E8F24225EDF00318496 /* Obervable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70167E8E24225EDF00318496 /* Obervable.swift */; };
+		7055205224210B4E007D5E65 /* CodeCollectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7055205124210B4E007D5E65 /* CodeCollectable.swift */; };
+		7055205424210DCF007D5E65 /* WallShapeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7055205324210DCF007D5E65 /* WallShapeNode.swift */; };
 		709DC45C241D170800A55D28 /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709DC45B241D170800A55D28 /* PhysicsCategory.swift */; };
 		709DC45E241D566200A55D28 /* Level2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 709DC45D241D566200A55D28 /* Level2.sks */; };
 		709DC460241D5DD500A55D28 /* InteractiveNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709DC45F241D5DD500A55D28 /* InteractiveNode.swift */; };
@@ -33,6 +37,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		70167E8C24225D5300318496 /* ObervableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObervableProtocol.swift; sourceTree = "<group>"; };
+		70167E8E24225EDF00318496 /* Obervable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obervable.swift; sourceTree = "<group>"; };
+		7055205124210B4E007D5E65 /* CodeCollectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeCollectable.swift; sourceTree = "<group>"; };
+		7055205324210DCF007D5E65 /* WallShapeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallShapeNode.swift; sourceTree = "<group>"; };
 		709DC45B241D170800A55D28 /* PhysicsCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
 		709DC45D241D566200A55D28 /* Level2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2.sks; sourceTree = "<group>"; };
 		709DC45F241D5DD500A55D28 /* InteractiveNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveNode.swift; sourceTree = "<group>"; };
@@ -72,6 +80,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		70552055242112E6007D5E65 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				709DC45F241D5DD500A55D28 /* InteractiveNode.swift */,
+				70167E8C24225D5300318496 /* ObervableProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		70B252E9241BFAFD00068FD6 = {
 			isa = PBXGroup;
 			children = (
@@ -107,9 +124,12 @@
 			isa = PBXGroup;
 			children = (
 				70B25312241C021600068FD6 /* Character.swift */,
-				709DC45F241D5DD500A55D28 /* InteractiveNode.swift */,
 				709DC461241D8A5900A55D28 /* CBLNode.swift */,
 				70C3A61A241FDAFA00056E96 /* ProgressBar.swift */,
+				7055205124210B4E007D5E65 /* CodeCollectable.swift */,
+				7055205324210DCF007D5E65 /* WallShapeNode.swift */,
+				70552055242112E6007D5E65 /* Protocols */,
+				70167E8E24225EDF00318496 /* Obervable.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -117,9 +137,9 @@
 		70B2530C241BFC8F00068FD6 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				70B252FB241BFAFD00068FD6 /* GameScene.swift */,
 				70B252F7241BFAFD00068FD6 /* GameScene.sks */,
 				70B252F9241BFAFD00068FD6 /* Actions.sks */,
-				70B252FB241BFAFD00068FD6 /* GameScene.swift */,
 				709DC45D241D566200A55D28 /* Level2.sks */,
 			);
 			path = Scenes;
@@ -286,14 +306,18 @@
 				70B252FE241BFAFD00068FD6 /* ViewController.swift in Sources */,
 				70B25316241C051D00068FD6 /* ControlLayer.swift in Sources */,
 				70B2531C241C0B0700068FD6 /* KeyBoardKeys.swift in Sources */,
+				7055205424210DCF007D5E65 /* WallShapeNode.swift in Sources */,
+				70167E8F24225EDF00318496 /* Obervable.swift in Sources */,
 				70EAB916241FC2A600F04384 /* HudControl.swift in Sources */,
 				70C3A61B241FDAFA00056E96 /* ProgressBar.swift in Sources */,
+				70167E8D24225D5300318496 /* ObervableProtocol.swift in Sources */,
 				70B25311241C007E00068FD6 /* GameState.swift in Sources */,
 				70B25313241C021600068FD6 /* Character.swift in Sources */,
 				709DC45C241D170800A55D28 /* PhysicsCategory.swift in Sources */,
 				70B25319241C05D700068FD6 /* ControlProtocol.swift in Sources */,
 				70F059C0241ED8870011DBB3 /* HudLayer.swift in Sources */,
 				70B1658F24206F8E007D2B9F /* Level.swift in Sources */,
+				7055205224210B4E007D5E65 /* CodeCollectable.swift in Sources */,
 				70B25321241C326100068FD6 /* Camera.swift in Sources */,
 				70C3A61D241FE2E300056E96 /* Extension-CGFloat.swift in Sources */,
 				70B252FC241BFAFD00068FD6 /* GameScene.swift in Sources */,

@@ -29,7 +29,7 @@ class Camera: SKCameraNode{
     }
     private func applyConstraints(){
         
-        let minDistanceFromNode = SKRange(value: 80, variance: 0)
+        let minDistanceFromNode = SKRange(value: 80, variance: 30)
         
         let nodeConstraint = SKConstraint.distance(minDistanceFromNode, to: CGPoint(x:  targetNode.position.x, y: targetNode.position.y),in: targetNode)
         

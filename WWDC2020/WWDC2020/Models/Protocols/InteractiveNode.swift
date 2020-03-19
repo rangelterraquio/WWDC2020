@@ -12,16 +12,28 @@ import SpriteKit
 /**
 This protocol defines an interface for all node that has some kind of interaction in game.
 */
-public protocol InteractiveNode{
+@objc public protocol InteractiveNode{
     
     /**
     This method defines what will happen to the node when it interacts.
      - parameter contact: A contact where interaction takes place.
      */
-    func interact(with contact: SKPhysicsContact)
-    
+    @objc optional func interact(with contact: SKPhysicsContact)
+    @objc optional func interact()
     /**
     This method setup the node when it is loaded.
     */
     func didMoveToScene()
+    
+    
+}
+
+extension InteractiveNode{
+
+}
+/**
+This protocol defines an interface for all node that has some kind of interaction in game and is collactable.
+*/
+public protocol Collectable: InteractiveNode, ObservableProtocol {
+    var lifeNode: Int  {get set}
 }
