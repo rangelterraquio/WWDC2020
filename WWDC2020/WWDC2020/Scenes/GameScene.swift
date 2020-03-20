@@ -32,6 +32,9 @@ class GameScene: SKScene {
         
         let background = childNode(withName: "background") as! SKSpriteNode
         
+        self.backgroundColor = .black
+        
+        
         cameraNode = Camera(gameLayer.character.node, background, view.frame)
         self.addChild(cameraNode)
         self.camera = cameraNode

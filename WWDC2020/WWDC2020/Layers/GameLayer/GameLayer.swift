@@ -40,7 +40,8 @@ public class GameLayer: SKNode{
         self.currentGame = level
         controlLayer.controlable = self
         character = Character(level)
-        self.addChild(character.node)
+        //self.addChild(character.node)
+        self.addChild(character)
         
 
     

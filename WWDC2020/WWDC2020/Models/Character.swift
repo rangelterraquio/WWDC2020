@@ -10,9 +10,9 @@ import Foundation
 import SpriteKit
 
 
-class Character{
+class Character: SKNode{
     
-    var node: SKShapeNode!
+    var node: SKSpriteNode!
     
     var state: State = .stopped
     
@@ -26,9 +26,25 @@ class Character{
     - parameter shape: The shape of character.
     */
     init(_ currentLevel: Level){
+        super.init()
+        let light = SKLightNode()
+        light.lightColor =  .white//SKColor.init(red: 255, green: 236, blue: 139, alpha: 0.5)
+        light.categoryBitMask = 1
+        light.shadowColor = SKColor(red: 0, green: 0, blue: 0, alpha: 0.9)
+        light.falloff = 4.0
+        
+        light.isEnabled = true
+        
         self.currentLevel = currentLevel
         createNodeShape(currentLevel)
+        self.node.addChild(light)
+        self.addChild(node)
         self.didMoveToScene()
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     
@@ -37,41 +53,39 @@ class Character{
      - parameter currentLevel: The Level indicates which shape the will become.
      */
     private func createNodeShape(_ currentLevl: Level){
-         switch currentLevl {
-                   case .initialScene:
-                       node = SKShapeNode(rectOf: CGSize(width: 50, height: 50))
-                       node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 50))
-                       node.fillColor = .red
-                   case .level1:
-                       node = SKShapeNode(rectOf: CGSize(width: 50, height: 50))
-                       node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 50))
-                       node.fillColor = .red
-                   case .level2:
-                       node = SKShapeNode(path: createTriangle())
-                       node.physicsBody = SKPhysicsBody(polygonFrom: createTriangle())
-                       node.fillColor = .red
-                   case .level3:
-                       node = SKShapeNode(path: createStar())
-                       node.physicsBody = SKPhysicsBody(polygonFrom: createStar())
-                       node.fillColor = .red
-                   case .level4:
-                        node = SKShapeNode(path: createHexagon())
-                        node.physicsBody = SKPhysicsBody(polygonFrom: createHexagon())
-                        node.fillColor = .red
-                   case .level5:
-                       node = SKShapeNode(circleOfRadius: 25)
-                       node.physicsBody = SKPhysicsBody(circleOfRadius: 25)
-                       node.fillColor = .red
-                   default:
-                       node = SKShapeNode(circleOfRadius: 25)
-                       node.physicsBody = SKPhysicsBody(circleOfRadius: 25)
-                       node.fillColor = .red
-               }
+        switch currentLevl {
+        case .initialScene:
+                node = SKSpriteNode(imageNamed: "square")
+                node.physicsBody = SKPhysicsBody(rectangleOf: node.size)
+            case .level1:
+                node = SKSpriteNode(imageNamed: "square")
+                node.lightingBitMask = 1
+                node.shadowedBitMask = 1
+                node.physicsBody = SKPhysicsBody(rectangleOf: node.size)
+            case .level2:
+                node = SKSpriteNode(imageNamed: "triangle")
+                node.physicsBody = SKPhysicsBody(texture: node.texture!, size: node.size)
+            case .level3:
+                node = SKSpriteNode(imageNamed: "star")
+                node.physicsBody = SKPhysicsBody(texture: node.texture!, size: node.size)
+            case .level4:
+                node = SKSpriteNode(imageNamed: "hexagon")
+                node.physicsBody = SKPhysicsBody(texture: node.texture!, size: node.size)
+            case .level5:
+                node = SKSpriteNode(imageNamed: "circle")
+                node.physicsBody = SKPhysicsBody(circleOfRadius: node.size.width/2)
+            default:
+                node = SKSpriteNode(imageNamed: "circle")
+                node.physicsBody = SKPhysicsBody(circleOfRadius: node.size.width/2)
+            }
         node.physicsBody?.mass = 0.1
         node.physicsBody?.categoryBitMask = PhysicsCategory.character.bitMask
         node.physicsBody?.contactTestBitMask = PhysicsCategory.collectible.bitMask | PhysicsCategory.flor.bitMask | PhysicsCategory.deathFloor.bitMask | PhysicsCategory.victoryCheckPoint.bitMask
+        node.lightingBitMask = 1
+        node.shadowedBitMask = 1
 
     }
+    
     
     
     
@@ -200,7 +214,6 @@ extension Character: InteractiveNode{
     static let characterNotification = "characterNotification"
     
     func interact() {
-        guard currentLevel == .level2 else{return}
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: Character.characterNotification), object: nil)
     }
@@ -211,18 +224,26 @@ extension Character: InteractiveNode{
     }
     
     @objc private func interactionCharacter() -> Void{
-        
-        let position = self.node.position
-       // node.removeFromParent()
-        node.path = createStar()
-        node.position = CGPoint(x: position.x, y: position.y + 25)
-        node.fillColor = .yellow
-        node.physicsBody = SKPhysicsBody(polygonFrom: createStar())
-        node.physicsBody?.mass = 0.1
-        node.physicsBody?.categoryBitMask = PhysicsCategory.character.bitMask
-        node.physicsBody?.contactTestBitMask = PhysicsCategory.collectible.bitMask | PhysicsCategory.flor.bitMask | PhysicsCategory.deathFloor.bitMask | PhysicsCategory.victoryCheckPoint.bitMask
-        ///His name change to star to indicate he got the reivented power.
-        node.name  = "star"
+
+        if currentLevel == .some(.level1){
+            node.removeAllChildren()
+            let flashLight = FlashLight()
+            flashLight.position = CGPoint(x: 80, y: 0)
+            node.zRotation = 0
+            node.addChild(flashLight)
+            node.zRotation = CGFloat(-90).degreesToradius()
+            node.physicsBody?.allowsRotation = false
+        }else if currentLevel == .some(.level2){
+            node.texture = SKTexture(imageNamed: "star")
+            node.physicsBody = SKPhysicsBody(texture: node.texture!, size: node.size)
+            node.physicsBody?.mass = 0.1
+            node.physicsBody?.categoryBitMask = PhysicsCategory.character.bitMask
+            node.physicsBody?.contactTestBitMask = PhysicsCategory.collectible.bitMask | PhysicsCategory.flor.bitMask | PhysicsCategory.deathFloor.bitMask | PhysicsCategory.victoryCheckPoint.bitMask
+            ///His name change to star to indicate he got the reivented power.
+            node.name  = "star"
+        }
+
+       
     }
     
     
