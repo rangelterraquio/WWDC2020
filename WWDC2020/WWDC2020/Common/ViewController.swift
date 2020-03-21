@@ -19,10 +19,11 @@ class ViewController: NSViewController {
 
         if let view = self.skView {
             // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") as? GameScene{
-                // Set the scale mode to scale to fit the window
+//            if let scene = SKScene(fileNamed: "GameScene") as? GameScene{
+             if let scene = GameScene(fileNamed: "Level3"){
+            // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
-                scene.currentLevel = .level1
+                scene.currentLevel = .level3
                 // Present the scene
                 view.presentScene(scene)
             }

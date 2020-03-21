@@ -21,6 +21,8 @@ class Character: SKNode{
     let initialPosition: CGPoint = CGPoint(x: 0, y: 0)
     
     var currentLevel: Level!
+    
+    var currentRotation: CGFloat!
     /**
     Init.
     - parameter shape: The shape of character.
@@ -40,6 +42,7 @@ class Character: SKNode{
         self.node.addChild(light)
         self.addChild(node)
         self.didMoveToScene()
+        self.currentRotation = node.zRotation
         
     }
     
@@ -83,6 +86,8 @@ class Character: SKNode{
         node.physicsBody?.contactTestBitMask = PhysicsCategory.collectible.bitMask | PhysicsCategory.flor.bitMask | PhysicsCategory.deathFloor.bitMask | PhysicsCategory.victoryCheckPoint.bitMask
         node.lightingBitMask = 1
         node.shadowedBitMask = 1
+        node.physicsBody?.allowsRotation = false
+
 
     }
     
@@ -229,7 +234,7 @@ extension Character: InteractiveNode{
             node.removeAllChildren()
             let flashLight = FlashLight()
             flashLight.position = CGPoint(x: 80, y: 0)
-            node.zRotation = 0
+            node.zRotation = currentRotation
             node.addChild(flashLight)
             node.zRotation = CGFloat(-90).degreesToradius()
             node.physicsBody?.allowsRotation = false

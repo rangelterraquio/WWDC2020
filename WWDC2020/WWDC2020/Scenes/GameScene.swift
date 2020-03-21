@@ -21,6 +21,9 @@ class GameScene: SKScene {
     
     var gameStarted: Bool = false
     
+    var designNode1: DesignCollectable!
+    var designNode2: DesignCollectable!
+    
     override func didMove(to view: SKView) {
         gameLayer = GameLayer(level: currentLevel)
         hudLayer = HudLayer(screenRect: view.frame)
@@ -49,13 +52,12 @@ class GameScene: SKScene {
                 interactiveNode.didMoveToScene()
                 
                 if let node = node as? Collectable{
-                    
                     self.gameLayer.addObservingNode(node)
                     node.addObserver(self.gameLayer)
-                    
                 }
             }
         })
+        
     }
     
     private func setSceneHUD(){

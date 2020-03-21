@@ -44,7 +44,7 @@ public class HudLayer: SKNode{
         self.addChild(msgNode)
         
         instructionNode.fontSize = 35
-        instructionNode.fontColor = .black
+        instructionNode.fontColor = .green
         instructionNode.colorBlendFactor = 1.0
         instructionNode.position = CGPoint(x: 0, y: screenSize.height * 0.4)
         self.addChild(instructionNode)

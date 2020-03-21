@@ -43,8 +43,8 @@ public class GameLayer: SKNode{
         //self.addChild(character.node)
         self.addChild(character)
         
-
-    
+        
+       
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -137,21 +137,12 @@ extension GameLayer: SKPhysicsContactDelegate{
             This method verify if the character collided with the collectible
          */
         if node.collided(with: .collectible, contact: contact){
-            guard let scene = self.parent as? GameScene else{return}
+        
             
-            /**
-               This method itarate over scene child nodes and trigger the interaction.
-            */
-            
-            let nodeA = scene.childNode(withName: contact.bodyA.node?.name ?? "")
-            let nodeB = scene.childNode(withName: contact.bodyB.node?.name ?? "")
-            
-            if let nodeA = nodeA as? InteractiveNode{
-                
-                nodeA.interact?(with: contact) ?? print("nil 1")
-            }else if let nodeB = nodeB as? InteractiveNode {
-                
-                nodeB.interact?(with: contact) ?? print("nil 2")
+            if let nodeA = contact.bodyA.node as? InteractiveNode{
+                nodeA.interact?(with: contact)
+            }else if let nodeB = contact.bodyB.node as? InteractiveNode{
+                nodeB.interact?(with: contact)
             }
             
         }
