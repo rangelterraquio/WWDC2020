@@ -11,6 +11,8 @@
 		70167E8F24225EDF00318496 /* Obervable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70167E8E24225EDF00318496 /* Obervable.swift */; };
 		7027155C24245EDC006541AE /* Level3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7027155B24245EDC006541AE /* Level3.sks */; };
 		7027155E242460AE006541AE /* DesignCollectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7027155D242460AE006541AE /* DesignCollectable.swift */; };
+		7052C623242599D800C90FAD /* Level4.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7052C622242599D800C90FAD /* Level4.sks */; };
+		7052C6252425A9E200C90FAD /* UXCollectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7052C6242425A9E200C90FAD /* UXCollectable.swift */; };
 		7055205224210B4E007D5E65 /* CodeCollectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7055205124210B4E007D5E65 /* CodeCollectable.swift */; };
 		7055205424210DCF007D5E65 /* WallShapeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7055205324210DCF007D5E65 /* WallShapeNode.swift */; };
 		706FA2DB2423BF0200FD1BAD /* FlashLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706FA2DA2423BF0200FD1BAD /* FlashLight.swift */; };
@@ -44,6 +46,8 @@
 		70167E8E24225EDF00318496 /* Obervable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obervable.swift; sourceTree = "<group>"; };
 		7027155B24245EDC006541AE /* Level3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level3.sks; sourceTree = "<group>"; };
 		7027155D242460AE006541AE /* DesignCollectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignCollectable.swift; sourceTree = "<group>"; };
+		7052C622242599D800C90FAD /* Level4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level4.sks; sourceTree = "<group>"; };
+		7052C6242425A9E200C90FAD /* UXCollectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UXCollectable.swift; sourceTree = "<group>"; };
 		7055205124210B4E007D5E65 /* CodeCollectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeCollectable.swift; sourceTree = "<group>"; };
 		7055205324210DCF007D5E65 /* WallShapeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallShapeNode.swift; sourceTree = "<group>"; };
 		706FA2DA2423BF0200FD1BAD /* FlashLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashLight.swift; sourceTree = "<group>"; };
@@ -136,6 +140,7 @@
 				7055205324210DCF007D5E65 /* WallShapeNode.swift */,
 				706FA2DA2423BF0200FD1BAD /* FlashLight.swift */,
 				7027155D242460AE006541AE /* DesignCollectable.swift */,
+				7052C6242425A9E200C90FAD /* UXCollectable.swift */,
 				70552055242112E6007D5E65 /* Protocols */,
 				70167E8E24225EDF00318496 /* Obervable.swift */,
 			);
@@ -150,6 +155,7 @@
 				70B252F9241BFAFD00068FD6 /* Actions.sks */,
 				709DC45D241D566200A55D28 /* Level2.sks */,
 				7027155B24245EDC006541AE /* Level3.sks */,
+				7052C622242599D800C90FAD /* Level4.sks */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -298,6 +304,7 @@
 				7027155C24245EDC006541AE /* Level3.sks in Resources */,
 				70B252F8241BFAFD00068FD6 /* GameScene.sks in Resources */,
 				70B25300241BFB0200068FD6 /* Assets.xcassets in Resources */,
+				7052C623242599D800C90FAD /* Level4.sks in Resources */,
 				70B252FA241BFAFD00068FD6 /* Actions.sks in Resources */,
 				70B25303241BFB0200068FD6 /* Main.storyboard in Resources */,
 				709DC45E241D566200A55D28 /* Level2.sks in Resources */,
@@ -331,6 +338,7 @@
 				70B1658F24206F8E007D2B9F /* Level.swift in Sources */,
 				7055205224210B4E007D5E65 /* CodeCollectable.swift in Sources */,
 				70B25321241C326100068FD6 /* Camera.swift in Sources */,
+				7052C6252425A9E200C90FAD /* UXCollectable.swift in Sources */,
 				70C3A61D241FE2E300056E96 /* Extension-CGFloat.swift in Sources */,
 				70B252FC241BFAFD00068FD6 /* GameScene.swift in Sources */,
 				70B2531F241C216B00068FD6 /* GameLayer.swift in Sources */,

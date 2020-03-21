@@ -12,7 +12,7 @@ import SpriteKit
 
 public class ControlLayer: SKNode{
     
-    var controlable: ControlProtocol?
+    weak var controlable: ControlProtocol?
     
     override public func keyDown(with event: NSEvent) {
         switch event.keyCode {
@@ -27,9 +27,17 @@ public class ControlLayer: SKNode{
         }
     }
     
+    override public func mouseDown(with event: NSEvent) {
+        controlable?.mousePressed(with: event)
+    }
     
+    override public func mouseMoved(with event: NSEvent) {
+        controlable?.mouseMoving(with: event)
+    }
     
-    
+    override public func mouseUp(with event: NSEvent) {
+        controlable?.mouseUnpressed(with: event)
+    }
     
 }
 

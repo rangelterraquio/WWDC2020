@@ -24,6 +24,7 @@ class GameScene: SKScene {
     var designNode1: DesignCollectable!
     var designNode2: DesignCollectable!
     
+    var progressBar: CGFloat = 0
     override func didMove(to view: SKView) {
         gameLayer = GameLayer(level: currentLevel)
         hudLayer = HudLayer(screenRect: view.frame)
@@ -41,13 +42,14 @@ class GameScene: SKScene {
         cameraNode = Camera(gameLayer.character.node, background, view.frame)
         self.addChild(cameraNode)
         self.camera = cameraNode
-        
+        self.camera?.setScale(1.3)
         
         cameraNode.addChild(hudLayer)
         /**
            This method itarate over scene child nodes and trigger the didMoveToScene.
         */
         enumerateChildNodes(withName: "//*", using: { node, _ in
+         
             if let interactiveNode = node as? InteractiveNode{
                 interactiveNode.didMoveToScene()
                 
@@ -55,9 +57,30 @@ class GameScene: SKScene {
                     self.gameLayer.addObservingNode(node)
                     node.addObserver(self.gameLayer)
                 }
+                
+               
+            }
+            if self.currentLevel == .some(.level4){
+                if let name = node.name, name == "movementableNode"{
+                    self.gameLayer.movimentableFloors.append(node as! SKSpriteNode)
+                }
+//                if node.name == "uxNode"{
+//                    node.isHidden = true
+//                }
             }
         })
         
+        setProgressBarValue()
+    }
+    private func setProgressBarValue(){
+        switch self.gameLayer.nodesObserving.count {
+            case 3:
+                progressBar = 0.4
+            case 2:
+                progressBar = 0.5
+            default:
+                progressBar = 1
+        }
     }
     
     private func setSceneHUD(){
@@ -77,28 +100,31 @@ class GameScene: SKScene {
         }
     }
     
-    func touchDown(atPoint pos : CGPoint) {
-       
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-        
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-        
-    }
+//    func touchDown(atPoint pos : CGPoint) {
+//        self.gameLayer.mouseDown(with: pos)
+//    }
+//
+//    func touchMoved(toPoint pos : CGPoint) {
+//        self.gameLayer.mouseMoved(with: pos)
+//    }
+//
+//    func touchUp(atPoint pos : CGPoint) {
+//        self.gameLayer.mo
+//    }
     
     override func mouseDown(with event: NSEvent) {
-        self.touchDown(atPoint: event.location(in: self))
+//        self.touchDown(atPoint: event.location(in: self))
+        self.gameLayer.mouseDown(with: event)
     }
     
     override func mouseDragged(with event: NSEvent) {
-        self.touchMoved(toPoint: event.location(in: self))
+//        self.touchMoved(toPoint: event.location(in: self))
+        self.gameLayer.mouseMoved(with: event)
     }
     
     override func mouseUp(with event: NSEvent) {
-        self.touchUp(atPoint: event.location(in: self))
+//        self.touchUp(atPoint: event.location(in: self))
+        self.gameLayer.mouseUp(with: event)
     }
     
     override func keyDown(with event: NSEvent) {
@@ -153,6 +179,7 @@ extension GameScene: GameState{
     }
        
     func showMsgText() {
+        
         hudLayer.showMsg(from: currentLevel)
     }
     
@@ -161,6 +188,6 @@ extension GameScene: GameState{
     }
     
     func updatePowerProgress() {
-        hudLayer.progressBar.progress += 0.4
+        hudLayer.progressBar.progress += self.progressBar
     }
 }

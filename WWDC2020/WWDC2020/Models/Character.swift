@@ -18,11 +18,11 @@ class Character: SKNode{
     
     private let maxVelocity: CGFloat = 350
     
-    let initialPosition: CGPoint = CGPoint(x: 0, y: 0)
+    let initialPosition: CGPoint = CGPoint(x: -336, y: -55)
     
     var currentLevel: Level!
     
-    var currentRotation: CGFloat!
+    var hasDied: Bool = false
     /**
     Init.
     - parameter shape: The shape of character.
@@ -42,7 +42,6 @@ class Character: SKNode{
         self.node.addChild(light)
         self.addChild(node)
         self.didMoveToScene()
-        self.currentRotation = node.zRotation
         
     }
     
@@ -65,6 +64,7 @@ class Character: SKNode{
                 node.lightingBitMask = 1
                 node.shadowedBitMask = 1
                 node.physicsBody = SKPhysicsBody(rectangleOf: node.size)
+                node.physicsBody?.allowsRotation = false
             case .level2:
                 node = SKSpriteNode(imageNamed: "triangle")
                 node.physicsBody = SKPhysicsBody(texture: node.texture!, size: node.size)
@@ -86,7 +86,6 @@ class Character: SKNode{
         node.physicsBody?.contactTestBitMask = PhysicsCategory.collectible.bitMask | PhysicsCategory.flor.bitMask | PhysicsCategory.deathFloor.bitMask | PhysicsCategory.victoryCheckPoint.bitMask
         node.lightingBitMask = 1
         node.shadowedBitMask = 1
-        node.physicsBody?.allowsRotation = false
 
 
     }
@@ -144,6 +143,20 @@ class Character: SKNode{
     func fall(){
         guard state != .rolling, state != .unactive else {return}
         state = .stopped
+    }
+    
+    
+    func restartCheckPoint(){
+        let action1 = SKAction.run {
+            self.node.isHidden = true
+        }
+        let action2 = SKAction.move(to: self.initialPosition, duration: 2)
+        let action3 = SKAction.run {
+            self.node.isHidden = false
+        }
+        let sequence = SKAction.sequence([action1,action2,action3])
+        self.node.run(sequence)
+        self.hasDied = true
     }
     
 }
@@ -234,7 +247,6 @@ extension Character: InteractiveNode{
             node.removeAllChildren()
             let flashLight = FlashLight()
             flashLight.position = CGPoint(x: 80, y: 0)
-            node.zRotation = currentRotation
             node.addChild(flashLight)
             node.zRotation = CGFloat(-90).degreesToradius()
             node.physicsBody?.allowsRotation = false

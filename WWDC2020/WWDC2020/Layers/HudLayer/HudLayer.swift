@@ -21,10 +21,12 @@ public class HudLayer: SKNode{
     private lazy var waitTwo   =        SKAction.wait(forDuration: 2.0)
     private lazy var showProgressBar =  SKAction.run {  [weak self] in
         guard let self = self else {return}
+        self.instructionNode.alpha = 0.0
         self.barTitle.run(self.fadeIn)
         self.progressBar.run(self.fadeIn)
     }
     
+
     private let msgNode = SKLabelNode()
     private let instructionNode = SKLabelNode()
     
@@ -81,8 +83,13 @@ public class HudLayer: SKNode{
     func showMsg(from level: Level) -> Void {
 
         msgNode.text = level.elements.msgText
-        let sequence = SKAction.sequence([fadeIn,waitThree,fadeOut])
+        instructionNode.text = level.elements.instructionText
+        let lastAction = SKAction.run { [weak self] in
+            self?.showInstruction(from: level)
+        }
+        let sequence = SKAction.sequence([fadeIn,waitThree,fadeOut,lastAction])
         msgNode.run(sequence)
+        
         
     }
     /**
@@ -154,9 +161,9 @@ extension Level{
             case .level3:
                 return Element(msgText: "", instructionText: "")
             case .level4:
-                return Element(msgText: "", instructionText: "")
+                return Element(msgText: "You != User, now with UX power things makes sense to the user", instructionText: "Drag the floors using the mouse to move ahead")
             case .level5:
-                return Element(msgText: "", instructionText: "")
+                return Element(msgText: "You got UX power, now you things makes sense to the user", instructionText: "Drag the floors to move ahead")
             default:
                 return Element(msgText: "", instructionText: "")
         }

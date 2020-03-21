@@ -7,11 +7,11 @@
 //
 
 import Foundation
-
+import SpriteKit
 /**
  This protocol defines all controls of the game.
  */
-public protocol ControlProtocol{
+public protocol ControlProtocol: class{
     
     func leftArrowPressed() -> Void
     func rightArrowPressed() -> Void
@@ -22,7 +22,9 @@ public protocol ControlProtocol{
     func wKeyPressed() -> Void
     func dKeyPressed() -> Void
     func sKeyPressed() -> Void
-    
+    func mousePressed(with event: NSEvent) -> Void
+    func mouseUnpressed(with event: NSEvent) -> Void
+    func mouseMoving(with event: NSEvent) -> Void
 }
 
 

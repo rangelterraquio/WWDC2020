@@ -12,7 +12,7 @@ import Foundation
 /**
  This protocol define all behaviors of that game to be oberved
 */
-protocol GameState{
+protocol GameState: class{
     
     ///This property indicates if game has started or not.
     var gameStarted: Bool {get set}
