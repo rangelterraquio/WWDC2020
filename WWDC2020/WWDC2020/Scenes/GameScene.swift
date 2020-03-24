@@ -28,6 +28,8 @@ class GameScene: SKScene {
     
     var platform: SKSpriteNode? = nil
     var platformSpeed: CGFloat = 150
+    var platformInitialPos: CGFloat = 0
+    var platformFinalPos: CGFloat = 0
     override func didMove(to view: SKView) {
         
         gameLayer = GameLayer(level: currentLevel)
@@ -74,13 +76,26 @@ class GameScene: SKScene {
           verify if it's level to to add movementable plataform to the scene.
         */
         if self.currentLevel == .some(.level2){
+            platformInitialPos = 1007
+            platformFinalPos = 1620
             platform = SKSpriteNode(imageNamed: "plat")
-            platform?.position = CGPoint(x: 1007, y: -146)
+            platform?.position = CGPoint(x: platformInitialPos, y: -146)
             platform?.physicsBody = SKPhysicsBody(rectangleOf: platform!.frame.size)
             platform?.physicsBody?.affectedByGravity = false
             platform?.physicsBody?.mass = 2
             platform?.physicsBody?.allowsRotation = false
             
+            self.addChild(platform!)
+        }else if self.currentLevel == .some(.level3){
+            platformInitialPos = 1890
+            platformFinalPos = 3020
+            platformSpeed = 170
+            platform = SKSpriteNode(imageNamed: "plat")
+            platform?.position = CGPoint(x: platformInitialPos, y: -37)
+            platform?.physicsBody = SKPhysicsBody(rectangleOf: platform!.frame.size)
+            platform?.physicsBody?.affectedByGravity = false
+            platform?.physicsBody?.mass = 2
+            platform?.physicsBody?.allowsRotation = false
             self.addChild(platform!)
         }
         setProgressBarValue()
@@ -119,12 +134,12 @@ class GameScene: SKScene {
     
     private func movePlataform(){
         if let platform = platform, platform.physicsBody != nil{
-            if(platform.position.x <= 1007 && platform.physicsBody!.velocity.dx < CGFloat(0.0) ){
+            if(platform.position.x <= platformInitialPos && platform.physicsBody!.velocity.dx < CGFloat(0.0) ){
                 
                 platform.physicsBody?.velocity = CGVector(dx: platformSpeed, dy: 0.0)
                 
                 
-            }else if((platform.position.x >= 1620) && platform.physicsBody!.velocity.dx >= 0.0){
+            }else if((platform.position.x >= platformFinalPos) && platform.physicsBody!.velocity.dx >= 0.0){
                 
                 platform.physicsBody!.velocity = CGVector(dx: -platformSpeed, dy: 0.0)
                 

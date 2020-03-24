@@ -18,7 +18,7 @@ class Character: SKNode{
     
     private let maxVelocity: CGFloat = 350
     
-    let initialPosition: CGPoint = CGPoint(x: -336, y: -55)
+    let initialPosition: CGPoint = CGPoint(x: -336, y: -250)
     
     var currentLevel: Level!
     
@@ -38,8 +38,10 @@ class Character: SKNode{
         light.isEnabled = true
         
         self.currentLevel = currentLevel
-        createNodeShape(currentLevel)
+        node = SKSpriteNode(imageNamed: "square")
+        createPhysicsShape(currentLevel)
         self.node.addChild(light)
+        self.node.position = self.initialPosition
         self.addChild(node)
         self.didMoveToScene()
         
@@ -54,33 +56,32 @@ class Character: SKNode{
      This method defines a shape the character will become.
      - parameter currentLevel: The Level indicates which shape the will become.
      */
-    private func createNodeShape(_ currentLevl: Level){
+    private func createPhysicsShape(_ currentLevl: Level){
         switch currentLevl {
         case .initialScene:
                 node = SKSpriteNode(imageNamed: "square")
                 node.physicsBody = SKPhysicsBody(rectangleOf: node.size)
             case .level1:
-                node = SKSpriteNode(imageNamed: "square")
                 node.lightingBitMask = 1
                 node.shadowedBitMask = 1
                 node.physicsBody = SKPhysicsBody(rectangleOf: node.size)
                 node.physicsBody?.allowsRotation = false
             case .level2:
-                node = SKSpriteNode(imageNamed: "triangle")
+                node.texture = SKTexture(imageNamed: "triangle")
                 node.physicsBody = SKPhysicsBody(texture: node.texture!, size: node.size)
 //                node.physicsBody?.friction = 1.0
             case .level3:
-                node = SKSpriteNode(imageNamed: "star")
-                node.physicsBody = SKPhysicsBody(texture: node.texture!, size: node.size)
+                node.texture = SKTexture(imageNamed: "star")
+                node.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "star"), size: SKTexture(imageNamed: "star").size())
             case .level4:
-                node = SKSpriteNode(imageNamed: "hexagon")
-                node.physicsBody = SKPhysicsBody(texture: node.texture!, size: node.size)
+                node.texture = SKTexture(imageNamed: "hexagon")
+                node.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "hexagon"), size: SKTexture(imageNamed: "hexagon").size())
             case .level5:
-                node = SKSpriteNode(imageNamed: "circle")
+                node.texture = SKTexture(imageNamed: "circle")
                 node.physicsBody = SKPhysicsBody(circleOfRadius: node.size.width/2)
-                node.physicsBody?.friction = 1.0
+                node.physicsBody?.allowsRotation = false
             default:
-                node = SKSpriteNode(imageNamed: "circle")
+                node.texture = SKTexture(imageNamed: "circle")
                 node.physicsBody = SKPhysicsBody(circleOfRadius: node.size.width/2)
             }
         node.physicsBody?.friction = 0.5
@@ -104,7 +105,7 @@ class Character: SKNode{
     */
     func rollNode(_ side: Side){
         
-        guard state != .unactive else {return}
+        guard state != .unactive, node.physicsBody != nil else {return}
         
         let velocity = node.physicsBody!.velocity.dx
 //        let angularVelocity =  node.physicsBody!.angularVelocity
@@ -150,12 +151,19 @@ class Character: SKNode{
     
     
     func restartCheckPoint(){
+        let rotation = self.node.physicsBody?.allowsRotation
         let action1 = SKAction.run {
             self.node.isHidden = true
+//            self.node.physicsBody?.allowsRotation = false
+//            self.node.physicsBody?.angularVelocity = 0
+            self.node.physicsBody = nil
+
         }
         let action2 = SKAction.move(to: self.initialPosition, duration: 2)
         let action3 = SKAction.run {
             self.node.isHidden = false
+//            self.node.physicsBody?.allowsRotation = rotation!
+            self.createPhysicsShape(self.currentLevel)
         }
         let sequence = SKAction.sequence([action1,action2,action3])
         self.node.run(sequence)

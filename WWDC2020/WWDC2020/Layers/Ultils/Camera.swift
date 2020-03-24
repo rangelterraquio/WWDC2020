@@ -29,17 +29,20 @@ class Camera: SKCameraNode{
     }
     private func applyConstraints(){
         
-        let minDistanceFromNode = SKRange(value: 80, variance: 30)
-        
-        let nodeConstraint = SKConstraint.distance(minDistanceFromNode, to: CGPoint(x:  targetNode.position.x, y: targetNode.position.y),in: targetNode)
-        
+//        let minDistanceFromNode = SKRange(value: 80, variance: 30)
+//
+//        let nodeConstraint = SKConstraint.distance(minDistanceFromNode, to: CGPoint(x:  targetNode.position.x, y: targetNode.position.y),in: targetNode)
+//
         let xRange = SKRange(lowerLimit: 0, upperLimit: referenceNode.position.x + screenSize.width/2)
         let yRange = SKRange(lowerLimit: 0, upperLimit: referenceNode.size.height - screenSize.height/2)
-        
+
         let edgeContraint = SKConstraint.positionX(xRange, y: yRange)
         edgeContraint.referenceNode = referenceNode
-        
-        self.constraints = [nodeConstraint, edgeContraint]
+
+//        self.constraints = [nodeConstraint, edgeContraint]
+        let cameraRange = SKRange(constantValue: 0.0)
+        let heroLocationConstraint = SKConstraint.distance(cameraRange, to: targetNode)
+        self.constraints = [heroLocationConstraint,edgeContraint]
         
     }
     
