@@ -18,12 +18,13 @@ class ViewController: NSViewController {
         super.viewDidLoad()
 
         if let view = self.skView {
-            // Load the SKScene from 'GameScene.sks'
+            view.frame = CGRect(x: 0.5, y: 0.5, width: 1024, height: 768)
+//             Load the SKScene from 'GameScene.sks'
 //            if let scene = SKScene(fileNamed: "GameScene") as? GameScene{
-             if let scene = GameScene(fileNamed: "Level4"){
+             if let scene = GameScene(fileNamed: "Level2"){
             // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
-                scene.currentLevel = .level4
+                scene.currentLevel = .level2
                 // Present the scene
                 view.presentScene(scene)
             }
@@ -31,7 +32,8 @@ class ViewController: NSViewController {
             view.ignoresSiblingOrder = true
             view.showsFPS = true
             view.showsNodeCount = true
-            view.showsPhysics = false
+            view.showsPhysics = true
+            view.showsFields = true
         }
     }
 }

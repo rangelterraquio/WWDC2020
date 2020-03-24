@@ -25,7 +25,11 @@ class GameScene: SKScene {
     var designNode2: DesignCollectable!
     
     var progressBar: CGFloat = 0
+    
+    var platform: SKSpriteNode? = nil
+    var platformSpeed: CGFloat = 150
     override func didMove(to view: SKView) {
+        
         gameLayer = GameLayer(level: currentLevel)
         hudLayer = HudLayer(screenRect: view.frame)
        // self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
@@ -57,21 +61,34 @@ class GameScene: SKScene {
                     self.gameLayer.addObservingNode(node)
                     node.addObserver(self.gameLayer)
                 }
-                
-               
             }
+            
             if self.currentLevel == .some(.level4){
                 if let name = node.name, name == "movementableNode"{
-                    self.gameLayer.movimentableFloors.append(node as! SKSpriteNode)
+                    self.gameLayer.interactableFloors.append(node as! SKSpriteNode)
                 }
-//                if node.name == "uxNode"{
-//                    node.isHidden = true
-//                }
             }
         })
         
+        /**
+          verify if it's level to to add movementable plataform to the scene.
+        */
+        if self.currentLevel == .some(.level2){
+            platform = SKSpriteNode(imageNamed: "plat")
+            platform?.position = CGPoint(x: 1007, y: -146)
+            platform?.physicsBody = SKPhysicsBody(rectangleOf: platform!.frame.size)
+            platform?.physicsBody?.affectedByGravity = false
+            platform?.physicsBody?.mass = 2
+            platform?.physicsBody?.allowsRotation = false
+            
+            self.addChild(platform!)
+        }
         setProgressBarValue()
     }
+    
+    /**
+    This method et the value that the progress bar should change according to the amount of collectable nodes.
+    */
     private func setProgressBarValue(){
         switch self.gameLayer.nodesObserving.count {
             case 3:
@@ -79,7 +96,7 @@ class GameScene: SKScene {
             case 2:
                 progressBar = 0.5
             default:
-                progressBar = 1
+                progressBar = currentLevel! != .level1 ?  1 : 0.4
         }
     }
     
@@ -100,6 +117,27 @@ class GameScene: SKScene {
         }
     }
     
+    private func movePlataform(){
+        if let platform = platform, platform.physicsBody != nil{
+            if(platform.position.x <= 1007 && platform.physicsBody!.velocity.dx < CGFloat(0.0) ){
+                
+                platform.physicsBody?.velocity = CGVector(dx: platformSpeed, dy: 0.0)
+                
+                
+            }else if((platform.position.x >= 1620) && platform.physicsBody!.velocity.dx >= 0.0){
+                
+                platform.physicsBody!.velocity = CGVector(dx: -platformSpeed, dy: 0.0)
+                
+            }else if(platform.physicsBody!.velocity.dx > 0.0){
+                platform.physicsBody!.velocity = CGVector(dx: platformSpeed, dy: 0.0)
+                
+            }else{
+                platform.physicsBody?.velocity = CGVector(dx: -platformSpeed, dy: 0.0)
+                
+            }
+        }
+
+    }
 //    func touchDown(atPoint pos : CGPoint) {
 //        self.gameLayer.mouseDown(with: pos)
 //    }
@@ -135,6 +173,8 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         //self.cameraNode.keepCharacerInBounds()
+        self.movePlataform()
+               
     }
     
     

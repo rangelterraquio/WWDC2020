@@ -68,6 +68,7 @@ class Character: SKNode{
             case .level2:
                 node = SKSpriteNode(imageNamed: "triangle")
                 node.physicsBody = SKPhysicsBody(texture: node.texture!, size: node.size)
+//                node.physicsBody?.friction = 1.0
             case .level3:
                 node = SKSpriteNode(imageNamed: "star")
                 node.physicsBody = SKPhysicsBody(texture: node.texture!, size: node.size)
@@ -77,10 +78,12 @@ class Character: SKNode{
             case .level5:
                 node = SKSpriteNode(imageNamed: "circle")
                 node.physicsBody = SKPhysicsBody(circleOfRadius: node.size.width/2)
+                node.physicsBody?.friction = 1.0
             default:
                 node = SKSpriteNode(imageNamed: "circle")
                 node.physicsBody = SKPhysicsBody(circleOfRadius: node.size.width/2)
             }
+        node.physicsBody?.friction = 0.5
         node.physicsBody?.mass = 0.1
         node.physicsBody?.categoryBitMask = PhysicsCategory.character.bitMask
         node.physicsBody?.contactTestBitMask = PhysicsCategory.collectible.bitMask | PhysicsCategory.flor.bitMask | PhysicsCategory.deathFloor.bitMask | PhysicsCategory.victoryCheckPoint.bitMask
@@ -105,7 +108,7 @@ class Character: SKNode{
         
         let velocity = node.physicsBody!.velocity.dx
 //        let angularVelocity =  node.physicsBody!.angularVelocity
-        let dx = side.rawValue * maxVelocity
+        let dx = side.rawValue * maxVelocity * 1.5
         
         if abs(velocity) < maxVelocity{
 //        if abs(angularVelocity) < 3{

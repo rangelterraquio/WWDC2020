@@ -26,7 +26,7 @@ public class CBLNode: SKSpriteNode, Collectable{
     static let cblNotification: String = "cblNotification"
     
    
-    public var lifeNode = 2
+    public var lifeNode = 3
     
     public func interact(with contact: SKPhysicsContact) {
         guard contact.bodyA.node?.name == self.name || contact.bodyA.node?.name == self.name else{return}
@@ -40,6 +40,7 @@ public class CBLNode: SKSpriteNode, Collectable{
     }
     //2 1
     @objc private func interactionCBL(){
+        animateNode()
         guard lifeNode > 0 else {
             self.notifyDeathToObservers(nodeID: self.id)
             self.notifyValueObservers()
@@ -51,5 +52,34 @@ public class CBLNode: SKSpriteNode, Collectable{
         lifeNode-=1
     }
     
+    /**
+    This method animate the CBL node where it has an interaction.
+    */
+    func animateNode(){
+        let currentPosition: CGPoint = self.position
+        let action1 = SKAction.moveTo(y: currentPosition.y + 20, duration: 0.10)
+        let action2 = SKAction.moveTo(y: currentPosition.y, duration: 0.1)
+        let actionMode = SKActionTimingMode.easeInEaseOut
+        let sequence = SKAction.sequence([action1,action2])
+        sequence.timingMode = actionMode
+        self.run(sequence)
+        addParticle()
+    }
+    
+    func addParticle(){
+        if let particle = SKEmitterNode(fileNamed: "CBLParticle"){
+            switch lifeNode {
+                case 2:
+                    particle.particleTexture = SKTexture(imageNamed: "Investigete")
+                case 1:
+                    particle.particleTexture = SKTexture(imageNamed: "Act")
+                default:
+                    particle.particleTexture = SKTexture(imageNamed: "Engage")
+            }
+            self.addChild(particle)
+        }
+    }
    
 }
+
+

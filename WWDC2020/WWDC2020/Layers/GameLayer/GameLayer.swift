@@ -18,7 +18,7 @@ public class GameLayer: SKNode{
     var numCollectable = 0
     
     ///Floor who the user can interact moving them
-    var movimentableFloors: [SKSpriteNode] = []
+    var interactableFloors: [SKSpriteNode] = []
     var selectedFloor: SKSpriteNode? = nil
     
     weak var gameState: GameState? = nil {
@@ -122,11 +122,11 @@ extension GameLayer: ControlProtocol{
     }
     
     public func mousePressed(with event: NSEvent) {
-        guard let parent = self.parent as? GameScene, !movimentableFloors.isEmpty else {return}
+        guard let parent = self.parent as? GameScene, !interactableFloors.isEmpty else {return}
         let location = parent.view!.convert(event.locationInWindow, to: parent)
         
         
-        for node in movimentableFloors{
+        for node in interactableFloors{
             if node.contains(location){
                 selectedFloor = node
             }
@@ -188,6 +188,18 @@ extension GameLayer: SKPhysicsContactDelegate{
         
         let node = PhysicsCategory.character
         
+//        if contact.bodyA.node?.name == "nodeAction"{
+//
+//            let strength = 1.0 * (contact.bodyA.node?.physicsBody?.velocity.dx)! > 0 ? 1 : -1
+//            if character.state != .rolling{
+//                (contact.bodyB.node as! SKSpriteNode).physicsBody?.applyForce(CGVector(dx: strength, dy: 0))
+//            }
+//        }else if  contact.bodyB.node?.name == "nodeAction"{
+//            let strength = 100.0 * (contact.bodyA.node?.physicsBody?.velocity.dx)! > 0 ? 1 : -1
+//            if character.state != .rolling{
+//                (contact.bodyA.node as! SKSpriteNode).physicsBody?.applyForce(CGVector(dx: strength, dy: 0))
+//            }
+//        }
         /**
             This method verify if the character collided with the floor  and change his state
          */
