@@ -39,16 +39,18 @@ public class HudLayer: SKNode{
         
         progressBar = ProgressBar(textureBackground: "bgBar", textureBar: "bar", screenRect: screenRect)
         self.screenSize = screenRect
-        msgNode.fontSize = 30
-        msgNode.fontColor = .green
+        msgNode.fontSize = 25
+        msgNode.fontColor = .yellow
         msgNode.colorBlendFactor = 1.0
         msgNode.position = CGPoint(x: 0, y: screenSize.height * 0.4)
+        msgNode.fontName = "Cascadia Code"
         self.addChild(msgNode)
         
-        instructionNode.fontSize = 35
-        instructionNode.fontColor = .green
+        instructionNode.fontSize = 25
+        instructionNode.fontColor = .yellow
         instructionNode.colorBlendFactor = 1.0
         instructionNode.position = CGPoint(x: 0, y: screenSize.height * 0.4)
+        instructionNode.fontName = "Cascadia Code"
         self.addChild(instructionNode)
         
         progressBar.progress = 0.0
@@ -67,6 +69,7 @@ public class HudLayer: SKNode{
         barTitle.colorBlendFactor = 1.0
         barTitle.position = CGPoint(x: 0, y: screenSize.height * 0.46)
         barTitle.alpha = 0.0
+        barTitle.fontName = "Cascadia Code"
         self.addChild(barTitle)
         
     }
@@ -157,13 +160,13 @@ extension Level{
             case .level1:
                 return Element(msgText: "You got CBL power, now you are able to see things more clearly", instructionText: "Intercte with object to get super powers")
             case .level2:
-                return Element(msgText: "You got the power to reinvent yourself", instructionText: "Use the R to reinvent yourself")
+                return Element(msgText: "You got the power to reinvent yourself", instructionText: "")
             case .level3:
-                return Element(msgText: "", instructionText: "")
+                return Element(msgText: "You got Design power, now you can see things different", instructionText: "")
             case .level4:
                 return Element(msgText: "You != User, now with UX power things makes sense to the user", instructionText: "Drag the floors using the mouse to move ahead")
             case .level5:
-                return Element(msgText: "You got UX power, now you things makes sense to the user", instructionText: "Drag the floors to move ahead")
+                return Element(msgText: "If you want to go fast, go alone. If you want to go far, go as a group", instructionText: "")
             default:
                 return Element(msgText: "", instructionText: "")
         }

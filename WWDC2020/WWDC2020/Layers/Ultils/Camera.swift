@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 import GameKit
 
-class Camera: SKCameraNode{
+public class Camera: SKCameraNode{
     
     private var screenSize: CGRect!
     private var targetNode: SKNode!
@@ -40,7 +40,7 @@ class Camera: SKCameraNode{
         edgeContraint.referenceNode = referenceNode
 
 //        self.constraints = [nodeConstraint, edgeContraint]
-        let cameraRange = SKRange(constantValue: 0.0)
+        let cameraRange =  SKRange(value: 80, variance: 60)
         let heroLocationConstraint = SKConstraint.distance(cameraRange, to: targetNode)
         self.constraints = [heroLocationConstraint,edgeContraint]
         

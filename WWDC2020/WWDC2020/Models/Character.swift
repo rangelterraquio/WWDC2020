@@ -38,7 +38,7 @@ class Character: SKNode{
         light.isEnabled = true
         
         self.currentLevel = currentLevel
-        node = SKSpriteNode(imageNamed: "square")
+        node = SKSpriteNode(imageNamed: "triangle")
         createPhysicsShape(currentLevel)
         self.node.addChild(light)
         self.node.position = self.initialPosition
@@ -118,7 +118,7 @@ class Character: SKNode{
 //        node.physicsBody?.applyTorque(-(3  * side.rawValue))
 //            node.physicsBody?.applyForce(CGVector(dx: dx, dy: 0.0), at: CGPoint(x: node.frame.width/2, y: node.frame.height))
         }
-        state = .rolling
+        state = state == .some(.jumping) ? .jumping : .rolling
     }
     
     
@@ -137,7 +137,7 @@ class Character: SKNode{
         guard state != .jumping, state != .unactive else {return}
         
         node.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 70))
-        
+        AudioHelper.sharedInstance().playSoundEffect(music: Music.jumping)
        state = .jumping
     }
     

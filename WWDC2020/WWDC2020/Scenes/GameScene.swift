@@ -33,19 +33,21 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         
         gameLayer = GameLayer(level: currentLevel)
+        gameLayer.zPosition = 3
         hudLayer = HudLayer(screenRect: view.frame)
+        hudLayer.zPosition = 5
        // self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         gameLayer.gameState = self
         self.addChild(gameLayer)
         self.physicsWorld.contactDelegate = gameLayer
         setSceneHUD()
         
-        let background = childNode(withName: "background") as! SKSpriteNode
+        let background = childNode(withName: "background") as? SKSpriteNode
         
         self.backgroundColor = .black
         
         
-        cameraNode = Camera(gameLayer.character.node, background, view.frame)
+        cameraNode = Camera(gameLayer.character.node, background ?? SKSpriteNode(color: .clear, size: view.frame.size), view.frame)
         self.addChild(cameraNode)
         self.camera = cameraNode
         self.camera?.setScale(1.3)
@@ -84,6 +86,7 @@ class GameScene: SKScene {
             platform?.physicsBody?.affectedByGravity = false
             platform?.physicsBody?.mass = 2
             platform?.physicsBody?.allowsRotation = false
+            platform?.physicsBody?.categoryBitMask = PhysicsCategory.flor.bitMask
             
             self.addChild(platform!)
         }else if self.currentLevel == .some(.level3){
@@ -96,6 +99,7 @@ class GameScene: SKScene {
             platform?.physicsBody?.affectedByGravity = false
             platform?.physicsBody?.mass = 2
             platform?.physicsBody?.allowsRotation = false
+            platform?.physicsBody?.categoryBitMask = PhysicsCategory.flor.bitMask
             self.addChild(platform!)
         }
         setProgressBarValue()
@@ -193,7 +197,10 @@ class GameScene: SKScene {
     }
     
     
-    
+    deinit {
+        self.removeAllChildren()
+        self.removeAllActions()
+    }
     
 }
 
@@ -211,14 +218,19 @@ extension GameScene: GameState{
       - parameter level: The next level to be played.
       */
     class public func nextLevel(_ nextLevel: Level) -> GameScene?{
-        guard let scene = GameScene(fileNamed: "Level\(nextLevel.rawValue)") else {return nil}
+        guard let scene = GameScene(fileNamed: "Level\(nextLevel.rawValue)") else {
+            let scene = GameScene(fileNamed: "FinalScene")
+            scene?.scaleMode = .aspectFill
+            scene?.currentLevel = nextLevel
+            return scene
+        }
           scene.scaleMode = .aspectFill
           scene.currentLevel = nextLevel
           return scene
       }
     
     
-    func willStart(_ level: Level) {
+    public func willStart(_ level: Level) {
         hudLayer.didMoveToScene(level)
         gameStarted = true
     }
@@ -227,22 +239,22 @@ extension GameScene: GameState{
         print("Level\(level)")
     }
     
-    func startNewLevel() {
-        let scene = GameScene.nextLevel(gameLayer.currentGame)
-        
-        view?.presentScene(scene)
+    public func startNewLevel() {
+        guard let scene = GameScene.nextLevel(gameLayer.currentGame) else {return}
+        let transiction = SKTransition.fade(withDuration: 2.5)
+        view?.presentScene(scene, transition: transiction)
     }
        
-    func showMsgText() {
+    public func showMsgText() {
         
         hudLayer.showMsg(from: currentLevel)
     }
     
-    func showInstructionText() {
+    public func showInstructionText() {
         hudLayer.showInstruction(from: currentLevel)
     }
     
-    func updatePowerProgress() {
+    public func updatePowerProgress() {
         hudLayer.progressBar.progress += self.progressBar
     }
 }

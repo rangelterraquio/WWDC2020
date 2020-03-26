@@ -21,10 +21,10 @@ class ViewController: NSViewController {
             view.frame = CGRect(x: 0.5, y: 0.5, width: 1024, height: 768)
 //             Load the SKScene from 'GameScene.sks'
 //            if let scene = SKScene(fileNamed: "GameScene") as? GameScene{
-             if let scene = GameScene(fileNamed: "Level5"){
+             if let scene = GameScene(fileNamed: "Level3"){
             // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
-                scene.currentLevel = .level5
+                scene.currentLevel = .level3
                 // Present the scene
                 view.presentScene(scene)
             }
@@ -32,7 +32,7 @@ class ViewController: NSViewController {
             view.ignoresSiblingOrder = true
             view.showsFPS = true
             view.showsNodeCount = true
-            view.showsPhysics = true
+//            view.showsPhysics = true
             view.showsFields = true
         }
     }

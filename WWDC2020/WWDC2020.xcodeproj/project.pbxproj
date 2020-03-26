@@ -13,13 +13,17 @@
 		7027155E242460AE006541AE /* DesignCollectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7027155D242460AE006541AE /* DesignCollectable.swift */; };
 		7032F3BD2427026D007BC5EE /* Level5.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7032F3BC2427026D007BC5EE /* Level5.sks */; };
 		7032F3BF2427054F007BC5EE /* PeopleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7032F3BE2427054F007BC5EE /* PeopleNode.swift */; };
+		704D2539242BF83A00B1F138 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 704D2537242BF83A00B1F138 /* Assets.xcassets */; };
+		704D253D242BF8E200B1F138 /* FinalCheckpointParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 704D253C242BF8E200B1F138 /* FinalCheckpointParticle.sks */; };
+		704D253F242C0E1400B1F138 /* AudioHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704D253E242C0E1400B1F138 /* AudioHelper.swift */; };
+		704D2541242C161800B1F138 /* error.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 704D2540242C161800B1F138 /* error.mp3 */; };
+		704D2544242C1F0700B1F138 /* jumping.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 704D2543242C1F0700B1F138 /* jumping.mp3 */; };
 		7052C623242599D800C90FAD /* Level4.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7052C622242599D800C90FAD /* Level4.sks */; };
 		7052C6252425A9E200C90FAD /* UXCollectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7052C6242425A9E200C90FAD /* UXCollectable.swift */; };
 		7055205224210B4E007D5E65 /* CodeCollectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7055205124210B4E007D5E65 /* CodeCollectable.swift */; };
 		7055205424210DCF007D5E65 /* WallShapeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7055205324210DCF007D5E65 /* WallShapeNode.swift */; };
 		706FA2DB2423BF0200FD1BAD /* FlashLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706FA2DA2423BF0200FD1BAD /* FlashLight.swift */; };
 		707C295F242823D000BBF7DA /* CBLParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 707C295D242823D000BBF7DA /* CBLParticle.sks */; };
-		707C2960242823D000BBF7DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 707C295E242823D000BBF7DA /* Assets.xcassets */; };
 		709DC45C241D170800A55D28 /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709DC45B241D170800A55D28 /* PhysicsCategory.swift */; };
 		709DC45E241D566200A55D28 /* Level2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 709DC45D241D566200A55D28 /* Level2.sks */; };
 		709DC460241D5DD500A55D28 /* InteractiveNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709DC45F241D5DD500A55D28 /* InteractiveNode.swift */; };
@@ -42,6 +46,9 @@
 		70C3A61B241FDAFA00056E96 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C3A61A241FDAFA00056E96 /* ProgressBar.swift */; };
 		70C3A61D241FE2E300056E96 /* Extension-CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C3A61C241FE2E300056E96 /* Extension-CGFloat.swift */; };
 		70C73E0124298F970020F009 /* FinalScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 70C73E0024298F970020F009 /* FinalScene.sks */; };
+		70CE290D242D259A00BEB78B /* jump.wav in Resources */ = {isa = PBXBuildFile; fileRef = 70CE290C242D259A00BEB78B /* jump.wav */; };
+		70CE290F242D272100BEB78B /* jumping3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 70CE290E242D272100BEB78B /* jumping3.wav */; };
+		70CE2911242D2B5100BEB78B /* click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 70CE2910242D2B5100BEB78B /* click.wav */; };
 		70EAB916241FC2A600F04384 /* HudControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EAB915241FC2A600F04384 /* HudControl.swift */; };
 		70F059C0241ED8870011DBB3 /* HudLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F059BF241ED8870011DBB3 /* HudLayer.swift */; };
 /* End PBXBuildFile section */
@@ -53,13 +60,17 @@
 		7027155D242460AE006541AE /* DesignCollectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignCollectable.swift; sourceTree = "<group>"; };
 		7032F3BC2427026D007BC5EE /* Level5.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level5.sks; sourceTree = "<group>"; };
 		7032F3BE2427054F007BC5EE /* PeopleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleNode.swift; sourceTree = "<group>"; };
+		704D2537242BF83A00B1F138 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		704D253C242BF8E200B1F138 /* FinalCheckpointParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FinalCheckpointParticle.sks; sourceTree = "<group>"; };
+		704D253E242C0E1400B1F138 /* AudioHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioHelper.swift; sourceTree = "<group>"; };
+		704D2540242C161800B1F138 /* error.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = error.mp3; sourceTree = "<group>"; };
+		704D2543242C1F0700B1F138 /* jumping.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = jumping.mp3; sourceTree = "<group>"; };
 		7052C622242599D800C90FAD /* Level4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level4.sks; sourceTree = "<group>"; };
 		7052C6242425A9E200C90FAD /* UXCollectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UXCollectable.swift; sourceTree = "<group>"; };
 		7055205124210B4E007D5E65 /* CodeCollectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeCollectable.swift; sourceTree = "<group>"; };
 		7055205324210DCF007D5E65 /* WallShapeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallShapeNode.swift; sourceTree = "<group>"; };
 		706FA2DA2423BF0200FD1BAD /* FlashLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashLight.swift; sourceTree = "<group>"; };
 		707C295D242823D000BBF7DA /* CBLParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CBLParticle.sks; sourceTree = "<group>"; };
-		707C295E242823D000BBF7DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		709DC45B241D170800A55D28 /* PhysicsCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
 		709DC45D241D566200A55D28 /* Level2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2.sks; sourceTree = "<group>"; };
 		709DC45F241D5DD500A55D28 /* InteractiveNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveNode.swift; sourceTree = "<group>"; };
@@ -85,6 +96,9 @@
 		70C3A61A241FDAFA00056E96 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		70C3A61C241FE2E300056E96 /* Extension-CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension-CGFloat.swift"; sourceTree = "<group>"; };
 		70C73E0024298F970020F009 /* FinalScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FinalScene.sks; sourceTree = "<group>"; };
+		70CE290C242D259A00BEB78B /* jump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = jump.wav; sourceTree = "<group>"; };
+		70CE290E242D272100BEB78B /* jumping3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = jumping3.wav; sourceTree = "<group>"; };
+		70CE2910242D2B5100BEB78B /* click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click.wav; sourceTree = "<group>"; };
 		70EAB915241FC2A600F04384 /* HudControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudControl.swift; sourceTree = "<group>"; };
 		70F059BF241ED8870011DBB3 /* HudLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudLayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,6 +114,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		704D2542242C163600B1F138 /* SoundsEffect */ = {
+			isa = PBXGroup;
+			children = (
+				70CE2910242D2B5100BEB78B /* click.wav */,
+				70CE290E242D272100BEB78B /* jumping3.wav */,
+				70CE290C242D259A00BEB78B /* jump.wav */,
+				704D2543242C1F0700B1F138 /* jumping.mp3 */,
+				704D2540242C161800B1F138 /* error.mp3 */,
+			);
+			path = SoundsEffect;
+			sourceTree = "<group>";
+		};
 		70552055242112E6007D5E65 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,7 +139,8 @@
 			isa = PBXGroup;
 			children = (
 				707C295D242823D000BBF7DA /* CBLParticle.sks */,
-				707C295E242823D000BBF7DA /* Assets.xcassets */,
+				704D2537242BF83A00B1F138 /* Assets.xcassets */,
+				704D253C242BF8E200B1F138 /* FinalCheckpointParticle.sks */,
 			);
 			path = Particles;
 			sourceTree = "<group>";
@@ -142,6 +169,7 @@
 				707C295C2428238600BBF7DA /* Particles */,
 				70B2530B241BFB1500068FD6 /* Models */,
 				70B2530D241BFC9F00068FD6 /* Layers */,
+				704D2542242C163600B1F138 /* SoundsEffect */,
 				70B252FF241BFB0200068FD6 /* Assets.xcassets */,
 				70B25301241BFB0200068FD6 /* Main.storyboard */,
 				70B25304241BFB0200068FD6 /* Info.plist */,
@@ -237,6 +265,7 @@
 				70B25320241C326100068FD6 /* Camera.swift */,
 				70C3A61C241FE2E300056E96 /* Extension-CGFloat.swift */,
 				70B1658E24206F8E007D2B9F /* Level.swift */,
+				704D253E242C0E1400B1F138 /* AudioHelper.swift */,
 			);
 			path = Ultils;
 			sourceTree = "<group>";
@@ -325,15 +354,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				7027155C24245EDC006541AE /* Level3.sks in Resources */,
+				704D2544242C1F0700B1F138 /* jumping.mp3 in Resources */,
 				70B252F8241BFAFD00068FD6 /* Level1.sks in Resources */,
 				70B25300241BFB0200068FD6 /* Assets.xcassets in Resources */,
+				70CE2911242D2B5100BEB78B /* click.wav in Resources */,
 				7052C623242599D800C90FAD /* Level4.sks in Resources */,
-				707C2960242823D000BBF7DA /* Assets.xcassets in Resources */,
 				70B252FA241BFAFD00068FD6 /* Actions.sks in Resources */,
 				70B25303241BFB0200068FD6 /* Main.storyboard in Resources */,
+				704D2541242C161800B1F138 /* error.mp3 in Resources */,
 				7032F3BD2427026D007BC5EE /* Level5.sks in Resources */,
 				709DC45E241D566200A55D28 /* Level2.sks in Resources */,
+				704D253D242BF8E200B1F138 /* FinalCheckpointParticle.sks in Resources */,
 				707C295F242823D000BBF7DA /* CBLParticle.sks in Resources */,
+				704D2539242BF83A00B1F138 /* Assets.xcassets in Resources */,
+				70CE290F242D272100BEB78B /* jumping3.wav in Resources */,
+				70CE290D242D259A00BEB78B /* jump.wav in Resources */,
 				70C73E0124298F970020F009 /* FinalScene.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,6 +396,7 @@
 				70B25313241C021600068FD6 /* Character.swift in Sources */,
 				709DC45C241D170800A55D28 /* PhysicsCategory.swift in Sources */,
 				70B25319241C05D700068FD6 /* ControlProtocol.swift in Sources */,
+				704D253F242C0E1400B1F138 /* AudioHelper.swift in Sources */,
 				70F059C0241ED8870011DBB3 /* HudLayer.swift in Sources */,
 				70B1658F24206F8E007D2B9F /* Level.swift in Sources */,
 				7055205224210B4E007D5E65 /* CodeCollectable.swift in Sources */,

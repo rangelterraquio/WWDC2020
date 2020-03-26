@@ -107,9 +107,20 @@ extension GameLayer{
    
     
     func finishGame(){
-        gameState?.finished(currentGame)
-        currentGame = Level.nextLevel(currentLevel: currentGame)
-        gameState?.startNewLevel()
+        if let particle = SKEmitterNode(fileNamed: "FinalCheckpointParticle"){
+            particle.position = character.node.position
+            character.addChild(particle)
+        }
+        let action = SKAction.run { [weak self] in
+            guard let self = self else {return}
+            self.character.removeAllChildren()
+            self.gameState?.finished(self.currentGame)
+            self.currentGame = Level.nextLevel(currentLevel: self.currentGame)
+            self.gameState?.startNewLevel()
+        }
+        
+        self.run(SKAction.sequence([SKAction.wait(forDuration: 1.5),action]))
+        
     }
     
 }
@@ -225,7 +236,7 @@ extension GameLayer: SKPhysicsContactDelegate{
             This method verify if the character collided with the deathFloor
          */
         if node.collided(with: .deathFloor, contact: contact){
-            
+            AudioHelper.sharedInstance().playSoundEffect(music: Music.error)
             restartCheckPoint()
         }
         
