@@ -25,7 +25,7 @@ public class ProgressBar: SKNode {
         didSet{
             let value = max(min(progress,1.0),0.0)
             if let bar = bar {
-                bar.yScale = value/10 // mudar isso qunado colocar uma nova image,
+                bar.xScale = value
                 
             }
             if progress >= 1 {
@@ -33,7 +33,7 @@ public class ProgressBar: SKNode {
                     function()
                 }
                 progress = 0
-                bar.yScale = 0
+                bar.xScale = 0
             }
         }
     }
@@ -43,12 +43,9 @@ public class ProgressBar: SKNode {
         self.screenSize = screenRect
         background = SKSpriteNode(imageNamed: textureBackground)
         bar = SKSpriteNode(imageNamed: textureBar)
-        background.setScale(0.1)
         background.position = CGPoint(x: -25, y: 0)
-        bar.setScale(0.1)
-//        bar.xScale = 1.0
         bar.zPosition = 1.0
-        bar.position = CGPoint(x:-84,y:0)
+        bar.position = CGPoint(x:-94,y:-1)
         bar.anchorPoint = CGPoint(x: 0, y: 0.5)
         self.addChild(background)
         self.addChild(bar)

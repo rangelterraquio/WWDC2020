@@ -18,7 +18,7 @@ class Character: SKNode{
     
     private let maxVelocity: CGFloat = 350
     
-    let initialPosition: CGPoint = CGPoint(x: -336, y: -250)
+    let initialPosition: CGPoint = CGPoint(x: -336, y: -200)
     
     var currentLevel: Level!
     

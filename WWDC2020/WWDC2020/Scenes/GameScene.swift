@@ -44,7 +44,7 @@ class GameScene: SKScene {
         
         let background = childNode(withName: "background") as? SKSpriteNode
         
-        self.backgroundColor = .black
+        self.backgroundColor = .lightGray
         
         
         cameraNode = Camera(gameLayer.character.node, background ?? SKSpriteNode(color: .clear, size: view.frame.size), view.frame)
@@ -80,7 +80,7 @@ class GameScene: SKScene {
         if self.currentLevel == .some(.level2){
             platformInitialPos = 1007
             platformFinalPos = 1620
-            platform = SKSpriteNode(imageNamed: "plat")
+            platform = SKSpriteNode(imageNamed: "plat01")
             platform?.position = CGPoint(x: platformInitialPos, y: -146)
             platform?.physicsBody = SKPhysicsBody(rectangleOf: platform!.frame.size)
             platform?.physicsBody?.affectedByGravity = false
@@ -93,7 +93,7 @@ class GameScene: SKScene {
             platformInitialPos = 1890
             platformFinalPos = 3020
             platformSpeed = 170
-            platform = SKSpriteNode(imageNamed: "plat")
+            platform = SKSpriteNode(imageNamed: "plat01")
             platform?.position = CGPoint(x: platformInitialPos, y: -37)
             platform?.physicsBody = SKPhysicsBody(rectangleOf: platform!.frame.size)
             platform?.physicsBody?.affectedByGravity = false

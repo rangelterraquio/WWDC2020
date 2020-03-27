@@ -37,17 +37,17 @@ public class HudLayer: SKNode{
      public init(screenRect: CGRect) {
         super.init()
         
-        progressBar = ProgressBar(textureBackground: "bgBar", textureBar: "bar", screenRect: screenRect)
+        progressBar = ProgressBar(textureBackground: "bgBar", textureBar: "frontBar", screenRect: screenRect)
         self.screenSize = screenRect
         msgNode.fontSize = 25
-        msgNode.fontColor = .yellow
+        msgNode.fontColor = .black
         msgNode.colorBlendFactor = 1.0
         msgNode.position = CGPoint(x: 0, y: screenSize.height * 0.4)
         msgNode.fontName = "Cascadia Code"
         self.addChild(msgNode)
         
         instructionNode.fontSize = 25
-        instructionNode.fontColor = .yellow
+        instructionNode.fontColor = .black
         instructionNode.colorBlendFactor = 1.0
         instructionNode.position = CGPoint(x: 0, y: screenSize.height * 0.4)
         instructionNode.fontName = "Cascadia Code"
@@ -59,16 +59,17 @@ public class HudLayer: SKNode{
             self.progressBar.isHidden = true
             self.barTitle.isHidden = true
         }
-        progressBar.position = CGPoint(x: 0, y: screenSize.height * 0.45)
-        progressBar.zRotation = CGFloat(90).degreesToradius()
+        progressBar.position = CGPoint(x: screenSize.width * 0.0232, y: screenSize.height * 0.35)
         progressBar.alpha = 0.0
         self.addChild(progressBar)
         
-        barTitle.fontSize = 20
-        barTitle.color = .blue
+        barTitle.fontSize = 15
+        barTitle.color = .black
         barTitle.colorBlendFactor = 1.0
-        barTitle.position = CGPoint(x: 0, y: screenSize.height * 0.46)
+        barTitle.position = CGPoint(x: 0, y: screenSize.height * 0.38)
         barTitle.alpha = 0.0
+        barTitle.horizontalAlignmentMode = .center
+        barTitle.verticalAlignmentMode = .center
         barTitle.fontName = "Cascadia Code"
         self.addChild(barTitle)
         
@@ -84,7 +85,8 @@ public class HudLayer: SKNode{
     - parameter level: The message related to that level.
     */
     func showMsg(from level: Level) -> Void {
-
+        msgNode.numberOfLines = level == .some(.level5) ? 2 : 1
+        msgNode.verticalAlignmentMode = .center
         msgNode.text = level.elements.msgText
         instructionNode.text = level.elements.instructionText
         let lastAction = SKAction.run { [weak self] in
