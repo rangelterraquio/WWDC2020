@@ -41,7 +41,11 @@ public class DesignCollectable: SKSpriteNode, Collectable{
         guard let parent = self.parent as? GameScene else {return}
         if lifeNode == 0 {
             self.notifyDeathToObservers(nodeID: self.id)
+            
+            
             self.notifyValueObservers()
+            
+            
             self.removeObserver()
             self.removeFromParent()
             DesignCollectable.powerProgress += 1
@@ -54,19 +58,29 @@ public class DesignCollectable: SKSpriteNode, Collectable{
             DispatchQueue.main.async {
                 parent.enumerateChildNodes(withName: "bigFloor", using: { node, _ in
                     if let node = node as? SKSpriteNode{
-                        node.texture = SKTexture(imageNamed: "bigFloor")
+                        node.texture = SKTexture(imageNamed: "floor_c_1")
+                        node.size = CGSize(width: 622.629, height: 163)
                     }
                 })
+                let node = parent.childNode(withName: "bigFloor_plat") as? SKSpriteNode
+                node?.texture = SKTexture(imageNamed: "plat_c_1_grande")
+                node?.size = CGSize(width: 2845.205, height: 68)
+                let node2 = parent.childNode(withName: "plat_big") as? SKSpriteNode
+                node2?.texture = SKTexture(imageNamed: "plat_c_1_grande")
+                node?.size = CGSize(width: 640, height: 68)
             }
         }else if DesignCollectable.powerProgress == 3{
+            let platNames = ["plat_c_1","plat_c_2","plat_c_3","plat_c_4"]
             DispatchQueue.main.async {
                 parent.enumerateChildNodes(withName: "smallFloor", using: { node, _ in
                     if let node = node as? SKSpriteNode{
-                        node.texture = SKTexture(imageNamed: "smallFloor")
+                        node.texture = SKTexture(imageNamed: platNames.randomElement()!)
+                        node.size = CGSize(width: 352, height: 68)
                     }
                 })
                 let node = parent.childNode(withName: "EndFlag") as? SKSpriteNode
-                node?.texture = SKTexture(imageNamed: "finalCheckpoint")
+                node?.texture = SKTexture(imageNamed: "board_c")
+                node?.size = CGSize(width: 159.992, height: 236.905)
             }
         }
     }

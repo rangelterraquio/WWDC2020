@@ -26,7 +26,6 @@ public class HudLayer: SKNode{
         self.progressBar.run(self.fadeIn)
     }
     
-
     private let msgNode = SKLabelNode()
     private let instructionNode = SKLabelNode()
     
@@ -37,21 +36,67 @@ public class HudLayer: SKNode{
      public init(screenRect: CGRect) {
         super.init()
         
-        progressBar = ProgressBar(textureBackground: "bgBar", textureBar: "frontBar", screenRect: screenRect)
+
         self.screenSize = screenRect
         msgNode.fontSize = 25
-        msgNode.fontColor = .black
         msgNode.colorBlendFactor = 1.0
         msgNode.position = CGPoint(x: 0, y: screenSize.height * 0.4)
         msgNode.fontName = "Cascadia Code"
         self.addChild(msgNode)
         
         instructionNode.fontSize = 25
-        instructionNode.fontColor = .black
         instructionNode.colorBlendFactor = 1.0
         instructionNode.position = CGPoint(x: 0, y: screenSize.height * 0.4)
         instructionNode.fontName = "Cascadia Code"
         self.addChild(instructionNode)
+        
+        
+        
+        barTitle.fontSize = 15
+        barTitle.colorBlendFactor = 1.0
+        barTitle.position = CGPoint(x: 0, y: screenSize.height * 0.38)
+        barTitle.alpha = 0.0
+        barTitle.horizontalAlignmentMode = .center
+        barTitle.verticalAlignmentMode = .center
+        barTitle.fontName = "Cascadia Code"
+        self.addChild(barTitle)
+        
+        
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    /**
+    This method is define a color for the SKLabelNode.
+    
+    - parameter level: The color related to that level.
+    */
+    private func setupColor(from level: Level) -> NSColor{
+        switch level {
+        case .level1:
+            return .white
+        case .level2:
+            return .black
+        case .level3:
+            return .black
+        default:
+            return NSColor(calibratedRed: 110/255, green: 240/255, blue: 252/255, alpha: 1.0)//.yellow
+        }
+    }
+    
+    /**
+    This method is setup the progressBar.
+    
+    - parameter level: ProgressBar is defined by the level.
+    */
+    private func setupProgressBar(from level: Level) -> Void{
+        if level == .level4 || level == .level5{
+            progressBar = ProgressBar(textureBackground: "bkBar_c", textureBar: "frontBar_c", screenRect: self.screenSize)
+        }else{
+            progressBar = ProgressBar(textureBackground: "bgBar", textureBar: "frontBar", screenRect: self.screenSize)
+        }
         
         progressBar.progress = 0.0
         progressBar.progressCompleted = { [weak self] in
@@ -62,21 +107,6 @@ public class HudLayer: SKNode{
         progressBar.position = CGPoint(x: screenSize.width * 0.0232, y: screenSize.height * 0.35)
         progressBar.alpha = 0.0
         self.addChild(progressBar)
-        
-        barTitle.fontSize = 15
-        barTitle.color = .black
-        barTitle.colorBlendFactor = 1.0
-        barTitle.position = CGPoint(x: 0, y: screenSize.height * 0.38)
-        barTitle.alpha = 0.0
-        barTitle.horizontalAlignmentMode = .center
-        barTitle.verticalAlignmentMode = .center
-        barTitle.fontName = "Cascadia Code"
-        self.addChild(barTitle)
-        
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     /**
@@ -115,7 +145,11 @@ public class HudLayer: SKNode{
       - parameter level: The current level.
       */
     func didMoveToScene(_ level: Level){
-        
+        setupProgressBar(from: level)
+        let color = setupColor(from: level)
+        barTitle.fontColor = color
+        msgNode.fontColor = color
+        instructionNode.fontColor = color
         switch level {
             case .initialScene:
                 print("initial Scene")
@@ -123,8 +157,7 @@ public class HudLayer: SKNode{
                 print("Final scene")
             case .level1:
                 instructionNode.text = "Use left and right arrow to roll sideways"
-                let changeInstruction = SKAction.run {
-                    
+                let changeInstruction = SKAction.run {    
                     self.instructionNode.text = "Use space to jump"
                 }
                 let changeInstruction2 = SKAction.run {[weak self] in

@@ -38,7 +38,7 @@ class Character: SKNode{
         light.isEnabled = true
         
         self.currentLevel = currentLevel
-        node = SKSpriteNode(imageNamed: "triangle")
+        node = SKSpriteNode(imageNamed: "triangle_w")
         createPhysicsShape(currentLevel)
         self.node.addChild(light)
         self.node.position = self.initialPosition
@@ -59,7 +59,7 @@ class Character: SKNode{
     private func createPhysicsShape(_ currentLevl: Level){
         switch currentLevl {
         case .initialScene:
-                node = SKSpriteNode(imageNamed: "square")
+                node = SKSpriteNode(imageNamed: "square_w")
                 node.physicsBody = SKPhysicsBody(rectangleOf: node.size)
             case .level1:
                 node.lightingBitMask = 1
@@ -67,12 +67,12 @@ class Character: SKNode{
                 node.physicsBody = SKPhysicsBody(rectangleOf: node.size)
                 node.physicsBody?.allowsRotation = false
             case .level2:
-                node.texture = SKTexture(imageNamed: "triangle")
+                node.texture = SKTexture(imageNamed: "triangle_w")
                 node.physicsBody = SKPhysicsBody(texture: node.texture!, size: node.size)
 //                node.physicsBody?.friction = 1.0
             case .level3:
-                node.texture = SKTexture(imageNamed: "star")
-                node.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "star"), size: SKTexture(imageNamed: "star").size())
+                node.texture = SKTexture(imageNamed: "star_w")
+                node.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "star_w"), size: SKTexture(imageNamed: "star_w").size())
             case .level4:
                 node.texture = SKTexture(imageNamed: "hexagon")
                 node.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "hexagon"), size: SKTexture(imageNamed: "hexagon").size())
@@ -88,8 +88,7 @@ class Character: SKNode{
         node.physicsBody?.mass = 0.1
         node.physicsBody?.categoryBitMask = PhysicsCategory.character.bitMask
         node.physicsBody?.contactTestBitMask = PhysicsCategory.collectible.bitMask | PhysicsCategory.flor.bitMask | PhysicsCategory.deathFloor.bitMask | PhysicsCategory.victoryCheckPoint.bitMask
-        node.lightingBitMask = 1
-        node.shadowedBitMask = 1
+       
 
 
     }
@@ -234,6 +233,8 @@ enum State{
     case stopped
     case unactive
 }
+
+
 
 
 //MARK: -> INTERACTIVE PROTOCOL

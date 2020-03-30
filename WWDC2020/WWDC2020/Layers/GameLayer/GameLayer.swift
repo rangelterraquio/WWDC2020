@@ -28,7 +28,7 @@ public class GameLayer: SKNode{
     }
     
     var hasDied: Bool = false
-    
+    var hasFinished: Bool = false
     
     //Proporty from Observer Protocol.
     public var nodesObserving: [ObservableProtocol] = [] {
@@ -107,6 +107,9 @@ extension GameLayer{
    
     
     func finishGame(){
+        
+        guard !hasFinished else {return}
+        
         if let particle = SKEmitterNode(fileNamed: "FinalCheckpointParticle"){
             particle.position = character.node.position
             character.addChild(particle)
@@ -199,18 +202,6 @@ extension GameLayer: SKPhysicsContactDelegate{
         
         let node = PhysicsCategory.character
         
-//        if contact.bodyA.node?.name == "nodeAction"{
-//
-//            let strength = 1.0 * (contact.bodyA.node?.physicsBody?.velocity.dx)! > 0 ? 1 : -1
-//            if character.state != .rolling{
-//                (contact.bodyB.node as! SKSpriteNode).physicsBody?.applyForce(CGVector(dx: strength, dy: 0))
-//            }
-//        }else if  contact.bodyB.node?.name == "nodeAction"{
-//            let strength = 100.0 * (contact.bodyA.node?.physicsBody?.velocity.dx)! > 0 ? 1 : -1
-//            if character.state != .rolling{
-//                (contact.bodyA.node as! SKSpriteNode).physicsBody?.applyForce(CGVector(dx: strength, dy: 0))
-//            }
-//        }
         /**
             This method verify if the character collided with the floor  and change his state
          */
@@ -222,8 +213,7 @@ extension GameLayer: SKPhysicsContactDelegate{
             This method verify if the character collided with the collectible
          */
         if node.collided(with: .collectible, contact: contact){
-        
-            
+           
             if let nodeA = contact.bodyA.node as? InteractiveNode{
                 nodeA.interact?(with: contact)
             }else if let nodeB = contact.bodyB.node as? InteractiveNode{
@@ -244,11 +234,12 @@ extension GameLayer: SKPhysicsContactDelegate{
             This method verify if the character completed the level
          */
         if node.collided(with: .victoryCheckPoint, contact: contact){
-            
            finishGame()
+           hasFinished = true
         }
 
     }
+
 }
 
 

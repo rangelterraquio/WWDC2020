@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		70167E8D24225D5300318496 /* ObervableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70167E8C24225D5300318496 /* ObervableProtocol.swift */; };
-		70167E8F24225EDF00318496 /* Obervable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70167E8E24225EDF00318496 /* Obervable.swift */; };
 		7027155C24245EDC006541AE /* Level3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7027155B24245EDC006541AE /* Level3.sks */; };
 		7027155E242460AE006541AE /* DesignCollectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7027155D242460AE006541AE /* DesignCollectable.swift */; };
 		7032F3BD2427026D007BC5EE /* Level5.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7032F3BC2427026D007BC5EE /* Level5.sks */; };
@@ -55,7 +54,6 @@
 
 /* Begin PBXFileReference section */
 		70167E8C24225D5300318496 /* ObervableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObervableProtocol.swift; sourceTree = "<group>"; };
-		70167E8E24225EDF00318496 /* Obervable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obervable.swift; sourceTree = "<group>"; };
 		7027155B24245EDC006541AE /* Level3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level3.sks; sourceTree = "<group>"; };
 		7027155D242460AE006541AE /* DesignCollectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignCollectable.swift; sourceTree = "<group>"; };
 		7032F3BC2427026D007BC5EE /* Level5.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level5.sks; sourceTree = "<group>"; };
@@ -191,7 +189,6 @@
 				7052C6242425A9E200C90FAD /* UXCollectable.swift */,
 				7032F3BE2427054F007BC5EE /* PeopleNode.swift */,
 				70552055242112E6007D5E65 /* Protocols */,
-				70167E8E24225EDF00318496 /* Obervable.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -387,7 +384,6 @@
 				70B2531C241C0B0700068FD6 /* KeyBoardKeys.swift in Sources */,
 				7055205424210DCF007D5E65 /* WallShapeNode.swift in Sources */,
 				7027155E242460AE006541AE /* DesignCollectable.swift in Sources */,
-				70167E8F24225EDF00318496 /* Obervable.swift in Sources */,
 				70EAB916241FC2A600F04384 /* HudControl.swift in Sources */,
 				70C3A61B241FDAFA00056E96 /* ProgressBar.swift in Sources */,
 				70167E8D24225D5300318496 /* ObervableProtocol.swift in Sources */,

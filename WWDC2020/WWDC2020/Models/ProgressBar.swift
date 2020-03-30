@@ -45,7 +45,7 @@ public class ProgressBar: SKNode {
         bar = SKSpriteNode(imageNamed: textureBar)
         background.position = CGPoint(x: -25, y: 0)
         bar.zPosition = 1.0
-        bar.position = CGPoint(x:-94,y:-1)
+        bar.position = CGPoint(x:-94,y:0)//
         bar.anchorPoint = CGPoint(x: 0, y: 0.5)
         self.addChild(background)
         self.addChild(bar)

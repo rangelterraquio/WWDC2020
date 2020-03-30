@@ -44,7 +44,7 @@ class GameScene: SKScene {
         
         let background = childNode(withName: "background") as? SKSpriteNode
         
-        self.backgroundColor = .lightGray
+        self.backgroundColor = (currentLevel! == .level4 || currentLevel! == .level5) ? NSColor(calibratedRed: 70/255, green: 29/255, blue: 82/255, alpha: 1.0) : .lightGray
         
         
         cameraNode = Camera(gameLayer.character.node, background ?? SKSpriteNode(color: .clear, size: view.frame.size), view.frame)
@@ -78,7 +78,7 @@ class GameScene: SKScene {
           verify if it's level to to add movementable plataform to the scene.
         */
         if self.currentLevel == .some(.level2){
-            platformInitialPos = 1007
+            platformInitialPos = 1107
             platformFinalPos = 1620
             platform = SKSpriteNode(imageNamed: "plat01")
             platform?.position = CGPoint(x: platformInitialPos, y: -146)
@@ -87,7 +87,7 @@ class GameScene: SKScene {
             platform?.physicsBody?.mass = 2
             platform?.physicsBody?.allowsRotation = false
             platform?.physicsBody?.categoryBitMask = PhysicsCategory.flor.bitMask
-            
+            platform?.name = "smallFloor"
             self.addChild(platform!)
         }else if self.currentLevel == .some(.level3){
             platformInitialPos = 1890
@@ -100,7 +100,9 @@ class GameScene: SKScene {
             platform?.physicsBody?.mass = 2
             platform?.physicsBody?.allowsRotation = false
             platform?.physicsBody?.categoryBitMask = PhysicsCategory.flor.bitMask
+            platform?.name = "smallFloor"
             self.addChild(platform!)
+            
         }
         setProgressBarValue()
     }

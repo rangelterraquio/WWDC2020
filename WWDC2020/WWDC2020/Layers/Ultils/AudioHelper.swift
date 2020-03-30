@@ -86,7 +86,9 @@ public class AudioHelper{
 
 
 public enum Music{
-    
+    case error
+    case jumping
+
     struct File{
         let name: String
         let exten: String
@@ -99,6 +101,4 @@ public enum Music{
             return File(name: "click", exten: ".wav")
         }
     }
-    case error
-    case jumping
 }

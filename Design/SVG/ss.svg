@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="357.501" height="73.679" viewBox="0 0 357.501 73.679">
+  <g id="Group_71" data-name="Group 71" transform="translate(-86 -452)">
+    <g id="Group_70" data-name="Group 70" transform="translate(-125 45)">
+      <g id="Plataforma" transform="translate(-487 -117)">
+        <g id="Group_49" data-name="Group 49" transform="translate(717 540)">
+          <path id="Path_67" data-name="Path 67" d="M0,0H47.567V329.615H0Z" transform="translate(1.49 55.179) rotate(-90)" fill="#290b39" stroke="#290b39" stroke-linejoin="round" stroke-width="5"/>
+          <g id="Group_37" data-name="Group 37" transform="translate(16 30)">
+            <path id="Path_40" data-name="Path 40" d="M-1282,905.835h-61.465l-10.42-10.109" transform="translate(1358.83 -890.801)" fill="none" stroke="#290b39" stroke-width="2"/>
+            <g id="Ellipse_12" data-name="Ellipse 12" transform="translate(76 11)" fill="#290b39" stroke="#290b39" stroke-width="1">
+              <circle cx="3.5" cy="3.5" r="3.5" stroke="none"/>
+              <circle cx="3.5" cy="3.5" r="3" fill="none"/>
+            </g>
+            <g id="Ellipse_32" data-name="Ellipse 32" fill="#290b39" stroke="#290b39" stroke-width="1">
+              <circle cx="3.5" cy="3.5" r="3.5" stroke="none"/>
+              <circle cx="3.5" cy="3.5" r="3" fill="none"/>
+            </g>
+          </g>
+          <g id="Circuito4" transform="translate(279.501 23)">
+            <g id="Ellipse_21" data-name="Ellipse 21" transform="translate(34 9)" fill="#290b39" stroke="#290b39" stroke-width="2">
+              <circle cx="4" cy="4" r="4" stroke="none"/>
+              <circle cx="4" cy="4" r="3" fill="none"/>
+            </g>
+            <g id="Ellipse_22" data-name="Ellipse 22" fill="#290b39" stroke="#290b39" stroke-width="2">
+              <circle cx="4" cy="4" r="4" stroke="none"/>
+              <circle cx="4" cy="4" r="3" fill="none"/>
+            </g>
+            <path id="Path_51" data-name="Path 51" d="M2087.153,2164.662h22.591l7.676,8.453" transform="translate(-2081.04 -2161)" fill="none" stroke="#290b39" stroke-width="2"/>
+          </g>
+          <g id="Rectangle_83" data-name="Rectangle 83" transform="translate(11 17)" fill="#290b39" stroke="#290b39" stroke-linejoin="round" stroke-width="5" opacity="0.605">
+            <rect width="317.501" height="7" stroke="none"/>
+            <rect x="-2.5" y="-2.5" width="322.501" height="12" fill="none"/>
+          </g>
+          <g id="Rectangle_85" data-name="Rectangle 85" fill="#290b39" stroke="#290b39" stroke-linejoin="round" stroke-width="5">
+            <rect width="333.501" height="10" stroke="none"/>
+            <rect x="-2.5" y="-2.5" width="338.501" height="15" fill="none"/>
+          </g>
+        </g>
+        <g id="plataform" transform="translate(703 529)">
+          <path id="Path_67-2" data-name="Path 67" d="M0,0H43.567V331.673H0Z" transform="translate(1.5 60.179) rotate(-90)" fill="#4d156c" stroke="#4d156c" stroke-linejoin="round" stroke-width="5"/>
+          <g id="sombra_pequena" data-name="sombra+pequena" transform="translate(4 19)" fill="#41125c" stroke="#41125c" stroke-linejoin="round" stroke-width="5" opacity="0.441" style="mix-blend-mode: multiply;isolation: isolate">
+            <rect width="326.7" height="6" stroke="none"/>
+            <rect x="-2.5" y="-2.5" width="331.7" height="11" fill="none"/>
+          </g>
+          <g id="floor_Rosa" fill="#a219ce" stroke="#a219ce" stroke-linejoin="round" stroke-width="5">
+            <rect width="335.501" height="12" stroke="none"/>
+            <rect x="-2.5" y="-2.5" width="340.501" height="17" fill="none"/>
+          </g>
+        </g>
+        <path id="Intersection_12" data-name="Intersection 12" d="M0,3V0H340.5V3Z" transform="translate(700.501 526.5)" fill="#c536f2" stroke="#c536f2" stroke-linejoin="round" stroke-width="5"/>
+        <path id="Intersection_17" data-name="Intersection 17" d="M0,3V0H344.48V3Z" transform="translate(698.501 528.5)" fill="#c536f2" stroke="#c536f2" stroke-width="1"/>
+      </g>
+      <g id="Circuito4-2" data-name="Circuito4" transform="translate(242 444)">
+        <g id="Ellipse_21-2" data-name="Ellipse 21" transform="translate(34 9)" fill="#6ef0fc" stroke="#6ef0fc" stroke-width="2">
+          <circle cx="4" cy="4" r="4" stroke="none"/>
+          <circle cx="4" cy="4" r="3" fill="none"/>
+        </g>
+        <g id="Ellipse_22-2" data-name="Ellipse 22" fill="#6ef0fc" stroke="#6ef0fc" stroke-width="2">
+          <circle cx="4" cy="4" r="4" stroke="none"/>
+          <circle cx="4" cy="4" r="3" fill="none"/>
+        </g>
+        <path id="Path_51-2" data-name="Path 51" d="M2087.153,2164.662h22.739l7.726,8.453" transform="translate(-2081 -2161)" fill="none" stroke="#6ef0fc" stroke-width="2"/>
+      </g>
+      <g id="Circuito4-3" data-name="Circuito4" transform="translate(300 470) rotate(180)">
+        <g id="Ellipse_21-3" data-name="Ellipse 21" transform="translate(34 9)" fill="#6ef0fc" stroke="#6ef0fc" stroke-width="2">
+          <circle cx="4" cy="4" r="4" stroke="none"/>
+          <circle cx="4" cy="4" r="3" fill="none"/>
+        </g>
+        <g id="Ellipse_22-3" data-name="Ellipse 22" fill="#6ef0fc" stroke="#6ef0fc" stroke-width="2">
+          <circle cx="4" cy="4" r="4" stroke="none"/>
+          <circle cx="4" cy="4" r="3" fill="none"/>
+        </g>
+        <path id="Path_51-3" data-name="Path 51" d="M2087.153,2164.662h22.739l7.726,8.453" transform="translate(-2081 -2161)" fill="none" stroke="#6ef0fc" stroke-width="2"/>
+      </g>
+    </g>
+    <g id="circuito8" transform="translate(397 511) rotate(-180)">
+      <path id="Path_40-2" data-name="Path 40" d="M-1281.532,895.725H-1343.4l-10.488,10.109" transform="translate(1358.967 -892.759)" fill="none" stroke="#6ef0fc" stroke-width="2"/>
+      <g id="Ellipse_12-2" data-name="Ellipse 12" transform="translate(77)" fill="#6ef0fc" stroke="#6ef0fc" stroke-width="1">
+        <circle cx="3.5" cy="3.5" r="3.5" stroke="none"/>
+        <circle cx="3.5" cy="3.5" r="3" fill="none"/>
+      </g>
+      <g id="Ellipse_32-2" data-name="Ellipse 32" transform="translate(0 11)" fill="#6ef0fc" stroke="#6ef0fc" stroke-width="1">
+        <circle cx="3.5" cy="3.5" r="3.5" stroke="none"/>
+        <circle cx="3.5" cy="3.5" r="3" fill="none"/>
+      </g>
+    </g>
+  </g>
+</svg>
