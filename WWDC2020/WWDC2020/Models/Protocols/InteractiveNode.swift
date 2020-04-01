@@ -20,6 +20,7 @@ This protocol defines an interface for all node that has some kind of interactio
      */
     @objc optional func interact(with contact: SKPhysicsContact)
     @objc optional func interact()
+    
     /**
     This method setup the node when it is loaded.
     */
@@ -28,9 +29,6 @@ This protocol defines an interface for all node that has some kind of interactio
     
 }
 
-extension InteractiveNode{
-
-}
 /**
 This protocol defines an interface for all node that has some kind of interaction in game and is collactable.
 */

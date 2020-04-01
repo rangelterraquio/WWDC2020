@@ -36,8 +36,9 @@ class Character: SKNode{
         light.falloff = 4.0
         
         light.isEnabled = true
-        
+          
         self.currentLevel = currentLevel
+        self.state = currentLevel == .some(.finalScene) ? State.unactive : State.stopped
         node = SKSpriteNode(imageNamed: "triangle_w")
         createPhysicsShape(currentLevel)
         self.node.addChild(light)
@@ -64,26 +65,26 @@ class Character: SKNode{
             case .level1:
                 node.lightingBitMask = 1
                 node.shadowedBitMask = 1
-                node.physicsBody = SKPhysicsBody(rectangleOf: node.size)
+                node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 50))
                 node.physicsBody?.allowsRotation = false
             case .level2:
                 node.texture = SKTexture(imageNamed: "triangle_w")
-                node.physicsBody = SKPhysicsBody(texture: node.texture!, size: node.size)
-//                node.physicsBody?.friction = 1.0
+                node.physicsBody = SKPhysicsBody(texture: node.texture!, size: CGSize(width: 50, height: 50))
             case .level3:
                 node.texture = SKTexture(imageNamed: "star_w")
                 node.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "star_w"), size: SKTexture(imageNamed: "star_w").size())
             case .level4:
-                node.texture = SKTexture(imageNamed: "hexagon")
-                node.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "hexagon"), size: SKTexture(imageNamed: "hexagon").size())
+                node.texture = SKTexture(imageNamed: "hexagon_c")
+                node.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "hexagon"), size: CGSize(width: 55, height: 50))
+                node.size = CGSize(width: 55, height: 50)
             case .level5:
-                node.texture = SKTexture(imageNamed: "circle")
+                node.texture = SKTexture(imageNamed: "circle_c")
                 node.physicsBody = SKPhysicsBody(circleOfRadius: node.size.width/2)
-                node.physicsBody?.allowsRotation = false
             default:
-                node.texture = SKTexture(imageNamed: "circle")
+                node.texture = SKTexture(imageNamed: "circle_c")
                 node.physicsBody = SKPhysicsBody(circleOfRadius: node.size.width/2)
             }
+        node.physicsBody?.allowsRotation = false
         node.physicsBody?.friction = 0.5
         node.physicsBody?.mass = 0.1
         node.physicsBody?.categoryBitMask = PhysicsCategory.character.bitMask
@@ -113,6 +114,7 @@ class Character: SKNode{
         if abs(velocity) < maxVelocity{
 //        if abs(angularVelocity) < 3{
 //            print(abs(angularVelocity))
+            node.xScale = side.rawValue
             node.physicsBody?.applyForce(CGVector(dx: dx, dy: 0.0))
 //        node.physicsBody?.applyTorque(-(3  * side.rawValue))
 //            node.physicsBody?.applyForce(CGVector(dx: dx, dy: 0.0), at: CGPoint(x: node.frame.width/2, y: node.frame.height))
@@ -150,18 +152,14 @@ class Character: SKNode{
     
     
     func restartCheckPoint(){
-        let rotation = self.node.physicsBody?.allowsRotation
         let action1 = SKAction.run {
             self.node.isHidden = true
-//            self.node.physicsBody?.allowsRotation = false
-//            self.node.physicsBody?.angularVelocity = 0
             self.node.physicsBody = nil
 
         }
         let action2 = SKAction.move(to: self.initialPosition, duration: 2)
         let action3 = SKAction.run {
             self.node.isHidden = false
-//            self.node.physicsBody?.allowsRotation = rotation!
             self.createPhysicsShape(self.currentLevel)
         }
         let sequence = SKAction.sequence([action1,action2,action3])
@@ -263,7 +261,7 @@ extension Character: InteractiveNode{
             node.zRotation = CGFloat(-90).degreesToradius()
             node.physicsBody?.allowsRotation = false
         }else if currentLevel == .some(.level2){
-            node.texture = SKTexture(imageNamed: "star")
+            node.texture = SKTexture(imageNamed: "star_w")
             node.physicsBody = SKPhysicsBody(texture: node.texture!, size: node.size)
             node.physicsBody?.mass = 0.1
             node.physicsBody?.categoryBitMask = PhysicsCategory.character.bitMask

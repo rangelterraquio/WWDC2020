@@ -42,6 +42,7 @@ public class CBLNode: SKSpriteNode, Collectable{
     @objc private func interactionCBL(){
         animateNode()
         guard lifeNode > 0 else {
+            AudioHelper.sharedInstance().playSoundEffect(music: Music.collectable)
             self.notifyDeathToObservers(nodeID: self.id)
             self.notifyValueObservers()
             self.removeAllObservers()

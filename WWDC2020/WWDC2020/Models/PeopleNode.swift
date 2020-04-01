@@ -27,13 +27,28 @@ public class PeopleNode: SKSpriteNode, InteractiveNode{
        }
        
        @objc private func interactionPeople(){
-        let action1 = SKAction.moveTo(y: 902, duration: 3.5)
-        self.run(action1)
+        
+            AudioHelper.sharedInstance().playBackgroundMusic(music: Music.jetpack)
+            let action = SKAction.moveTo(y: 902, duration: 6.5)
+        
+        let actionFim = SKAction.run{
+            
+            AudioHelper.sharedInstance().pauseBackgroundMusic()
+        }
+        
+        self.run(SKAction.sequence([action,actionFim]))
        }
     
     
     
     
-    
+    private func createNodesAnimation(){
+        
+        let triangle = SKSpriteNode(imageNamed: "triangle_w")
+        self.position = CGPoint(x: -30, y: -self.size.height)
+        self.addChild(triangle)
+        
+        
+    }
     
 }

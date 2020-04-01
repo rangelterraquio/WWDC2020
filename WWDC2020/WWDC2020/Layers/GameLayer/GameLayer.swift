@@ -104,6 +104,13 @@ extension GameLayer{
                 }
             }
     }
+    
+    func verifyEndGame(){
+        if character.node.position.y <= -640{
+            AudioHelper.sharedInstance().playSoundEffect(music: Music.error)
+            restartCheckPoint()
+        }
+    }
    
     
     func finishGame(){
@@ -225,10 +232,10 @@ extension GameLayer: SKPhysicsContactDelegate{
         /**
             This method verify if the character collided with the deathFloor
          */
-        if node.collided(with: .deathFloor, contact: contact){
-            AudioHelper.sharedInstance().playSoundEffect(music: Music.error)
-            restartCheckPoint()
-        }
+//        if node.collided(with: .deathFloor, contact: contact){
+//            AudioHelper.sharedInstance().playSoundEffect(music: Music.error)
+//            restartCheckPoint()
+//        }
         
         /**
             This method verify if the character completed the level

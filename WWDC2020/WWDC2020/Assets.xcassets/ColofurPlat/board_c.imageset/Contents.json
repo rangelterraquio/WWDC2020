@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "board_c.png",
+      "filename" : "Group 117.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "board_c@2x.png",
+      "filename" : "Group 117@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "board_c@3x.png",
+      "filename" : "Group 117@3x.png",
       "scale" : "3x"
     }
   ],

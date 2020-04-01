@@ -154,7 +154,17 @@ public class HudLayer: SKNode{
             case .initialScene:
                 print("initial Scene")
             case .finalScene:
-                print("Final scene")
+            print("")
+//                instructionNode.text = "Use left and right arrow to roll sideways"
+//                let changeInstruction = SKAction.run {
+//                    self.instructionNode.text = "Use space to jump"
+//                }
+//                let changeInstruction2 = SKAction.run {[weak self] in
+//                    guard let self = self else {return}
+//                    self.instructionNode.text = "Collect Itens to learn and got new skills"
+//                }
+//                let sequence = SKAction.sequence([waitTwo, fadeIn,waitThree,fadeOut, changeInstruction,fadeIn, waitThree, fadeOut,changeInstruction2,fadeIn, waitThree, fadeOut, showProgressBar])
+//                instructionNode.run(sequence)
             case .level1:
                 instructionNode.text = "Use left and right arrow to roll sideways"
                 let changeInstruction = SKAction.run {    

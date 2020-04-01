@@ -43,6 +43,7 @@ public class CodeCollectable: SKSpriteNode, Collectable{
     
     @objc private func interactionCode(){
         if lifeNode == 0 {
+            AudioHelper.sharedInstance().playSoundEffect(music: Music.collectable)
             self.notifyDeathToObservers(nodeID: self.id)
             self.notifyValueObservers()
             self.removeObserver()

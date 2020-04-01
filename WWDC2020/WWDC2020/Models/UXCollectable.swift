@@ -37,6 +37,7 @@ public class UXCollectable: SKSpriteNode, Collectable{
     @objc func interactionUI(){
         guard let parent = self.parent as? GameScene else {return}
         if lifeNode == 0 {
+            AudioHelper.sharedInstance().playSoundEffect(music: Music.collectable)
             let zoomInAction = SKAction.scale(to: 2.5, duration: 1)
             parent.camera?.run(zoomInAction)
             self.notifyDeathToObservers(nodeID: self.id)

@@ -20,15 +20,15 @@ public class AudioHelper{
         return AudioHelperInstance
     }
     
-    public func playBackgroundMusic(fileName: String){
+    public func playBackgroundMusic(music: Music){
         
-        guard let url = Bundle.main.url(forResource: fileName, withExtension: nil) else {return}
+        guard let url = Bundle.main.url(forResource: music.file.name, withExtension: music.file.exten) else {return}
         
         
         do {
            backgroundMusicPlayer = try AVAudioPlayer(contentsOf: url)
         } catch{
-            print("error with fileName: \(fileName)")
+            print("error with fileName: \(music.file.name)")
             backgroundMusicPlayer = nil
         }
         
@@ -88,7 +88,10 @@ public class AudioHelper{
 public enum Music{
     case error
     case jumping
-
+    case jetpack
+    case collectable
+    
+    
     struct File{
         let name: String
         let exten: String
@@ -99,6 +102,10 @@ public enum Music{
             return File(name: "error", exten: ".mp3")
         case .jumping:
             return File(name: "click", exten: ".wav")
+        case .jetpack:
+            return File(name: "jetpack", exten: ".wav")
+        case .collectable:
+            return File(name: "collectable", exten: ".wav")
         }
     }
 }

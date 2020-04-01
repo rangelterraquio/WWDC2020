@@ -44,7 +44,7 @@ class GameScene: SKScene {
         
         let background = childNode(withName: "background") as? SKSpriteNode
         
-        self.backgroundColor = (currentLevel! == .level4 || currentLevel! == .level5) ? NSColor(calibratedRed: 70/255, green: 29/255, blue: 82/255, alpha: 1.0) : .lightGray
+        self.backgroundColor = (currentLevel! == .level4 || currentLevel! == .level5 || currentLevel! == .finalScene ) ? NSColor(calibratedRed: 70/255, green: 29/255, blue: 82/255, alpha: 1.0) : .lightGray
         
         
         cameraNode = Camera(gameLayer.character.node, background ?? SKSpriteNode(color: .clear, size: view.frame.size), view.frame)
@@ -193,8 +193,8 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
-        //self.cameraNode.keepCharacerInBounds()
         self.movePlataform()
+        self.gameLayer.verifyEndGame()
                
     }
     

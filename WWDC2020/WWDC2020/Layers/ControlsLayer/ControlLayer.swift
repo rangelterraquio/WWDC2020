@@ -23,7 +23,7 @@ public class ControlLayer: SKNode{
             case KeyBoardKeys.space.rawValue:
                 controlable?.spacePressed()
             default:
-                print("")
+                controlable?.wKeyPressed()
         }
     }
     

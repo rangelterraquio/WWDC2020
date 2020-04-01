@@ -40,6 +40,8 @@ public class DesignCollectable: SKSpriteNode, Collectable{
     @objc func interactionDesign(){
         guard let parent = self.parent as? GameScene else {return}
         if lifeNode == 0 {
+            AudioHelper.sharedInstance().playSoundEffect(music: Music.collectable)
+
             self.notifyDeathToObservers(nodeID: self.id)
             
             
@@ -53,7 +55,7 @@ public class DesignCollectable: SKSpriteNode, Collectable{
         
         if DesignCollectable.powerProgress == 1{
             //fazer a troca do background aqui
-            parent.backgroundColor = .blue
+            parent.backgroundColor = NSColor(calibratedRed: 70/255, green: 29/255, blue: 82/255, alpha: 1.0)
         }else if DesignCollectable.powerProgress == 2{
             DispatchQueue.main.async {
                 parent.enumerateChildNodes(withName: "bigFloor", using: { node, _ in
