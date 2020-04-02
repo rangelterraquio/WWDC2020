@@ -43,7 +43,12 @@ class Character: SKNode{
         createPhysicsShape(currentLevel)
         self.node.addChild(light)
         self.node.position = self.initialPosition
-        self.addChild(node)
+        
+        if currentLevel != .finalScene{
+            self.addChild(node)
+        }
+        
+        
         self.didMoveToScene()
         
     }

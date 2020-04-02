@@ -48,8 +48,6 @@
 		70CE290D242D259A00BEB78B /* jump.wav in Resources */ = {isa = PBXBuildFile; fileRef = 70CE290C242D259A00BEB78B /* jump.wav */; };
 		70CE290F242D272100BEB78B /* jumping3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 70CE290E242D272100BEB78B /* jumping3.wav */; };
 		70CE2911242D2B5100BEB78B /* click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 70CE2910242D2B5100BEB78B /* click.wav */; };
-		70DDED53243525DF00A67CE7 /* rocket.sks in Resources */ = {isa = PBXBuildFile; fileRef = 70DDED52243525DF00A67CE7 /* rocket.sks */; };
-		70DDED55243525F800A67CE7 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 70DDED54243525F800A67CE7 /* MyParticle.sks */; };
 		70DDED57243534E900A67CE7 /* jetpack.wav in Resources */ = {isa = PBXBuildFile; fileRef = 70DDED56243534E900A67CE7 /* jetpack.wav */; };
 		70DDED592435393400A67CE7 /* collectable.wav in Resources */ = {isa = PBXBuildFile; fileRef = 70DDED582435393400A67CE7 /* collectable.wav */; };
 		70EAB916241FC2A600F04384 /* HudControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EAB915241FC2A600F04384 /* HudControl.swift */; };
@@ -101,8 +99,6 @@
 		70CE290C242D259A00BEB78B /* jump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = jump.wav; sourceTree = "<group>"; };
 		70CE290E242D272100BEB78B /* jumping3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = jumping3.wav; sourceTree = "<group>"; };
 		70CE2910242D2B5100BEB78B /* click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click.wav; sourceTree = "<group>"; };
-		70DDED52243525DF00A67CE7 /* rocket.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = rocket.sks; sourceTree = "<group>"; };
-		70DDED54243525F800A67CE7 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
 		70DDED56243534E900A67CE7 /* jetpack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = jetpack.wav; sourceTree = "<group>"; };
 		70DDED582435393400A67CE7 /* collectable.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = collectable.wav; sourceTree = "<group>"; };
 		70EAB915241FC2A600F04384 /* HudControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudControl.swift; sourceTree = "<group>"; };
@@ -149,8 +145,6 @@
 				707C295D242823D000BBF7DA /* CBLParticle.sks */,
 				704D2537242BF83A00B1F138 /* Assets.xcassets */,
 				704D253C242BF8E200B1F138 /* FinalCheckpointParticle.sks */,
-				70DDED52243525DF00A67CE7 /* rocket.sks */,
-				70DDED54243525F800A67CE7 /* MyParticle.sks */,
 			);
 			path = Particles;
 			sourceTree = "<group>";
@@ -366,14 +360,12 @@
 				70DDED57243534E900A67CE7 /* jetpack.wav in Resources */,
 				704D2544242C1F0700B1F138 /* jumping.mp3 in Resources */,
 				70B252F8241BFAFD00068FD6 /* Level1.sks in Resources */,
-				70DDED53243525DF00A67CE7 /* rocket.sks in Resources */,
 				70B25300241BFB0200068FD6 /* Assets.xcassets in Resources */,
 				70CE2911242D2B5100BEB78B /* click.wav in Resources */,
 				7052C623242599D800C90FAD /* Level4.sks in Resources */,
 				70B252FA241BFAFD00068FD6 /* Actions.sks in Resources */,
 				70B25303241BFB0200068FD6 /* Main.storyboard in Resources */,
 				704D2541242C161800B1F138 /* error.mp3 in Resources */,
-				70DDED55243525F800A67CE7 /* MyParticle.sks in Resources */,
 				70DDED592435393400A67CE7 /* collectable.wav in Resources */,
 				7032F3BD2427026D007BC5EE /* Level5.sks in Resources */,
 				709DC45E241D566200A55D28 /* Level2.sks in Resources */,

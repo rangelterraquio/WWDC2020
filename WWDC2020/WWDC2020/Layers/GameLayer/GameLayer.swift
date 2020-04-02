@@ -29,6 +29,8 @@ public class GameLayer: SKNode{
     
     var hasDied: Bool = false
     var hasFinished: Bool = false
+    var isPlayAgainEnable: Bool = false
+    
     
     //Proporty from Observer Protocol.
     public var nodesObserving: [ObservableProtocol] = [] {
@@ -47,10 +49,18 @@ public class GameLayer: SKNode{
         self.currentGame = level
         controlLayer.controlable = self
         character = Character(level)
-        //self.addChild(character.node)
         self.addChild(character)
         
-       
+        enablePlayAgain()
+        
+    }
+    func enablePlayAgain(){
+        guard currentGame == .some(.finalScene) else {return}
+        let wait = SKAction.wait(forDuration: 10)
+        let action = SKAction.run {
+            self.isPlayAgainEnable = true
+        }
+        self.run(SKAction.sequence([wait,action]))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -133,6 +143,20 @@ extension GameLayer{
         
     }
     
+    func playGameAgain(){
+        if isPlayAgainEnable{
+            let action = SKAction.run { [weak self] in
+                guard let self = self else {return}
+                self.character.removeAllChildren()
+                self.gameState?.finished(self.currentGame)
+                self.currentGame = Level.nextLevel(currentLevel: self.currentGame)
+                self.gameState?.startNewLevel()
+            }
+            self.run(SKAction.sequence([SKAction.wait(forDuration: 1.5),action]))
+            isPlayAgainEnable = false
+        }
+    }
+    
 }
 
 // MARK: -> Controlable
@@ -198,6 +222,7 @@ extension GameLayer: ControlProtocol{
     
     public func spacePressed() {
         character.jump()
+        playGameAgain()
     }
 }
 

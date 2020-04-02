@@ -36,6 +36,7 @@ public class HudLayer: SKNode{
      public init(screenRect: CGRect) {
         super.init()
         
+    
 
         self.screenSize = screenRect
         msgNode.fontSize = 25
@@ -85,7 +86,23 @@ public class HudLayer: SKNode{
             return NSColor(calibratedRed: 110/255, green: 240/255, blue: 252/255, alpha: 1.0)//.yellow
         }
     }
+    /**
+    This method is define a font for the SKLabelNode.
     
+    - parameter level: The fontname related to that level.
+    */
+    private func setupFont(from level: Level) -> String{
+        switch level {
+        case .level1:
+            return "Marker Twins"
+        case .level2:
+            return "Marker Twins"
+        case .level3:
+            return "Marker Twins"
+        default:
+            return "Cascadia Code"
+        }
+    }
     /**
     This method is setup the progressBar.
     
@@ -139,6 +156,12 @@ public class HudLayer: SKNode{
            
     }
     
+    func blinkInstructionLabel(){
+           let action = SKAction.fadeAlpha(to: 0.2, duration: 0.7)
+           let action2 = SKAction.fadeAlpha(to: 1.0, duration: 0.7)
+           let sequence = SKAction.sequence([action,action2])
+           instructionNode.run(SKAction.repeatForever(sequence), withKey: "blink")
+       }
     /**
       This method is trigged an when the scene is loaded.
       
@@ -150,21 +173,23 @@ public class HudLayer: SKNode{
         barTitle.fontColor = color
         msgNode.fontColor = color
         instructionNode.fontColor = color
+        barTitle.fontName = setupFont(from: level)
+        msgNode.fontName = setupFont(from: level)
+        instructionNode.fontName = setupFont(from: level)
         switch level {
             case .initialScene:
                 print("initial Scene")
             case .finalScene:
             print("")
-//                instructionNode.text = "Use left and right arrow to roll sideways"
-//                let changeInstruction = SKAction.run {
-//                    self.instructionNode.text = "Use space to jump"
-//                }
-//                let changeInstruction2 = SKAction.run {[weak self] in
-//                    guard let self = self else {return}
-//                    self.instructionNode.text = "Collect Itens to learn and got new skills"
-//                }
-//                let sequence = SKAction.sequence([waitTwo, fadeIn,waitThree,fadeOut, changeInstruction,fadeIn, waitThree, fadeOut,changeInstruction2,fadeIn, waitThree, fadeOut, showProgressBar])
-//                instructionNode.run(sequence)
+            msgNode.text = "OUR first app journey.\n\n\nThank you."
+            let action2 = SKAction.run{
+                self.instructionNode.text = "Press space to play again."
+                self.instructionNode.position = CGPoint(x: 0, y: self.screenSize.height * 0.25)
+                self.instructionNode.run(self.fadeIn)
+                self.blinkInstructionLabel()
+            }
+            let sequence = SKAction.sequence([waitTwo, fadeIn,SKAction.wait(forDuration: 10),action2])
+            msgNode.run(sequence)
             case .level1:
                 instructionNode.text = "Use left and right arrow to roll sideways"
                 let changeInstruction = SKAction.run {    
@@ -209,9 +234,9 @@ extension Level{
             case .level3:
                 return Element(msgText: "You got Design power, now you can see things different", instructionText: "")
             case .level4:
-                return Element(msgText: "You != User, now with UX power things makes sense to the user", instructionText: "Drag the floors using the mouse to move ahead")
+                return Element(msgText: "You != User, now with UX power \nthings makes sense to the user", instructionText: "Drag the floors using the mouse to move ahead")
             case .level5:
-                return Element(msgText: "If you want to go fast, go alone. If you want to go far, go as a group", instructionText: "")
+                return Element(msgText: "If you want to go fast, go alone.\nIf you want to go far, go together.", instructionText: "")
             default:
                 return Element(msgText: "", instructionText: "")
         }

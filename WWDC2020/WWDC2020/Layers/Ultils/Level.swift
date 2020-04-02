@@ -40,7 +40,7 @@ public enum Level: Int{
             case .level5:
                 return .finalScene
             default:
-                return .initialScene
+                return .level1
         }
     }
 }
