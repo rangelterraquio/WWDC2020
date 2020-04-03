@@ -9,50 +9,52 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+public class GameScene: SKScene {
     
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
+   ///Instances of layers that compese the game.
     private var gameLayer: GameLayer!
-    var hudLayer: HudLayer!
+    private var hudLayer: HudLayer!
+    
     var cameraNode: Camera!
     
     var currentLevel: Level!
     
     var gameStarted: Bool = false
-    
-    var designNode1: DesignCollectable!
-    var designNode2: DesignCollectable!
-    
+
+    ///The property difine how much progress bar must increase in each level.
     var progressBar: CGFloat = 0
     
+    ///These properties are to make a movementable plataform using physics
     var platform: SKSpriteNode? = nil
     var platformSpeed: CGFloat = 150
     var platformInitialPos: CGFloat = 0
     var platformFinalPos: CGFloat = 0
-    override func didMove(to view: SKView) {
+    
+    
+    override public func didMove(to view: SKView) {
         
         gameLayer = GameLayer(level: currentLevel)
         gameLayer.zPosition = 3
-        hudLayer = HudLayer(screenRect: view.frame)
-        hudLayer.zPosition = 5
-       // self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         gameLayer.gameState = self
         self.addChild(gameLayer)
         self.physicsWorld.contactDelegate = gameLayer
+        
+        hudLayer = HudLayer(screenRect: view.frame)
+        hudLayer.zPosition = 5
         setSceneHUD()
         
-        let background = childNode(withName: "background") as? SKSpriteNode
         
         self.backgroundColor = (currentLevel! == .level4 || currentLevel! == .level5 || currentLevel! == .finalScene ) ? NSColor(calibratedRed: 70/255, green: 29/255, blue: 82/255, alpha: 1.0) : .lightGray
         
         
+        ///Setup camera
+        let background = childNode(withName: "background") as? SKSpriteNode
         cameraNode = Camera(gameLayer.character.node, background ?? SKSpriteNode(color: .clear, size: view.frame.size), view.frame)
         self.addChild(cameraNode)
         self.camera = cameraNode
         self.camera?.setScale(1.3)
-        
         cameraNode.addChild(hudLayer)
+        
         /**
            This method itarate over scene child nodes and trigger the didMoveToScene.
         */
@@ -159,39 +161,26 @@ class GameScene: SKScene {
         }
 
     }
-//    func touchDown(atPoint pos : CGPoint) {
-//        self.gameLayer.mouseDown(with: pos)
-//    }
-//
-//    func touchMoved(toPoint pos : CGPoint) {
-//        self.gameLayer.mouseMoved(with: pos)
-//    }
-//
-//    func touchUp(atPoint pos : CGPoint) {
-//        self.gameLayer.mo
-//    }
-    
-    override func mouseDown(with event: NSEvent) {
-//        self.touchDown(atPoint: event.location(in: self))
+
+    //MARK: -> User Inputs
+    override public func mouseDown(with event: NSEvent) {
         self.gameLayer.mouseDown(with: event)
     }
     
-    override func mouseDragged(with event: NSEvent) {
-//        self.touchMoved(toPoint: event.location(in: self))
+    override public func mouseDragged(with event: NSEvent) {
         self.gameLayer.mouseMoved(with: event)
     }
     
-    override func mouseUp(with event: NSEvent) {
-//        self.touchUp(atPoint: event.location(in: self))
+    override public func mouseUp(with event: NSEvent) {
         self.gameLayer.mouseUp(with: event)
     }
     
-    override func keyDown(with event: NSEvent) {
+    override public func keyDown(with event: NSEvent) {
         self.gameLayer.keyDown(with: event)
     }
     
     
-    override func update(_ currentTime: TimeInterval) {
+    override public func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         self.movePlataform()
         self.gameLayer.verifyEndGame()
@@ -237,7 +226,7 @@ extension GameScene: GameState{
         gameStarted = true
     }
     
-    func finished(_ level: Level) {
+    public func finished(_ level: Level) {
         print("Level\(level)")
     }
     
@@ -248,7 +237,6 @@ extension GameScene: GameState{
     }
        
     public func showMsgText() {
-        
         hudLayer.showMsg(from: currentLevel)
     }
     

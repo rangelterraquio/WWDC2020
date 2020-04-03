@@ -25,7 +25,7 @@ public enum Level: Int{
        
        - parameter currentLevel: The current leval that was played.
        */
-    static func nextLevel(currentLevel: Level) -> Level{
+    static public func nextLevel(currentLevel: Level) -> Level{
         switch currentLevel {
             case .initialScene:
                 return .level1

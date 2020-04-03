@@ -14,9 +14,9 @@ public class Camera: SKCameraNode{
     
     private var screenSize: CGRect!
     private var targetNode: SKNode!
-     private var referenceNode: SKSpriteNode!
+    private var referenceNode: SKSpriteNode!
     
-    init(_ targetNode: SKNode, _ referenceNode: SKSpriteNode, _ screenSize: CGRect) {
+    public init(_ targetNode: SKNode, _ referenceNode: SKSpriteNode, _ screenSize: CGRect) {
         super.init()
         self.targetNode = targetNode
         self.referenceNode = referenceNode

@@ -9,21 +9,18 @@
 import Foundation
 import SpriteKit
 
-class FlashLight: SKLightNode {
+public class FlashLight: SKLightNode {
     
     let top = SKSpriteNode(color: .clear, size: CGSize(width: 10000, height: 5))
     let bottom = SKSpriteNode(color: .clear, size: CGSize(width: 10000, height: 5))
     let back = SKSpriteNode(color: .clear, size: CGSize(width: 50, height: 5))
     let spritePhiscsBody = SKSpriteNode(imageNamed: "luz")
     var falloffValue: CGFloat = 0.5
-    let effectflash = SKSpriteNode(color: .yellow, size: CGSize(width: 1.0, height: 100))
-    let lightEffect  = SKShapeNode()
-    override init() {
+   
+    override public init() {
         super.init()
         
         //MARK:if para fallof
-//        self.falloff = 0.3
-        //255 236 139
         //self.ambientColor = SKColor.init(red: 0, green: 0, blue: 0.0, alpha: 0.5)
         self.lightColor =  .white//SKColor.init(red: 255, green: 236, blue: 139, alpha: 0.5)
         self.categoryBitMask = 1

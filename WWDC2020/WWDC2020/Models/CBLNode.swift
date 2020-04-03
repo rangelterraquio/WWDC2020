@@ -54,9 +54,9 @@ public class CBLNode: SKSpriteNode, Collectable{
     }
     
     /**
-    This method animate the CBL node where it has an interaction.
+    This method animate the CBL node when it has an interaction.
     */
-    func animateNode(){
+    private func animateNode(){
         let currentPosition: CGPoint = self.position
         let action1 = SKAction.moveTo(y: currentPosition.y + 20, duration: 0.10)
         let action2 = SKAction.moveTo(y: currentPosition.y, duration: 0.1)
@@ -66,8 +66,10 @@ public class CBLNode: SKSpriteNode, Collectable{
         self.run(sequence)
         addParticle()
     }
-    
-    func addParticle(){
+    /**
+       This method add particles to  the CBL node when it has an interaction.
+       */
+    private func addParticle(){
         if let particle = SKEmitterNode(fileNamed: "CBLParticle"){
             switch lifeNode {
                 case 2:

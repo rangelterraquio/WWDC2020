@@ -27,6 +27,7 @@ public class GameLayer: SKNode{
         }
     }
     
+    ///Flags for game state.
     var hasDied: Bool = false
     var hasFinished: Bool = false
     var isPlayAgainEnable: Bool = false

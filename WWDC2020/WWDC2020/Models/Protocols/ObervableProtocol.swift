@@ -28,19 +28,14 @@ public protocol ObservableProtocol: class{
 
 extension ObservableProtocol{
         public func addObserver(_ observer: ObserverProtocol) {
-//           guard observers.contains(where: { $0.id == observer.id }) == false else {return}
-//           observers.append(observer)
             self.observer = observer
        }
        
         public func removeObserver() {
-           //guard let index = observers.firstIndex(where: {$0.id == observer.id}) else {return}
-           //observers.remove(at: index)
             self.observer = nil
        }
        
        public func notifyValueObservers() {
-//        observers.forEach({$0.onValueChanged()})
             self.observer?.onValueChanged()
         }
     

@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-struct PhysicsCategory {
+public struct PhysicsCategory {
     
     static let none: PhysicsCategory              = PhysicsCategory(bitMask: 0b0)// 0
     static let character: PhysicsCategory         = PhysicsCategory(bitMask: 0b1)// 1

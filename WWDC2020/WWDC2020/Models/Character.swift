@@ -10,9 +10,9 @@ import Foundation
 import SpriteKit
 
 
-class Character: SKNode{
+public class Character: SKNode{
     
-    var node: SKSpriteNode!
+    public var node: SKSpriteNode!
     
     var state: State = .stopped
     
@@ -20,7 +20,7 @@ class Character: SKNode{
     
     let initialPosition: CGPoint = CGPoint(x: -336, y: -200)
     
-    var currentLevel: Level!
+    public var currentLevel: Level!
     
     var hasDied: Bool = false
     /**
@@ -28,17 +28,20 @@ class Character: SKNode{
     - parameter shape: The shape of character.
     */
     init(_ currentLevel: Level){
+        
         super.init()
+        
+        ///setup light node for level 1.
         let light = SKLightNode()
         light.lightColor =  .white//SKColor.init(red: 255, green: 236, blue: 139, alpha: 0.5)
         light.categoryBitMask = 1
         light.shadowColor = SKColor(red: 0, green: 0, blue: 0, alpha: 0.9)
         light.falloff = 4.0
-        
         light.isEnabled = true
           
         self.currentLevel = currentLevel
         self.state = currentLevel == .some(.finalScene) ? State.unactive : State.stopped
+        
         node = SKSpriteNode(imageNamed: "triangle_w")
         createPhysicsShape(currentLevel)
         self.node.addChild(light)
@@ -108,21 +111,16 @@ class Character: SKNode{
     This method defines the mechanics of rolling.
     - parameter side: which side the charecter must roll.
     */
-    func rollNode(_ side: Side){
+    public func rollNode(_ side: Side){
         
         guard state != .unactive, node.physicsBody != nil else {return}
         
         let velocity = node.physicsBody!.velocity.dx
-//        let angularVelocity =  node.physicsBody!.angularVelocity
         let dx = side.rawValue * maxVelocity * 1.5
         
         if abs(velocity) < maxVelocity{
-//        if abs(angularVelocity) < 3{
-//            print(abs(angularVelocity))
             node.xScale = side.rawValue
             node.physicsBody?.applyForce(CGVector(dx: dx, dy: 0.0))
-//        node.physicsBody?.applyTorque(-(3  * side.rawValue))
-//            node.physicsBody?.applyForce(CGVector(dx: dx, dy: 0.0), at: CGPoint(x: node.frame.width/2, y: node.frame.height))
         }
         state = state == .some(.jumping) ? .jumping : .rolling
     }
@@ -131,7 +129,7 @@ class Character: SKNode{
     /**
     This method makes the character stop rolling.
     */
-    func stopRolling(){
+    public func stopRolling(){
         guard state != .jumping, state != .unactive else {return}
         state = .stopped
     }
@@ -139,7 +137,7 @@ class Character: SKNode{
     /**
     This method makes the character jumping.
     */
-    func jump(){
+    public func jump(){
         guard state != .jumping, state != .unactive else {return}
         
         node.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 70))
@@ -150,13 +148,15 @@ class Character: SKNode{
     /**
     This method verify if the character fall.
     */
-    func fall(){
+    public func fall(){
         guard state != .rolling, state != .unactive else {return}
         state = .stopped
     }
     
-    
-    func restartCheckPoint(){
+    /**
+    This method lis trigged when the character dies.
+    */
+    public func restartCheckPoint(){
         let action1 = SKAction.run {
             self.node.isHidden = true
             self.node.physicsBody = nil
@@ -246,12 +246,12 @@ extension Character: InteractiveNode{
     
     static let characterNotification = "characterNotification"
     
-    func interact() {
+    public func interact() {
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: Character.characterNotification), object: nil)
     }
     
-    func didMoveToScene() -> Void {
+    public func didMoveToScene() -> Void {
         node.name = "Character"
         NotificationCenter.default.addObserver(self, selector: #selector(interactionCharacter), name: NSNotification.Name(rawValue: Character.characterNotification), object: nil)
     }
@@ -271,6 +271,7 @@ extension Character: InteractiveNode{
             node.physicsBody?.mass = 0.1
             node.physicsBody?.categoryBitMask = PhysicsCategory.character.bitMask
             node.physicsBody?.contactTestBitMask = PhysicsCategory.collectible.bitMask | PhysicsCategory.flor.bitMask | PhysicsCategory.deathFloor.bitMask | PhysicsCategory.victoryCheckPoint.bitMask
+            node.physicsBody?.allowsRotation = false
             ///His name change to star to indicate he got the reivented power.
             node.name  = "star"
         }

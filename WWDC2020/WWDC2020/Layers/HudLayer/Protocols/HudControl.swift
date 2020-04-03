@@ -9,7 +9,7 @@
 import Foundation
 
 
-protocol HudControl: class {
+public protocol HudControl: class {
       /**
       This method is triggered when the game layer finishes a level to call a new one.
       

@@ -40,15 +40,4 @@ public class PeopleNode: SKSpriteNode, InteractiveNode{
        }
     
     
-    
-    
-    private func createNodesAnimation(){
-        
-        let triangle = SKSpriteNode(imageNamed: "triangle_w")
-        self.position = CGPoint(x: -30, y: -self.size.height)
-        self.addChild(triangle)
-        
-        
-    }
-    
 }

@@ -21,7 +21,7 @@ public class ProgressBar: SKNode {
     ///A clousure to trigger a action when the progress is completed
     var progressCompleted: (() -> ())?
     
-    var progress:CGFloat = 1{
+    public var progress:CGFloat = 1{
         didSet{
             let value = max(min(progress,1.0),0.0)
             if let bar = bar {
@@ -38,7 +38,7 @@ public class ProgressBar: SKNode {
         }
     }
     
-    init(textureBackground: String, textureBar: String, screenRect: CGRect){
+    public init(textureBackground: String, textureBar: String, screenRect: CGRect){
         super.init()
         self.screenSize = screenRect
         background = SKSpriteNode(imageNamed: textureBackground)

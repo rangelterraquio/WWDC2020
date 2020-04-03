@@ -131,7 +131,7 @@ public class HudLayer: SKNode{
     
     - parameter level: The message related to that level.
     */
-    func showMsg(from level: Level) -> Void {
+    public func showMsg(from level: Level) -> Void {
         msgNode.numberOfLines = level == .some(.level5) ? 2 : 1
         msgNode.verticalAlignmentMode = .center
         msgNode.text = level.elements.msgText
@@ -149,14 +149,14 @@ public class HudLayer: SKNode{
       
       - parameter level: The instruction related to that level.
       */
-    func showInstruction(from level: Level) -> Void {
+    public func showInstruction(from level: Level) -> Void {
         instructionNode.text = level.elements.instructionText
         let sequence = SKAction.sequence([fadeIn,waitThree,fadeOut])
         instructionNode.run(sequence)
            
     }
     
-    func blinkInstructionLabel(){
+    public func blinkInstructionLabel(){
            let action = SKAction.fadeAlpha(to: 0.2, duration: 0.7)
            let action2 = SKAction.fadeAlpha(to: 1.0, duration: 0.7)
            let sequence = SKAction.sequence([action,action2])
@@ -167,7 +167,7 @@ public class HudLayer: SKNode{
       
       - parameter level: The current level.
       */
-    func didMoveToScene(_ level: Level){
+    public func didMoveToScene(_ level: Level){
         setupProgressBar(from: level)
         let color = setupColor(from: level)
         barTitle.fontColor = color
@@ -210,7 +210,7 @@ public class HudLayer: SKNode{
 }
 
 
-protocol SceneHUD{
+public protocol SceneHUD{
     
     var msgText: String {get}
     var instructionText: String {get}
