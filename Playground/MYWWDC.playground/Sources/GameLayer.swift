@@ -39,8 +39,8 @@ public class GameLayer: SKNode{
             if nodesObserving.isEmpty && (gameState?.gameStarted ?? false) {
                 gameState?.showMsgText()
                 character.interact(with: nil)
-                if let wallNode = scene?.childNode(withName: "wallShape") as? InteractiveNode{
-                    wallNode.interact(with: nil)
+                if let wallNode = scene?.childNode(withName: "wallShape"){
+                    wallNode.removeFromParent()
                 }
             }
            }
@@ -90,6 +90,7 @@ public class GameLayer: SKNode{
     private func addUXNode(){
         let action = SKAction.run {
             if let uxNode = self.scene?.childNode(withName: "uxNode") as? UXCollectable {
+                print("dsdds")
                 uxNode.alpha = 1
                 uxNode.physicsBody = SKPhysicsBody(rectangleOf: uxNode.size)
                 uxNode.physicsBody?.categoryBitMask = PhysicsCategory.collectible.bitMask
@@ -118,6 +119,7 @@ extension GameLayer{
     
     func verifyEndGame(){
         if character.node.position.y <= -640{
+            hasDied = true
             AudioHelper.sharedInstance().playSoundEffect(music: Music.error)
             restartCheckPoint()
         }

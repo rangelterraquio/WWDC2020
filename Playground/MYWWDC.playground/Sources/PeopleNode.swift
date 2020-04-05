@@ -13,8 +13,15 @@ public class PeopleNode: SKSpriteNode, InteractiveNode{
     
     
        static let peopleNotification = "peopleNotification"
-      
+         
+       public override init(texture: SKTexture?, color: NSColor, size: CGSize) {
+             super.init(texture: texture, color: color, size: size)
+         }
        
+       public required init?(coder aDecoder: NSCoder) {
+           fatalError("fatal error")
+       }
+    
        public func interact(with contact: SKPhysicsContact?) {
 
            guard contact?.bodyA.node?.name == self.name || contact?.bodyB.node?.name == self.name else{return}
@@ -35,8 +42,12 @@ public class PeopleNode: SKSpriteNode, InteractiveNode{
             
             AudioHelper.sharedInstance().pauseBackgroundMusic()
         }
+        if let baseRocket = self.parent{
+            baseRocket.run(SKAction.sequence([action,actionFim]))
+
+        }
         
-        self.run(SKAction.sequence([action,actionFim]))
+
        }
     
     

@@ -26,6 +26,16 @@ public class DesignCollectable: SKSpriteNode, Collectable{
              self.id = name ?? ""
          }
      }
+    
+    public override init(texture: SKTexture?, color: NSColor, size: CGSize) {
+        super.init(texture: texture, color: color, size: size)
+    }
+    
+    
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     public func didMoveToScene() {
          NotificationCenter.default.addObserver(self, selector: #selector(interactionDesign), name: NSNotification.Name(rawValue: DesignCollectable.designNotification), object: nil)
     }

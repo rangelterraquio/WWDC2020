@@ -23,6 +23,16 @@ public class UXCollectable: SKSpriteNode, Collectable{
              self.id = name ?? ""
          }
      }
+    
+    
+    public override init(texture: SKTexture?, color: NSColor, size: CGSize) {
+          super.init(texture: texture, color: color, size: size)
+      }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        fatalError("fatal error")
+    }
+    
     public func didMoveToScene() {
         NotificationCenter.default.addObserver(self, selector: #selector(interactionUI), name: NSNotification.Name(rawValue: UXCollectable.uiNotification), object: nil)
     }
