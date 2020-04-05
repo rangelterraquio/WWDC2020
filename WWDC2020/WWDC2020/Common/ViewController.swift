@@ -12,18 +12,18 @@ import GameplayKit
 
 public class ViewController: NSViewController {
 
-    @IBOutlet var skView: SKView!
-    
+  //  @IBOutlet var skView: SKView!
+    var skView: SKView!
     override public func viewDidLoad() {
         super.viewDidLoad()
 
         if let view = self.skView {
             view.frame = CGRect(x: 0.5, y: 0.5, width: 1024, height: 768)
 //             Load the SKScene from .sks
-             if let scene = GameScene(fileNamed: "Level5"){
+             if let scene = GameScene(fileNamed: "Level1"){
             // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
-                scene.currentLevel = .level5
+                scene.currentLevel = .level1
                 
                 // Present the scene
                 view.presentScene(scene)

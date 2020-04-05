@@ -27,6 +27,7 @@
 		709DC45E241D566200A55D28 /* Level2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 709DC45D241D566200A55D28 /* Level2.sks */; };
 		709DC460241D5DD500A55D28 /* InteractiveNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709DC45F241D5DD500A55D28 /* InteractiveNode.swift */; };
 		709DC462241D8A5900A55D28 /* CBLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709DC461241D8A5900A55D28 /* CBLNode.swift */; };
+		70A9E98E2437A2EE0057536E /* teste.sks in Resources */ = {isa = PBXBuildFile; fileRef = 70A9E98D2437A2EE0057536E /* teste.sks */; };
 		70B1658F24206F8E007D2B9F /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B1658E24206F8E007D2B9F /* Level.swift */; };
 		70B252F6241BFAFD00068FD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B252F5241BFAFD00068FD6 /* AppDelegate.swift */; };
 		70B252F8241BFAFD00068FD6 /* Level1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 70B252F7241BFAFD00068FD6 /* Level1.sks */; };
@@ -75,6 +76,7 @@
 		709DC45D241D566200A55D28 /* Level2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2.sks; sourceTree = "<group>"; };
 		709DC45F241D5DD500A55D28 /* InteractiveNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveNode.swift; sourceTree = "<group>"; };
 		709DC461241D8A5900A55D28 /* CBLNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBLNode.swift; sourceTree = "<group>"; };
+		70A9E98D2437A2EE0057536E /* teste.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = teste.sks; sourceTree = "<group>"; };
 		70B1658E24206F8E007D2B9F /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		70B252F2241BFAFD00068FD6 /* WWDC2020.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWDC2020.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70B252F5241BFAFD00068FD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				7052C622242599D800C90FAD /* Level4.sks */,
 				7032F3BC2427026D007BC5EE /* Level5.sks */,
 				70C73E0024298F970020F009 /* FinalScene.sks */,
+				70A9E98D2437A2EE0057536E /* teste.sks */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				70DDED592435393400A67CE7 /* collectable.wav in Resources */,
 				7032F3BD2427026D007BC5EE /* Level5.sks in Resources */,
 				709DC45E241D566200A55D28 /* Level2.sks in Resources */,
+				70A9E98E2437A2EE0057536E /* teste.sks in Resources */,
 				704D253D242BF8E200B1F138 /* FinalCheckpointParticle.sks in Resources */,
 				707C295F242823D000BBF7DA /* CBLParticle.sks in Resources */,
 				704D2539242BF83A00B1F138 /* Assets.xcassets in Resources */,

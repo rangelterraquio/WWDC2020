@@ -19,7 +19,7 @@ public class GameScene: SKScene {
     
     var currentLevel: Level!
     
-    var gameStarted: Bool = false
+    public var gameStarted: Bool = false
 
     ///The property difine how much progress bar must increase in each level.
     var progressBar: CGFloat = 0
@@ -35,14 +35,15 @@ public class GameScene: SKScene {
         
         gameLayer = GameLayer(level: currentLevel)
         gameLayer.zPosition = 3
-        gameLayer.gameState = self
-        self.addChild(gameLayer)
-        self.physicsWorld.contactDelegate = gameLayer
+        
         
         hudLayer = HudLayer(screenRect: view.frame)
         hudLayer.zPosition = 5
         setSceneHUD()
         
+        gameLayer.gameState = self
+        self.addChild(gameLayer)
+        self.physicsWorld.contactDelegate = gameLayer
         
         self.backgroundColor = (currentLevel! == .level4 || currentLevel! == .level5 || currentLevel! == .finalScene ) ? NSColor(calibratedRed: 70/255, green: 29/255, blue: 82/255, alpha: 1.0) : .lightGray
         
