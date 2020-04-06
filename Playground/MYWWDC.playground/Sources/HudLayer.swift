@@ -30,6 +30,7 @@ public class HudLayer: SKNode{
     private let instructionNode = SKLabelNode()
     private lazy var our = SKLabelNode()
     private lazy var my = SKLabelNode()
+    private lazy var thanksNode = SKLabelNode()
     ///A graphic progress Bar with title label
     var progressBar: ProgressBar!
     private let barTitle = SKLabelNode(text: "Learning Progress")
@@ -166,36 +167,58 @@ public class HudLayer: SKNode{
        }
     
     private func finalLabelAnimation(){
-        our.fontSize = 25
-        our.colorBlendFactor = 0.0
-        our.position = CGPoint(x: 0, y: screenSize.height * 0.7)
+        our.text = "OUR"
+        our.fontSize = 40
+        our.colorBlendFactor = 1.0
+        our.position = CGPoint(x: -210, y: screenSize.height * 0.7)
         our.fontName = "Cascadia Code"
         our.fontColor = NSColor(calibratedRed: 110/255, green: 240/255, blue: 252/255, alpha: 1.0)
+        our.alpha = 1
         self.addChild(our)
         
-        my.fontSize = 25
+        my.fontSize = 40
         my.colorBlendFactor = 1.0
-        my.position = CGPoint(x: -150, y: screenSize.height * 0.4)
+        my.position = CGPoint(x: -200, y: screenSize.height * 0.35)
         my.fontName = "Cascadia Code"
         my.fontColor = NSColor(calibratedRed: 110/255, green: 240/255, blue: 252/255, alpha: 1.0)
-        my.alpha = 0.0
+        my.alpha = 1.0
         my.text = "My"
         self.addChild(my)
         
-        msgNode.text = "first app journey.\n\n\nThank you."
+        thanksNode.fontSize = 25
+        thanksNode.colorBlendFactor = 1.0
+        thanksNode.position = CGPoint(x: 0, y: screenSize.height * 0.28)
+        thanksNode.fontName = "Cascadia Code"
+        thanksNode.fontColor = NSColor(calibratedRed: 110/255, green: 240/255, blue: 252/255, alpha: 1.0)
+        thanksNode.alpha = 1.0
+        thanksNode.text = "Thank you."
+        self.addChild(thanksNode)
+        
+        msgNode.text = "first app journey."
+        msgNode.position = CGPoint(x: 50, y: screenSize.height * 0.35)
+        msgNode.fontSize = 40
         let fadeInMsg = SKAction.run {
             self.my.run(self.fadeIn)
             self.msgNode.run(self.fadeIn)
         }
         let action2 = SKAction.run{
             self.instructionNode.text = "Press space to play again."
-            self.instructionNode.position = CGPoint(x: 0, y: self.screenSize.height * 0.25)
+            self.instructionNode.position = CGPoint(x: 0, y: -self.screenSize.height * 0.45)
             self.instructionNode.run(self.fadeIn)
             self.blinkInstructionLabel()
         }
         
-  
-        let sequence = SKAction.sequence([waitTwo, fadeInMsg,SKAction.wait(forDuration: 10),action2])
+        let action3 = SKAction.run {
+            self.our.run(SKAction.moveTo(y: self.screenSize.height * 0.35, duration: 3))
+        }
+        
+        let mySequence = SKAction.run{
+            self.my.run(SKAction.sequence([SKAction.wait(forDuration: 2.5), SKAction.group([SKAction.moveTo(y: self.screenSize.height * 0.08, duration: 3),self.fadeOut])]))
+        }
+        
+        let finalActionGroup = SKAction.group([action3,mySequence])
+        
+        let sequence = SKAction.sequence([waitTwo, fadeInMsg,waitTwo,finalActionGroup,SKAction.wait(forDuration: 10),action2])
         msgNode.run(sequence)
         
 

@@ -266,7 +266,7 @@ extension Character: InteractiveNode{
             node.physicsBody?.allowsRotation = false
         }else if currentLevel == .some(.level2){
             node.texture = SKTexture(imageNamed: "star_w")
-            node.physicsBody = SKPhysicsBody(texture: node.texture!, size: node.size)
+            node.physicsBody = SKPhysicsBody(texture: node.texture!, size: CGSize(width: 50, height: 50))
             node.physicsBody?.mass = 0.1
             node.physicsBody?.categoryBitMask = PhysicsCategory.character.bitMask
             node.physicsBody?.contactTestBitMask = PhysicsCategory.collectible.bitMask | PhysicsCategory.flor.bitMask | PhysicsCategory.deathFloor.bitMask | PhysicsCategory.victoryCheckPoint.bitMask

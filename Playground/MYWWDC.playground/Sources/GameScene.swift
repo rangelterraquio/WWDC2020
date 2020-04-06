@@ -97,7 +97,7 @@ public class GameScene: SKScene {
             platform?.name = "smallFloor"
             self.addChild(platform!)
         }else if self.currentLevel == .some(.level3){
-            platformInitialPos = 1890
+            platformInitialPos = 1800
             platformFinalPos = 3020
             platformSpeed = 170
             platform = SKSpriteNode(imageNamed: "plat01")
@@ -346,7 +346,7 @@ extension GameScene{
            paintLabel.position = CGPoint(x: 0, y: -55)
             
            let paint = DesignCollectable(texture: SKTexture(imageNamed: "paint"), color: .clear, size: CGSize(width: 60, height: 68))
-           paint.position = CGPoint(x: 2788.4, y: 539.08)
+           paint.position = CGPoint(x: 2788.4, y: 525.08)
            paint.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 60, height: 68))
            paint.physicsBody?.isDynamic = false
            paint.physicsBody?.categoryBitMask = PhysicsCategory.collectible.bitMask
@@ -376,7 +376,7 @@ extension GameScene{
            uxLabel.position = CGPoint(x: 0, y: -55)
 
            let ux = UXCollectable(texture: SKTexture(imageNamed: "UX"), color: .clear, size: CGSize(width: 70, height: 70))
-            ux.position = CGPoint(x: 568.8, y: -170)
+            ux.position = CGPoint(x: 568.8, y: -155)
             ux.alpha = 0.0
             ux.name = "uxNode"
             self.addChild(ux)

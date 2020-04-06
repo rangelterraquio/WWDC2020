@@ -130,7 +130,7 @@ extension GameLayer{
         
         guard !hasFinished else {return}
         
-        if let particle = SKEmitterNode(fileNamed: "FinalCheckpointParticle"){
+        if let particle = SKEmitterNode(fileNamed: "Particles/FinalCheckpointParticle"){
             particle.position = character.node.position
             character.addChild(particle)
         }
