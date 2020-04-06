@@ -94,14 +94,14 @@ public class CBLNode: SKSpriteNode, Collectable{
        This method add particles to  the CBL node when it has an interaction.
        */
     private func addParticle(){
-        if let particle = SKEmitterNode(fileNamed: "CBLParticle"){
+        if let particle = SKEmitterNode(fileNamed: "Particles/CBLParticle"){
             switch lifeNode {
                 case 2:
-                    particle.particleTexture = SKTexture(imageNamed: "Investigete")
+                    particle.particleTexture = SKTexture(imageNamed: "Particles/Investigete")
                 case 1:
-                    particle.particleTexture = SKTexture(imageNamed: "Act")
+                    particle.particleTexture = SKTexture(imageNamed: "Particles/Act")
                 default:
-                    particle.particleTexture = SKTexture(imageNamed: "Engage")
+                    particle.particleTexture = SKTexture(imageNamed: "Particles/Engage")
             }
             self.addChild(particle)
         }

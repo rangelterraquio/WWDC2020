@@ -36,7 +36,7 @@ public class Character: SKNode{
         light.lightColor =  .white//SKColor.init(red: 255, green: 236, blue: 139, alpha: 0.5)
         light.categoryBitMask = 1
         light.shadowColor = SKColor(red: 0, green: 0, blue: 0, alpha: 0.9)
-        light.falloff = 4.0
+        light.falloff = 8.0
         light.isEnabled = true
           
         self.currentLevel = currentLevel
@@ -79,7 +79,7 @@ public class Character: SKNode{
                 node.physicsBody = SKPhysicsBody(texture: node.texture!, size: CGSize(width: 50, height: 50))
             case .level3:
                 node.texture = SKTexture(imageNamed: "star_w")
-                node.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "star_w"), size: SKTexture(imageNamed: "star_w").size())
+                node.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "star_w"), size: CGSize(width: 50, height: 50))
             case .level4:
                 node.texture = SKTexture(imageNamed: "hexagon_c")
                 node.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "hexagon"), size: CGSize(width: 55, height: 50))

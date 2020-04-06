@@ -28,7 +28,8 @@ public class HudLayer: SKNode{
     
     private let msgNode = SKLabelNode()
     private let instructionNode = SKLabelNode()
-    
+    private lazy var our = SKLabelNode()
+    private lazy var my = SKLabelNode()
     ///A graphic progress Bar with title label
     var progressBar: ProgressBar!
     private let barTitle = SKLabelNode(text: "Learning Progress")
@@ -50,6 +51,7 @@ public class HudLayer: SKNode{
         instructionNode.position = CGPoint(x: 0, y: screenSize.height * 0.4)
         instructionNode.fontName = "Cascadia Code"
         self.addChild(instructionNode)
+        
         
         
         
@@ -162,6 +164,43 @@ public class HudLayer: SKNode{
            let sequence = SKAction.sequence([action,action2])
            instructionNode.run(SKAction.repeatForever(sequence), withKey: "blink")
        }
+    
+    private func finalLabelAnimation(){
+        our.fontSize = 25
+        our.colorBlendFactor = 0.0
+        our.position = CGPoint(x: 0, y: screenSize.height * 0.7)
+        our.fontName = "Cascadia Code"
+        our.fontColor = NSColor(calibratedRed: 110/255, green: 240/255, blue: 252/255, alpha: 1.0)
+        self.addChild(our)
+        
+        my.fontSize = 25
+        my.colorBlendFactor = 1.0
+        my.position = CGPoint(x: -150, y: screenSize.height * 0.4)
+        my.fontName = "Cascadia Code"
+        my.fontColor = NSColor(calibratedRed: 110/255, green: 240/255, blue: 252/255, alpha: 1.0)
+        my.alpha = 0.0
+        my.text = "My"
+        self.addChild(my)
+        
+        msgNode.text = "first app journey.\n\n\nThank you."
+        let fadeInMsg = SKAction.run {
+            self.my.run(self.fadeIn)
+            self.msgNode.run(self.fadeIn)
+        }
+        let action2 = SKAction.run{
+            self.instructionNode.text = "Press space to play again."
+            self.instructionNode.position = CGPoint(x: 0, y: self.screenSize.height * 0.25)
+            self.instructionNode.run(self.fadeIn)
+            self.blinkInstructionLabel()
+        }
+        
+  
+        let sequence = SKAction.sequence([waitTwo, fadeInMsg,SKAction.wait(forDuration: 10),action2])
+        msgNode.run(sequence)
+        
+
+    }
+    
     /**
       This method is trigged an when the scene is loaded.
       
@@ -173,6 +212,7 @@ public class HudLayer: SKNode{
         barTitle.fontColor = color
         msgNode.fontColor = color
         instructionNode.fontColor = color
+        our.fontColor = setupColor(from: level)
         barTitle.fontName = setupFont(from: level)
         msgNode.fontName = setupFont(from: level)
         instructionNode.fontName = setupFont(from: level)
@@ -181,15 +221,8 @@ public class HudLayer: SKNode{
                 print("initial Scene")
             case .finalScene:
             print("")
-            msgNode.text = "OUR first app journey.\n\n\nThank you."
-            let action2 = SKAction.run{
-                self.instructionNode.text = "Press space to play again."
-                self.instructionNode.position = CGPoint(x: 0, y: self.screenSize.height * 0.25)
-                self.instructionNode.run(self.fadeIn)
-                self.blinkInstructionLabel()
-            }
-            let sequence = SKAction.sequence([waitTwo, fadeIn,SKAction.wait(forDuration: 10),action2])
-            msgNode.run(sequence)
+            
+            finalLabelAnimation()
             case .level1:
                 instructionNode.text = "Use left and right arrow to roll sideways"
                 let changeInstruction = SKAction.run {    
