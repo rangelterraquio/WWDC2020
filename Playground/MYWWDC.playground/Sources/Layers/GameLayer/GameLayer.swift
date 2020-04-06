@@ -33,7 +33,7 @@ public class GameLayer: SKNode{
     var isPlayAgainEnable: Bool = false
     
     
-    //Proporty from Observer Protocol.
+    ///Proporty from Observer Protocol.
     public var nodesObserving: [ObservableProtocol] = [] {
            didSet{
             if nodesObserving.isEmpty && (gameState?.gameStarted ?? false) {
@@ -90,7 +90,6 @@ public class GameLayer: SKNode{
     private func addUXNode(){
         let action = SKAction.run {
             if let uxNode = self.scene?.childNode(withName: "uxNode") as? UXCollectable {
-                print("dsdds")
                 uxNode.alpha = 1
                 uxNode.physicsBody = SKPhysicsBody(rectangleOf: uxNode.size)
                 uxNode.physicsBody?.categoryBitMask = PhysicsCategory.collectible.bitMask
@@ -248,28 +247,13 @@ extension GameLayer: SKPhysicsContactDelegate{
             This method verify if the character collided with the collectible
          */
         if node.collided(with: .collectible, contact: contact){
-           // print("node a \(contact.bodyA.node)")
-            print("cast  Aresult \(contact.bodyA.node as? InteractiveNode)")
-//            print("node b \(contact.bodyB.node)")
-            print("cast B result \(contact.bodyB.node as? InteractiveNode)")
             if let nodeA = contact.bodyA.node as? InteractiveNode{
-                print("deu bom 1")
                 nodeA.interact(with: contact)
             }else if let nodeB = contact.bodyB.node as? InteractiveNode{
-                print("deu bom 2")
-
                 nodeB.interact(with: contact)
             }
             
         }
-        
-        /**
-            This method verify if the character collided with the deathFloor
-         */
-//        if node.collided(with: .deathFloor, contact: contact){
-//            AudioHelper.sharedInstance().playSoundEffect(music: Music.error)
-//            restartCheckPoint()
-//        }
         
         /**
             This method verify if the character completed the level
@@ -285,10 +269,8 @@ extension GameLayer: SKPhysicsContactDelegate{
 
 
 
-
+//MARK: -> Observer protocol 
 extension GameLayer: ObserverProtocol{
-   
-    
    
     
     public var id: String {

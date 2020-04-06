@@ -67,7 +67,6 @@ public class GameScene: SKScene {
          
             if let interactiveNode = node as? InteractiveNode{
                 interactiveNode.didMoveToScene()
-                print("didmove")
                 if let node = node as? Collectable{
                     self.gameLayer.addObservingNode(node)
                     node.addObserver(self.gameLayer)
@@ -145,6 +144,10 @@ public class GameScene: SKScene {
         }
     }
     
+
+    /**
+     This method moviments a plataform from level 2 and 3.
+    */
     private func movePlataform(){
         if let platform = platform, platform.physicsBody != nil{
             if(platform.position.x <= platformInitialPos && platform.physicsBody!.velocity.dx < CGFloat(0.0) ){
@@ -429,12 +432,11 @@ extension GameScene{
             teamWork.addChild(teamWorkLabel)
             
             let peopleNode = PeopleNode(texture: SKTexture(imageNamed: "floor_c_1_grande"), color: .clear, size: CGSize(width: 554, height: 120))
-            peopleNode.position = .zero//CGPoint(x: 2891.76, y: -444)
+            peopleNode.position = .zero
             peopleNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 554, height: 120))
             peopleNode.physicsBody?.isDynamic = false
             peopleNode.physicsBody?.categoryBitMask = PhysicsCategory.collectible.bitMask
             let baseRocket = childNode(withName: "baseRocket")
-            print(baseRocket)
             baseRocket?.addChild(peopleNode)
             
         default:

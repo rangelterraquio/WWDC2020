@@ -14,6 +14,7 @@ public class ControlLayer: SKNode{
     
     weak var controlable: ControlProtocol?
     
+    
     override public func keyDown(with event: NSEvent) {
         switch event.keyCode {
             case KeyBoardKeys.rightArrow.rawValue:
@@ -38,6 +39,7 @@ public class ControlLayer: SKNode{
     override public func mouseUp(with event: NSEvent) {
         controlable?.mouseUnpressed(with: event)
     }
+    
     
 }
 

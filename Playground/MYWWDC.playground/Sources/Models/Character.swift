@@ -33,7 +33,7 @@ public class Character: SKNode{
         
         ///setup light node for level 1.
         let light = SKLightNode()
-        light.lightColor =  .white//SKColor.init(red: 255, green: 236, blue: 139, alpha: 0.5)
+        light.lightColor =  .white
         light.categoryBitMask = 1
         light.shadowColor = SKColor(red: 0, green: 0, blue: 0, alpha: 0.9)
         light.falloff = 8.0
@@ -262,7 +262,6 @@ extension Character: InteractiveNode{
             let flashLight = FlashLight()
             flashLight.position = CGPoint(x: 80, y: 0)
             node.addChild(flashLight)
-            node.zRotation = CGFloat(-90).degreesToradius()
             node.physicsBody?.allowsRotation = false
         }else if currentLevel == .some(.level2){
             node.texture = SKTexture(imageNamed: "star_w")
