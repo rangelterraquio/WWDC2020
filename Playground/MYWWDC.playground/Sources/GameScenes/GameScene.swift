@@ -218,7 +218,7 @@ extension GameScene: GameState{
       */
     class public func nextLevel(_ nextLevel: Level) -> GameScene?{
         guard let scene = GameScene(fileNamed: "Scenes/Level\(nextLevel.rawValue)") else {
-            let scene = GameScene(fileNamed: "FinalScene")
+            let scene = GameScene(fileNamed: "Scenes/FinalScene")
             scene?.scaleMode = .aspectFill
             scene?.currentLevel = nextLevel
             return scene
@@ -235,7 +235,7 @@ extension GameScene: GameState{
     }
     
     public func finished(_ level: Level) {
-        print("Level\(level)")
+        //print("Level\(level)")
     }
     
     public func startNewLevel() {

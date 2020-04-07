@@ -209,16 +209,16 @@ public class HudLayer: SKNode{
         }
         
         let action3 = SKAction.run {
-            self.our.run(SKAction.moveTo(y: self.screenSize.height * 0.35, duration: 3))
+            self.our.run(SKAction.moveTo(y: self.screenSize.height * 0.35, duration: 1.5))
         }
         
         let mySequence = SKAction.run{
-            self.my.run(SKAction.sequence([SKAction.wait(forDuration: 2.5), SKAction.group([SKAction.moveTo(y: self.screenSize.height * 0.08, duration: 3),self.fadeOut])]))
+            self.my.run(SKAction.sequence([SKAction.wait(forDuration: 1.0), SKAction.group([SKAction.moveTo(y: self.screenSize.height * 0.08, duration: 1.5),self.fadeOut])]))
         }
         
         let finalActionGroup = SKAction.group([action3,mySequence])
         
-        let sequence = SKAction.sequence([waitTwo, fadeInMsg,waitTwo,finalActionGroup,SKAction.wait(forDuration: 10),action2])
+        let sequence = SKAction.sequence([SKAction.wait(forDuration: 0.5), fadeInMsg,SKAction.wait(forDuration: 1),finalActionGroup,SKAction.wait(forDuration: 10),action2])
         msgNode.run(sequence)
         
 
@@ -243,9 +243,7 @@ public class HudLayer: SKNode{
             case .initialScene:
                 print("initial Scene")
             case .finalScene:
-            print("")
-            
-            finalLabelAnimation()
+                finalLabelAnimation()
             case .level1:
                 instructionNode.text = "Use left and right arrow to roll sideways"
                 let changeInstruction = SKAction.run {    
@@ -284,7 +282,7 @@ extension Level{
             case .initialScene:
                 return Element(msgText: "", instructionText: "")
             case .level1:
-                return Element(msgText: "You got CBL power, now you are able to see things more clearly", instructionText: "Intercte with object to get super powers")
+                return Element(msgText: "You got CBL power, now you are able to see things more clearly", instructionText: "")
             case .level2:
                 return Element(msgText: "You got the power to reinvent yourself", instructionText: "")
             case .level3:

@@ -46,23 +46,16 @@ public class CBLNode: SKSpriteNode, Collectable{
     
     
     public func interact(with contact: SKPhysicsContact?) {
-         print("interact")
-        print(contact?.bodyA.node?.name == self.name)
-        print(contact?.bodyA.node?.name == self.name)
-        print(contact?.bodyA.node?.name)
         guard contact?.bodyA.node?.name == self.name || contact?.bodyB.node?.name == self.name else{return}
-         print("interact2")
          NotificationCenter.default.post(name: NSNotification.Name(rawValue: CBLNode.cblNotification), object: nil)
     }
     
     public func didMoveToScene() {
-        print("cbl node didmoveToscene")
         self.name = "CBLNode"
         NotificationCenter.default.addObserver(self, selector: #selector(interactionCBL), name: NSNotification.Name(rawValue: CBLNode.cblNotification), object: nil)
     }
     //2 1
     @objc private func interactionCBL(){
-        print("interactionCBL()")
 
         animateNode()
         guard lifeNode > 0 else {
