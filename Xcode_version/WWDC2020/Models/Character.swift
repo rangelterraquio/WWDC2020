@@ -16,7 +16,7 @@ public class Character: SKNode{
     
     var state: State = .stopped
     
-    private let maxVelocity: CGFloat = 350
+    private let maxVelocity: CGFloat = 250
     
     let initialPosition: CGPoint = CGPoint(x: -336, y: -200)
     
@@ -118,7 +118,7 @@ public class Character: SKNode{
         let velocity = node.physicsBody!.velocity.dx
         let dx = side.rawValue * maxVelocity * 1.5
         
-        if abs(velocity) < maxVelocity{
+        if abs(velocity) < 350{
             node.xScale = side.rawValue
             node.physicsBody?.applyForce(CGVector(dx: dx, dy: 0.0))
         }

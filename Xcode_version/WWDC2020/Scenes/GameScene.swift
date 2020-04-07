@@ -180,11 +180,14 @@ public class GameScene: SKScene {
         self.gameLayer.keyDown(with: event)
     }
     
-    
+    override public func keyUp(with event: NSEvent) {
+        self.gameLayer.keyUp(with: event)
+    }
     override public func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         self.movePlataform()
         self.gameLayer.verifyEndGame()
+        self.gameLayer.verifykeysPressed()
                
     }
     

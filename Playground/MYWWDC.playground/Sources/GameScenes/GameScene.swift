@@ -390,6 +390,8 @@ extension GameScene{
             timeLabel.fontName = "Cascadia Code"
             timeLabel.fontSize = 15
             timeLabel.position = CGPoint(x: 0, y: -55)
+            timeLabel.horizontalAlignmentMode = .center
+            timeLabel.verticalAlignmentMode = .center
             
             let timeMenage = CodeCollectable(texture: SKTexture(imageNamed: "timeMenage"), color: .clear, size: CGSize(width: 80, height: 76))
             timeMenage.position = CGPoint(x: 1364, y: 65.8)

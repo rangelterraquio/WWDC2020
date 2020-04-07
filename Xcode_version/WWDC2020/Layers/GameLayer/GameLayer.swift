@@ -73,7 +73,9 @@ public class GameLayer: SKNode{
     override public func keyDown(with event: NSEvent) {
         controlLayer.keyDown(with: event)
     }
-    
+    override public func keyUp(with event: NSEvent) {
+           controlLayer.keyUp(with: event)
+    }
     public override func mouseDown(with event: NSEvent) {
         controlLayer.mouseDown(with: event)
     }
@@ -224,6 +226,10 @@ extension GameLayer: ControlProtocol{
     public func spacePressed() {
         character.jump()
         playGameAgain()
+    }
+    
+    public func verifykeysPressed(){
+        controlLayer.keyPressed()
     }
 }
 

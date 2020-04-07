@@ -99,13 +99,13 @@ public enum Music{
     var file: File{
         switch self {
         case .error:
-            return File(name: "error", exten: ".mp3")
+            return File(name: "SoundsEffect/error", exten: ".mp3")
         case .jumping:
-            return File(name: "click", exten: ".wav")
+            return File(name: "SoundsEffect/click", exten: ".wav")
         case .jetpack:
-            return File(name: "jetpack", exten: ".wav")
+            return File(name: "SoundsEffect/jetpack", exten: ".wav")
         case .collectable:
-            return File(name: "collectable", exten: ".wav")
+            return File(name: "SoundsEffect/collectable", exten: ".wav")
         }
     }
 }

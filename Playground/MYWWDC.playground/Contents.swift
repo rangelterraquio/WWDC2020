@@ -46,12 +46,12 @@ This is a 2D game where the purpose of it's show the joruney of how I create my 
 let sceneView = SKView(frame: CGRect(x:0 , y:0, width: 1024, height: 768))
 
 // Load the SKScene from 'GameScene.sks'
-if let scene = GameScene(fileNamed: "Scenes/Level5") {
+if let scene = GameScene(fileNamed: "Scenes/Level1") {
 
     // Set the scale mode to scale to fit the window
     scene.scaleMode = .aspectFill
     //Defines the current level.
-    scene.currentLevel = .level5
+    scene.currentLevel = .level1
     // Present the scene
     sceneView.presentScene(scene)
 }
